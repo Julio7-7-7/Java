@@ -8,5 +8,6 @@ public class pRegistros {
         cPersona p;
         p = new cDocente();
         
+        //dag
     }
 }
