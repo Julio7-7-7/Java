@@ -1,19 +1,20 @@
 package com.mycompany.cregistros;
 
-public abstract class cPersona {
+public class cPersona {
     
     protected int id;
     protected String nombre;
     protected String apellido;
     protected int telefono;
     
+    //Constructores
     cPersona(){
         id = 0;
-        nombre = "";
-        apellido = "";
+        nombre = " ";
+        apellido = " ";
         telefono = 0;
     }
-    
+      
     cPersona(int id, String nombre, String apellido, int telefono){
         this.id = id;
         this.nombre = nombre;
@@ -21,6 +22,7 @@ public abstract class cPersona {
         this.telefono = telefono;
     }
 
+    //Métodos
     public String getNombre() {
         return nombre;
     }
@@ -53,8 +55,10 @@ public abstract class cPersona {
         this.telefono = telefono;
     }
     
-    public String mostrar(){
-        return "El nombre de la persona es:" + nombre + apellido +" su id es:"+ id + " y su celular es:" + telefono;
+    public void mostrar(){
+        System.out.println("El nombre es "+getNombre());
     }
+    
+    
     
 }

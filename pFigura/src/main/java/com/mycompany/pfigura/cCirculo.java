@@ -23,14 +23,14 @@ public class cCirculo extends cFigura{
     }
     
     @Override
+    public void dibujar(){
+        System.out.println("Soy un dibujar de circulo");
+    }
+    
+    @Override
     public double getArea(){
         return Math.PI*radio*radio;
         
-    }
-    
-    
-    public void dibujar(){
-        System.out.println("Soy un dibujar de circulo");
     }
     
     @Override

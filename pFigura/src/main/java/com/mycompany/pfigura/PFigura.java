@@ -85,7 +85,7 @@ public class PFigura {
         */
        
        cFigura fMayor = figuraMayor(F);
-       fMayor.dibujar();
+//       fMayor.dibujar();
        
        cFigura pMayor = perimetroMayor(F);
        pMayor.dibujar();
