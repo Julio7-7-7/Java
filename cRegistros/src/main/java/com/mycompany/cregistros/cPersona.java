@@ -53,8 +53,8 @@ public abstract class cPersona {
         this.telefono = telefono;
     }
     
-    public void mostrar(){
-        
+    public String mostrar(){
+        return "El nombre de la persona es:" + nombre + apellido +" su id es:"+ id + " y su celular es:" + telefono;
     }
     
 }

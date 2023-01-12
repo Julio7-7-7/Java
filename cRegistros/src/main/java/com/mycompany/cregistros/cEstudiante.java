@@ -34,8 +34,8 @@ public class cEstudiante extends cPersona {
     }
     
     @Override
-    public void mostrar(){
-        
+    public String mostrar(){
+        return super.mostrar();
     }
     
     

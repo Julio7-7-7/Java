@@ -6,7 +6,7 @@ public class pRegistros {
         
         
         cPersona p;
-        p = new cDocente(5568446, Jose, Colque, 78546445, IngDeSistemas, 455);
-        
+        p = new cDocente(5568446, "Jose", "Colque", 78546445, "Ing De Sistemas", 455);
+        System.out.println("Info de la persona es " + p.getNombre());
     }
 }

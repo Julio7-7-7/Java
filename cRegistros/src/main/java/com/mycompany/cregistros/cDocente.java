@@ -33,7 +33,8 @@ public class cDocente extends cPersona{
     }
     
     @Override
-    public void mostrar(){
+    public String mostrar(){
+        return super.mostrar();
     }
     
     
