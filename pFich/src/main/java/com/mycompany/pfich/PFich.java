@@ -3,13 +3,25 @@ package com.mycompany.pfich;
 public class PFich {
      
     public static cPersona edadMayor(cPersona V[]){
-        int edad=0;
-        int mayor=0;
-        for(int i=0; i<V[].length; i++){
-            if(V[i].getEdad()>mayor)
-                mayor=V[i].getEdad();
-            
+        double edad=0;
+        cPersona personaMayor= null;
+        for(int i=0; i<V.length;i++){
+            if(V[i].getEdad()>edad)
+                edad=V[i].getEdad();
+                personaMayor=V[i];
         }
+        return personaMayor;
+    }
+    
+    public static cPersona idMayor(cPersona V[]){
+        int ID=0;
+        cPersona idM=null;
+        for(int i=0;i<V.length;i++){
+            if(V[i].getId()>ID)
+                ID=V[i].getId();
+            idM=V[i];
+        }
+        return idM;
     }
     
     public static void main(String[] args) {
@@ -28,25 +40,27 @@ public class PFich {
         
         
         cPersona F[];
-        F = new cPersona[9];
+        F = new cPersona[8];
         F[0] = new cEstudiante(122, "Julio", "Toledo", 68942185,19, 221097848, "Ing de sistemas");
         F[1] = new cEstudiante(564, "Franklin", "Flores", 75012332,19, 221097856, "Ing de sistemas");
         F[2] = new cEstudiante(24156, "Diego", "Aguilera", 78955412,22, 221097785, "Ing de sistemas");
         F[3] = new cEstudiante(454, "Carlos", "Cabrita", 63222115,19, 221098564, "Ing de sistemas");
         F[4] = new cEstudiante(354, "Anthony", "Leaños", 7554632,20, 221092223, "Ing de sistemas");
         F[5] = new cDocente(46, "Jose", "Colque", 65542115,45, 5544112, "Ing informatico");
-        F[6] = new cDocente(46546, "Iveth", "Robles", 3465651,42, 23434, "Ing informatico");
+        F[6] = new cDocente(4654546, "Iveth", "Robles", 3465651,42, 23434, "Ing informatico");
         F[7] = new cDocente(64645, "Omar", "Contreras", 7884460,43, 54, "Ing informatico");
-        F[8] = new cDocente(221645621, "Julio", "Romero", 66542115,50, 552331, "Ingeniero");
         
         for(int i=0; i<F.length; i++){
             F[i].mostrar();
         }
         
+        cPersona personaMayor= edadMayor(F);
+        System.out.println("La persona más longeva es ");
+        personaMayor.mostrar();
         
         
-        
-        
+        cPersona idM = idMayor(F);
+        idM.mostrar();
         
     }
 }

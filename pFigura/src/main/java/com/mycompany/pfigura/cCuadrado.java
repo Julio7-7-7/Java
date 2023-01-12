@@ -27,6 +27,7 @@ public class cCuadrado extends cFigura{
         return lado * lado;
     }
     
+    @Override
     public void dibujar(){
         System.out.println("Soy un dibujar de cuadrado");
     }

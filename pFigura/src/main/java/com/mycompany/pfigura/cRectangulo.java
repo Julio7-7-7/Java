@@ -28,6 +28,7 @@ public class cRectangulo extends cCuadrado{
     }
     
     
+    @Override
     public void dibujar(){
         System.out.println("Soy un dibujar de rectangulo");
     }

@@ -19,7 +19,7 @@ public class PFigura {
         cFigura pMayor = null;
         for(int i=0; i<V.length; i++){
             if(V[i].getPerimetro()>perimetroMayor)
-                perimetroMayor = V[i].getArea();
+                perimetroMayor = V[i].getPerimetro();
                 pMayor = V[i];
         }
         return pMayor;
@@ -52,17 +52,16 @@ public class PFigura {
        
        cFigura F[];
        
-       F = new cFigura[10];
+       F = new cFigura[9];
        F[0] = new cElipse(1,2,1,4);
        F[1] = new cCirculo(3,4,3);
        F[2] = new cElipse(9,2,1,4);
-       F[3] = new cCuadrado(2,5,3);
+       F[3] = new cCuadrado(1,1,1);
        F[4] = new cCirculo(1,2,4);
        F[5] = new cRectangulo(10,15,20,12);
        F[6] = new cCirculo(6,5,3);
        F[7] = new cElipse(1,2,3,4);
-       F[8] = new cCuadrado(1,9,3);
-       F[9] = new cCuadrado(1,4,6);
+       F[8] = new cCuadrado(1,1,1);
        
        /*
        F[0].dibujar();
@@ -85,7 +84,7 @@ public class PFigura {
         */
        
        cFigura fMayor = figuraMayor(F);
-//       fMayor.dibujar();
+       fMayor.dibujar();
        
        cFigura pMayor = perimetroMayor(F);
        pMayor.dibujar();

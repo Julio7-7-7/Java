@@ -28,6 +28,7 @@ public class cElipse extends cCirculo{
     }
     
     
+    @Override
     public void dibujar(){
         System.out.println("Soy un dibujar de elipse");
     }

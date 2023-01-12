@@ -32,8 +32,7 @@ public abstract class cFigura {
         this.y = y;
     }
     
-    public void dibujar(){  
-    }
+    public abstract void dibujar();
     
     public abstract double getArea();
         
