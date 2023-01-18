@@ -137,23 +137,22 @@ public class cVector {
         if(n==1)
         {
         }       
-            else
-            {
-                if(n==2)
-                {
-                    int aux = V[ini];
-                    V[ini] = V[fin];
-                    V[fin] = aux;
-                }
         else
         {
-            subInvertir(ini+1, fin-1);
-            int aux = V[ini];
-            V[ini] = V[fin];
-            V[fin] = aux;
-        }
+            if(n==2)
+            {
+                int aux = V[ini];
+                V[ini] = V[fin];
+                V[fin] = aux;
+            }
+            else
+            {
+                subInvertir(ini+1, fin-1);
+                int aux = V[ini];
+                V[ini] = V[fin];
+                V[fin] = aux;
+            }
             
+        }
     }
-     
-}
 }
