@@ -1,13 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package pfraccion;
 
-/**
- *
- * @author Julius
- */
 public class CFraccion {
     int num;
     int den;
@@ -24,7 +16,8 @@ public class CFraccion {
             resto= a%b;
             a=b;
             b=resto;
-        }while(resto!=0);
+        }
+        while(resto!=0);
         return a;
     }
     
