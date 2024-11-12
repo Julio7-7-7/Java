@@ -58,7 +58,7 @@ public class GDetInsumo {
   
         
    public void mostrardetalleinsumo(JTable paramdetalleinsumo) {
-    GconexionBD objetoConexion = new GconexionBD();
+    CConexion objetoConexion = new CConexion();
     DefaultTableModel modelo = new DefaultTableModel();
 
     // Configurar columnas del modelo de tabla
@@ -78,7 +78,7 @@ public class GDetInsumo {
     Statement st;
 
     try {
-        st = objetoConexion.conectar().createStatement();
+        st = objetoConexion.EstablecerConexion().createStatement();
         ResultSet rs = st.executeQuery(sql);
 
         while (rs.next()) {
@@ -101,7 +101,7 @@ public class GDetInsumo {
    public void mostrartrab(JComboBox paramtrabajo) {
       
        // trab.removeAllItems();
-       GconexionBD objetoConexion = new GconexionBD();
+       CConexion objetoConexion = new CConexion();
             
     String sql  = "SELECT trabajo.id_trabajo, trabajo.nombre " +
                    "FROM trabajo "+
@@ -116,7 +116,7 @@ public class GDetInsumo {
     Statement st;
             
     try {
-        st = objetoConexion.conectar().createStatement();
+        st = objetoConexion.EstablecerConexion().createStatement();
         ResultSet rs = st.executeQuery(sql);
         
         while (rs.next()) {
@@ -134,7 +134,7 @@ public class GDetInsumo {
    public void mostraRinsum(JComboBox paraminsumo) {
       
        // trab.removeAllItems();
-       GconexionBD objetoConexion = new GconexionBD();
+       CConexion objetoConexion = new CConexion();
             
     String sql  = "SELECT insumo.id_insumo, insumo.nombre_insumo " +
                    "FROM insumo "+
@@ -142,7 +142,7 @@ public class GDetInsumo {
     Statement st;
             
     try {
-        st = objetoConexion.conectar().createStatement();
+        st = objetoConexion.EstablecerConexion().createStatement();
         ResultSet rs = st.executeQuery(sql);
         
         while (rs.next()) {
@@ -166,13 +166,13 @@ public class GDetInsumo {
     String id_insumo = paraminsumo.getSelectedItem().toString().split("   --   ")[0];  
     double cantidad = Double.parseDouble(paramcantidad.getText());  
 
-    GconexionBD objetoconexion = new GconexionBD();
+    CConexion objetoconexion = new CConexion();
 
     String consulta = "INSERT INTO det_insumo (id_trabajo, id_insumo, cantidad) VALUES (?, ?, ?);";
 
     try {
       
-        PreparedStatement cs = objetoconexion.conectar().prepareStatement(consulta);
+        PreparedStatement cs = objetoconexion.EstablecerConexion().prepareStatement(consulta);
         cs.setString(1, id_trabajo);  
         cs.setString(2, id_insumo);  
         cs.setDouble(3, cantidad);              

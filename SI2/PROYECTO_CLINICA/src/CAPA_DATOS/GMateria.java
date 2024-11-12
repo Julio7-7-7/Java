@@ -85,7 +85,7 @@ public class GMateria {
     }
     
     public void mostrarMaterias(JTable paramTablaTotalMateria){
-        GconexionBD objetoConexion = new GconexionBD();
+        CConexion objetoConexion = new CConexion();
         
         DefaultTableModel modelo = new DefaultTableModel();
         
@@ -105,7 +105,7 @@ public class GMateria {
         Statement st;
         
         try {
-            st = (Statement) objetoConexion.conectar().createStatement();
+            st = (Statement) objetoConexion.EstablecerConexion().createStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
                 
@@ -137,12 +137,12 @@ public class GMateria {
         setHp(Integer.parseInt(paraHp.getText()));
         setPre_requisito(paraPreRe.getText());
         
-       GconexionBD objetoConexion = new GconexionBD();
+       CConexion objetoConexion = new CConexion();
         
         String consulta = "INSERT INTO materia (sigla, periodo, nombre_materia, cr, ht, hp, pre_requisitos) VALUES (?, ?, ?, ?, ?, ?, ?);";
         
         try {
-            CallableStatement cs = objetoConexion.conectar().prepareCall(consulta);
+            CallableStatement cs = objetoConexion.EstablecerConexion().prepareCall(consulta);
             
             cs.setString(1, getSigla());
             cs.setString(2, getPeriodo());
@@ -196,12 +196,12 @@ public class GMateria {
         setHp(Integer.parseInt(paraHp.getText()));
         setPre_requisito(paraPreRe.getText());
         
-        GconexionBD objetoConexion = new GconexionBD();
+        CConexion objetoConexion = new CConexion();
         
         String consulta = "UPDATE materia SET sigla = ?, periodo= ?, nombre_materia= ?, cr= ?, ht= ?, hp= ?, pre_requisito= ? WHERE materia.sigla = ?;";
         
         try {
-            CallableStatement cs = objetoConexion.conectar().prepareCall(consulta);
+            CallableStatement cs = objetoConexion.EstablecerConexion().prepareCall(consulta);
             
             cs.setString(1, getSigla());
             cs.setString(2, getPeriodo());

@@ -115,6 +115,77 @@ public class GRegistroAcademico {
         }
     }
 
+            
+    public void seleccionarRegistroAcademico(JTable paramTablaRegistroAcademico, JTextField paraRegistro, JTextField paraSigla, JTextField paraGrupo, JTextField paraGestion) {
+    try {
+        int fila = paramTablaRegistroAcademico.getSelectedRow();
+        if (fila >= 0) {
+            paraRegistro.setText(paramTablaRegistroAcademico.getValueAt(fila, 0).toString());
+            paraSigla.setText(paramTablaRegistroAcademico.getValueAt(fila, 1).toString());
+            paraGrupo.setText(paramTablaRegistroAcademico.getValueAt(fila, 2).toString());
+            paraGestion.setText(paramTablaRegistroAcademico.getValueAt(fila, 3).toString());
+        } else {
+            JOptionPane.showMessageDialog(null, "Fila no seleccionada");
+        }
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "Error: " + e.toString());
+    }
+}
+
+    public void modificarRegistroAcademico(JTextField paraRegistro, JTextField paraSigla, JTextField paraGrupo, JTextField paraGestion) {
+    int registro = Integer.parseInt(paraRegistro.getText()); // Convertir 'registro' a entero
+    String sigla = paraSigla.getText();
+    String grupo = paraGrupo.getText();
+    String gestion = paraGestion.getText();
+    
+    CConexion objetoConexion = new CConexion();
+    
+    String consulta = "UPDATE registroacademico SET grupo = ?, gestion = ? WHERE registro = ? AND sigla = ?;";
+    
+    try {
+        CallableStatement cs = objetoConexion.EstablecerConexion().prepareCall(consulta);
+        
+        cs.setString(1, grupo);
+        cs.setString(2, gestion);
+        cs.setInt(3, registro);
+        cs.setString(4, sigla);
+        
+        cs.execute();
+        JOptionPane.showMessageDialog(null, "Modificación Correcta en registroacademico");
+        
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "Error: " + e.toString());
+    }
+}
+
+    public void buscarRegistroAcademico(JTextField paraRegistro, JTable tablaResultados) {
+    int registroBuscado = Integer.parseInt(paraRegistro.getText());
+    CConexion objetoConexion = new CConexion();
+    
+    String consulta = "SELECT * FROM registroacademico WHERE registro = ?;";
+    
+    try {
+        PreparedStatement ps = objetoConexion.EstablecerConexion().prepareStatement(consulta);
+        ps.setInt(1, registroBuscado);
+        
+        ResultSet rs = ps.executeQuery();
+        
+        DefaultTableModel modeloTabla = (DefaultTableModel) tablaResultados.getModel();
+        modeloTabla.setRowCount(0); 
+        
+        while (rs.next()) {
+            Object[] fila = new Object[4];
+            fila[0] = rs.getInt("registro");
+            fila[1] = rs.getString("sigla");
+            fila[2] = rs.getString("grupo");
+            fila[3] = rs.getString("gestion");
+            modeloTabla.addRow(fila);
+        }
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "Error: " + e.toString());
+    }
+}
+
 
    
 

@@ -1,21 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Interfaces;
-
 import clases.GRegistroAcademico;
 import java.awt.Color;
-
-/**
- *
- * @author Julius
- */
+import javax.swing.table.DefaultTableModel;
 public class FRegistroAcademico extends javax.swing.JFrame {
 
-    /**
-     * Creates new form RRegistroAcademico
-     */
     public FRegistroAcademico() {
         initComponents();
     }
@@ -193,6 +181,11 @@ public class FRegistroAcademico extends javax.swing.JFrame {
         ACTUALIZAR.setBorderPainted(false);
         ACTUALIZAR.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         ACTUALIZAR.setFocusPainted(false);
+        ACTUALIZAR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ACTUALIZARActionPerformed(evt);
+            }
+        });
         jPanel1.add(ACTUALIZAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 150, -1, -1));
 
         BUSCAR.setBackground(new java.awt.Color(0, 102, 255));
@@ -201,6 +194,11 @@ public class FRegistroAcademico extends javax.swing.JFrame {
         BUSCAR.setBorderPainted(false);
         BUSCAR.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BUSCAR.setFocusPainted(false);
+        BUSCAR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BUSCARActionPerformed(evt);
+            }
+        });
         jPanel1.add(BUSCAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 150, -1, -1));
 
         LIMPIAR.setBackground(new java.awt.Color(0, 102, 255));
@@ -209,6 +207,11 @@ public class FRegistroAcademico extends javax.swing.JFrame {
         LIMPIAR.setBorderPainted(false);
         LIMPIAR.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         LIMPIAR.setFocusPainted(false);
+        LIMPIAR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LIMPIARActionPerformed(evt);
+            }
+        });
         jPanel1.add(LIMPIAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 200, -1, -1));
 
         LISTA.setBackground(new java.awt.Color(0, 102, 255));
@@ -235,6 +238,11 @@ public class FRegistroAcademico extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblistaregistroacad.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblistaregistroacadMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblistaregistroacad);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 240, 530, 400));
@@ -299,6 +307,35 @@ public class FRegistroAcademico extends javax.swing.JFrame {
        GRegistroAcademico objetoAcademico = new GRegistroAcademico();
         objetoAcademico.mostrarRegistroAcademico(tblistaregistroacad);
     }//GEN-LAST:event_LISTAActionPerformed
+
+    private void tblistaregistroacadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblistaregistroacadMouseClicked
+        GRegistroAcademico objetoAcademico = new GRegistroAcademico();
+        objetoAcademico.seleccionarRegistroAcademico(tblistaregistroacad, registro, sigla, grupo, gestion);
+
+    }//GEN-LAST:event_tblistaregistroacadMouseClicked
+
+    private void LIMPIARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LIMPIARActionPerformed
+       registro.setText("");
+        sigla.setText("");
+        grupo.setText("");
+        gestion.setText("");
+        DefaultTableModel modeloTabla = (DefaultTableModel) tblistaregistroacad.getModel();
+        modeloTabla.setRowCount(0);
+
+    }//GEN-LAST:event_LIMPIARActionPerformed
+
+    private void ACTUALIZARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ACTUALIZARActionPerformed
+        GRegistroAcademico objetoRegistroAcademico = new GRegistroAcademico();
+        objetoRegistroAcademico.modificarRegistroAcademico(registro, sigla, grupo, gestion);
+        objetoRegistroAcademico.mostrarRegistroAcademico(tblistaregistroacad);
+
+    }//GEN-LAST:event_ACTUALIZARActionPerformed
+
+    private void BUSCARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUSCARActionPerformed
+        GRegistroAcademico objetoRegistroAcademico = new GRegistroAcademico();
+        objetoRegistroAcademico.buscarRegistroAcademico(registro, tblistaregistroacad);
+
+    }//GEN-LAST:event_BUSCARActionPerformed
 
     /**
      * @param args the command line arguments

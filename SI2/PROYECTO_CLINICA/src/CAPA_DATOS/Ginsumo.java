@@ -10,9 +10,9 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 
-public class Ginsumo {
+public class GInsumo {
     
-     String Id_insumo ;
+    String Id_insumo ;
     String nombre_insumo ;
     Double precio_insumo;
     
@@ -48,7 +48,7 @@ public class Ginsumo {
     
     public void mostrarInsumo(JTable paramInsumo){
     
-       GconexionBD objetoConexion = new GconexionBD();
+            CConexion objetoConexion = new CConexion();
            DefaultTableModel modelo =new DefaultTableModel();
            
            String sql ="";
@@ -65,7 +65,7 @@ public class Ginsumo {
            Statement st;
          
            try {
-            st = objetoConexion.conectar().createStatement();
+            st = objetoConexion.EstablecerConexion().createStatement();
             ResultSet rs = st.executeQuery(sql);
                     
                while (rs.next()) {
@@ -87,20 +87,20 @@ public class Ginsumo {
  
     
     
-       public void insertarinsumos (JTextField paramid,JTextField paramnombre, JTextField paramprecio){
+       public void insertarInsumo (JTextField paramid,JTextField paramnombre, JTextField paramprecio){
     
         setId_insumo(paramid.getText());
         setNombre_insumo(paramnombre.getText());
         setPrecio_insumo(Double.parseDouble(paramprecio.getText()));
 
     
-        GconexionBD objetoconexion =new GconexionBD();
+        CConexion objetoconexion =new CConexion();
         
         String consulta ="insert into insumo(id_insumo,nombre_insumo,precio_insumo)values (?,?,?);";
         
         try {
             
-            PreparedStatement cs  =objetoconexion.conectar().prepareCall(consulta);
+            PreparedStatement cs  =objetoconexion.EstablecerConexion().prepareCall(consulta);
             cs.setString(1, getId_insumo());
             cs.setString(2 ,getNombre_insumo());
             cs.setDouble(3, getPrecio_insumo());
@@ -169,13 +169,13 @@ public class Ginsumo {
         setPrecio_insumo(Double.parseDouble(paramprecio.getText()));
 
     
-        GconexionBD objetoconexion =new GconexionBD();
+        CConexion objetoconexion =new CConexion();
         
         String consulta ="UPDATE insumo SET nombre_insumo=?, precio_insumo=?  WHERE insumo.id_insumo=?;";
         
         try {
             
-            PreparedStatement cs  =objetoconexion.conectar().prepareCall(consulta);
+            PreparedStatement cs  =objetoconexion.EstablecerConexion().prepareCall(consulta);
              
              
             cs.setString(1 ,getNombre_insumo());
@@ -194,17 +194,17 @@ public class Ginsumo {
     }
     
          
-          public void EliminarInsumo (JTextField paramid){
+          public void eliminarInsumo (JTextField paramid){
     
         setId_insumo(paramid.getText());
     
-        GconexionBD objetoconexion =new GconexionBD();
+        CConexion objetoconexion =new CConexion();
         
         String consulta ="delete from insumo where insumo.id_insumo=?";
        
         try {
             
-            PreparedStatement cs = objetoconexion.conectar().prepareStatement(consulta);
+            PreparedStatement cs = objetoconexion.EstablecerConexion().prepareStatement(consulta);
            
             cs.setString(1, getId_insumo());
             

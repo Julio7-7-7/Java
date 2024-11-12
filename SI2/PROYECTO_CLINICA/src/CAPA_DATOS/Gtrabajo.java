@@ -12,9 +12,9 @@ import javax.swing.JTextField;
 
 
 
-public class Gtrabajo {
+public class GTrabajo {
     
-      String id_trabajo ;
+    String id_trabajo ;
     String nombre ;
     Double precio_unidad;
 
@@ -44,9 +44,9 @@ public class Gtrabajo {
     }
     
   
-    public void mostrarTrabajos(JTable paramtablatrabajo){
+    public void mostrarTrabajo(JTable paramtablatrabajo){
     
-       GconexionBD objetoConexion = new GconexionBD();
+           CConexion objetoConexion = new CConexion();
            DefaultTableModel modelo =new DefaultTableModel();
            
            String sql ="";
@@ -63,7 +63,7 @@ public class Gtrabajo {
            Statement st;
          
            try {
-            st = objetoConexion.conectar().createStatement();
+            st = objetoConexion.EstablecerConexion().createStatement();
             ResultSet rs = st.executeQuery(sql);
                     
                while (rs.next()) {
@@ -81,20 +81,20 @@ public class Gtrabajo {
                JOptionPane.showMessageDialog(null,"error"+ e.toString());
         }
 }
-    public void insertartrabajo (JTextField paramid,JTextField paramnombre, JTextField paramprecio){
+    public void insertarTrabajo (JTextField paramid,JTextField paramnombre, JTextField paramprecio){
     
         setId_trabajo(paramid.getText());
         setNombre(paramnombre.getText());
         setPrecio_unidad(Double.parseDouble(paramprecio.getText()));
 
     
-        GconexionBD objetoconexion =new GconexionBD();
+        CConexion objetoconexion =new CConexion();
         
         String consulta ="insert into trabajo(id_trabajo,nombre,precio_unidad)values (?,?,?);";
         
         try {
             
-            PreparedStatement cs  =objetoconexion.conectar().prepareCall(consulta);
+            PreparedStatement cs  =objetoconexion.EstablecerConexion().prepareCall(consulta);
             cs.setString(1, getId_trabajo());
             cs.setString(2 ,getNombre());
             cs.setDouble(3, getPrecio_unidad());
@@ -132,20 +132,20 @@ public class Gtrabajo {
    }    
    
    
-    public void modificartrabajo (JTextField paramid,JTextField paramnombre, JTextField paramprecio){
+    public void modificarTrabajo (JTextField paramid,JTextField paramnombre, JTextField paramprecio){
     
         setId_trabajo(paramid.getText());
         setNombre(paramnombre.getText());
         setPrecio_unidad(Double.parseDouble(paramprecio.getText()));
 
     
-        GconexionBD objetoconexion =new GconexionBD();
+        CConexion objetoconexion =new CConexion();
         
         String consulta ="UPDATE trabajo SET nombre=?, precio_unidad=?  WHERE trabajo.id_trabajo=?;";
         
         try {
             
-            PreparedStatement cs  =objetoconexion.conectar().prepareCall(consulta);
+            PreparedStatement cs  =objetoconexion.EstablecerConexion().prepareCall(consulta);
              
              
             cs.setString(1 ,getNombre());
@@ -165,17 +165,17 @@ public class Gtrabajo {
    
    
        
-    public void Eliminartrabajo (JTextField paramid){
+    public void eliminarTrabajo (JTextField paramid){
     
         setId_trabajo(paramid.getText());
     
-        GconexionBD objetoconexion =new GconexionBD();
+        CConexion objetoconexion =new CConexion();
         
         String consulta ="delete from trabajo where trabajo.id_trabajo=?";
        
         try {
             
-            PreparedStatement cs = objetoconexion.conectar().prepareStatement(consulta);
+            PreparedStatement cs = objetoconexion.EstablecerConexion().prepareStatement(consulta);
            
             cs.setString(1, getId_trabajo());
             

@@ -81,7 +81,7 @@ public class GMateria {
         this.pre_requisito = pre_requisito;
     }
     
-    public void mostrarMaterias(JTable paramTablaTotalMateria){
+    public void mostrarMateria(JTable paramTablaTotalMateria){
         CConexion objetoConexion = new CConexion();
         
         DefaultTableModel modelo = new DefaultTableModel();

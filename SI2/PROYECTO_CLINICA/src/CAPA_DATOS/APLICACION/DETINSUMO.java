@@ -5,7 +5,7 @@
 package CAPA_DATOS.APLICACION;
 
 import CAPA_DATOS.GDetInsumo;
-import CAPA_DATOS.Ginsumo;
+import CAPA_DATOS.GInsumo;
 
 /**
  *

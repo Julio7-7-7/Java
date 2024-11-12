@@ -399,7 +399,7 @@ public class FMateria extends javax.swing.JFrame {
     private void GUARDARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GUARDARActionPerformed
         GMateria objetoMateria = new GMateria();
         objetoMateria.insertarMateria(sigla, periodo, nombre, creditos, ht, hp, pr);
-        objetoMateria.mostrarMaterias(tblistamateria);
+        objetoMateria.mostrarMateria(tblistamateria);
     }//GEN-LAST:event_GUARDARActionPerformed
 
     private void GUARDARMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GUARDARMousePressed
@@ -444,7 +444,7 @@ public class FMateria extends javax.swing.JFrame {
     private void LISTAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LISTAActionPerformed
         
         GMateria objetoMateria = new GMateria();
-        objetoMateria.mostrarMaterias(tblistamateria);
+        objetoMateria.mostrarMateria(tblistamateria);
     }//GEN-LAST:event_LISTAActionPerformed
 
     private void tblistamateriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblistamateriaMouseClicked
@@ -455,7 +455,7 @@ public class FMateria extends javax.swing.JFrame {
     private void ACTUALIZARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ACTUALIZARActionPerformed
         GMateria objetoMateria = new GMateria();
         objetoMateria.modificarMateria(sigla, periodo, nombre, creditos, ht, hp, pr);
-        objetoMateria.mostrarMaterias(tblistamateria);
+        objetoMateria.mostrarMateria(tblistamateria);
     }//GEN-LAST:event_ACTUALIZARActionPerformed
 
     private void LIMPIARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LIMPIARActionPerformed

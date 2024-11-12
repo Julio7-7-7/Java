@@ -83,7 +83,7 @@ package CAPA_DATOS;
 
 public class PROYECTO_CLINICA {
     public static void main(String[] args) {
-        GconexionBD.conectar(); // Prueba de conexión
+        CConexion.EstablecerConexion(); // Prueba de conexión
     }
 }
 
