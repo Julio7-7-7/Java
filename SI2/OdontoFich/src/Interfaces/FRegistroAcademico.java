@@ -4,6 +4,7 @@
  */
 package Interfaces;
 
+import clases.GRegistroAcademico;
 import java.awt.Color;
 
 /**
@@ -51,7 +52,7 @@ public class FRegistroAcademico extends javax.swing.JFrame {
         LIMPIAR = new javax.swing.JButton();
         LISTA = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblistaregistroacad = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -216,9 +217,14 @@ public class FRegistroAcademico extends javax.swing.JFrame {
         LISTA.setBorderPainted(false);
         LISTA.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         LISTA.setFocusPainted(false);
+        LISTA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LISTAActionPerformed(evt);
+            }
+        });
         jPanel1.add(LISTA, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 200, -1, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblistaregistroacad.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -229,7 +235,7 @@ public class FRegistroAcademico extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblistaregistroacad);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 240, 530, 400));
 
@@ -260,11 +266,13 @@ public class FRegistroAcademico extends javax.swing.JFrame {
     }//GEN-LAST:event_grupoActionPerformed
 
     private void gestionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestionActionPerformed
-        // TODO add your handling code here:
+         
     }//GEN-LAST:event_gestionActionPerformed
 
     private void GUARDARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GUARDARActionPerformed
-        // TODO add your handling code here:
+        GRegistroAcademico objetoAcademico = new GRegistroAcademico();
+        objetoAcademico.insertarRegistroAcademico(registro, sigla, grupo, gestion);
+        objetoAcademico.mostrarRegistroAcademico(tblistaregistroacad);   
     }//GEN-LAST:event_GUARDARActionPerformed
 
     private void registroMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registroMousePressed
@@ -286,6 +294,11 @@ public class FRegistroAcademico extends javax.swing.JFrame {
         gestion.setText("");
         gestion.setForeground(Color.black);
     }//GEN-LAST:event_gestionMousePressed
+
+    private void LISTAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LISTAActionPerformed
+       GRegistroAcademico objetoAcademico = new GRegistroAcademico();
+        objetoAcademico.mostrarRegistroAcademico(tblistaregistroacad);
+    }//GEN-LAST:event_LISTAActionPerformed
 
     /**
      * @param args the command line arguments
@@ -345,8 +358,8 @@ public class FRegistroAcademico extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField registro;
     private javax.swing.JTextField sigla;
+    private javax.swing.JTable tblistaregistroacad;
     // End of variables declaration//GEN-END:variables
 }
