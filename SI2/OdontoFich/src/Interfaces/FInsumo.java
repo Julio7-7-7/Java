@@ -1,392 +1,240 @@
-
 package Interfaces;
 
-//import clases.GDetInsumo;
+import javax.swing.table.DefaultTableModel;
 import clases.GInsumo;
-import clases.GTrabajo;
-import java.awt.Color;
+import java.awt.CardLayout;
+import javax.swing.JPanel;
 
+public class FInsumo extends javax.swing.JPanel{
+ private GInsumo claseInsumo;
+ 
 
-public class FInsumo extends javax.swing.JFrame {
-
-   
     public FInsumo() {
         initComponents();
-        
-        
-         
-        this.setLocationRelativeTo(null);
-    
-        GInsumo objetoinsumo = new GInsumo();
-         objetoinsumo.mostrarInsumo(tablainsumo);
-         
-   
-
-        
-        
+        claseInsumo = new GInsumo();
     }
+  
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel3 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        txtid_insumo = new javax.swing.JTextField();
-        txtnombre_insumo = new javax.swing.JTextField();
-        txtprecio_insumo = new javax.swing.JTextField();
-        btguardar = new javax.swing.JButton();
-        btmodificar = new javax.swing.JButton();
-        bteliminar = new javax.swing.JButton();
-        btlimpiar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
-        jSeparator2 = new javax.swing.JSeparator();
-        jSeparator3 = new javax.swing.JSeparator();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tablainsumo = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
-        buscar = new javax.swing.JTextField();
+        txtDosificacion = new javax.swing.JTextField();
+        btnLimpiar = new javax.swing.JButton();
+        btnAtras = new javax.swing.JButton();
+        txtIdInsumo = new javax.swing.JTextField();
+        btnRegistrar = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        txtPrecio = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        btnCancelar1 = new javax.swing.JButton();
+        btnInventario = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tablaInsumo = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanel1.setBackground(new java.awt.Color(0, 102, 255));
+        jPanel1.setBackground(new java.awt.Color(51, 102, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Roboto Black", 1, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("INSUMOS");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, 250, 33));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("ID DE INSUMO");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, -1, -1));
+        jLabel3.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
+        jLabel3.setText("REGISTRAR INSUMO !");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, 30));
 
-        jLabel3.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("NOMBRE DE INSUMO");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, -1, -1));
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel4.setText("ID INSUMO");
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("PRECIO DE INSUMO ");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, -1, -1));
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel5.setText("NOMBRE");
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 80, -1, 20));
 
-        txtid_insumo.setBackground(new java.awt.Color(0, 102, 255));
-        txtid_insumo.setForeground(new java.awt.Color(0, 0, 0));
-        txtid_insumo.setBorder(null);
-        txtid_insumo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                txtid_insumoMousePressed(evt);
-            }
-        });
-        txtid_insumo.addActionListener(new java.awt.event.ActionListener() {
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel6.setText("PRECIO");
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, -1, 30));
+
+        txtDosificacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtid_insumoActionPerformed(evt);
+                txtDosificacionActionPerformed(evt);
             }
         });
-        jPanel1.add(txtid_insumo, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 300, 197, 20));
+        jPanel2.add(txtDosificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, 170, -1));
 
-        txtnombre_insumo.setBackground(new java.awt.Color(0, 102, 255));
-        txtnombre_insumo.setForeground(new java.awt.Color(0, 0, 0));
-        txtnombre_insumo.setBorder(null);
-        txtnombre_insumo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                txtnombre_insumoMousePressed(evt);
-            }
-        });
-        txtnombre_insumo.addActionListener(new java.awt.event.ActionListener() {
+        btnLimpiar.setText("LIMPIAR");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtnombre_insumoActionPerformed(evt);
+                btnLimpiarActionPerformed(evt);
             }
         });
-        jPanel1.add(txtnombre_insumo, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 350, 197, -1));
+        jPanel2.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 580, 100, 30));
 
-        txtprecio_insumo.setBackground(new java.awt.Color(0, 102, 255));
-        txtprecio_insumo.setForeground(new java.awt.Color(0, 0, 0));
-        txtprecio_insumo.setBorder(null);
-        txtprecio_insumo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                txtprecio_insumoMousePressed(evt);
-            }
-        });
-        txtprecio_insumo.addActionListener(new java.awt.event.ActionListener() {
+        btnAtras.setText("ATRAS");
+        btnAtras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtprecio_insumoActionPerformed(evt);
+                btnAtrasActionPerformed(evt);
             }
         });
-        jPanel1.add(txtprecio_insumo, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 400, 197, -1));
+        jPanel2.add(btnAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 580, 80, 30));
+        jPanel2.add(txtIdInsumo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 170, -1));
 
-        btguardar.setBackground(new java.awt.Color(0, 0, 0));
-        btguardar.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
-        btguardar.setForeground(new java.awt.Color(255, 255, 255));
-        btguardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/disk.png"))); // NOI18N
-        btguardar.setText("GUARDAR");
-        btguardar.addActionListener(new java.awt.event.ActionListener() {
+        btnRegistrar.setText("REGISTRAR");
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btguardarActionPerformed(evt);
+                btnRegistrarActionPerformed(evt);
             }
         });
-        jPanel1.add(btguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 470, -1, 41));
+        jPanel2.add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 580, 100, 30));
+        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 210, -1, -1));
 
-        btmodificar.setBackground(new java.awt.Color(0, 0, 0));
-        btmodificar.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
-        btmodificar.setForeground(new java.awt.Color(255, 255, 255));
-        btmodificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/page_edit.png"))); // NOI18N
-        btmodificar.setText("MODIFICAR");
-        btmodificar.addActionListener(new java.awt.event.ActionListener() {
+        txtPrecio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btmodificarActionPerformed(evt);
+                txtPrecioActionPerformed(evt);
             }
         });
-        jPanel1.add(btmodificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 540, -1, 41));
+        jPanel2.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 170, -1));
 
-        bteliminar.setBackground(new java.awt.Color(0, 0, 0));
-        bteliminar.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
-        bteliminar.setForeground(new java.awt.Color(255, 255, 255));
-        bteliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/delete.png"))); // NOI18N
-        bteliminar.setText("ELIMINAR");
-        bteliminar.addActionListener(new java.awt.event.ActionListener() {
+        txtNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bteliminarActionPerformed(evt);
+                txtNombreActionPerformed(evt);
             }
         });
-        jPanel1.add(bteliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 540, -1, 41));
+        jPanel2.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 110, 170, -1));
 
-        btlimpiar.setBackground(new java.awt.Color(0, 0, 0));
-        btlimpiar.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
-        btlimpiar.setForeground(new java.awt.Color(255, 255, 255));
-        btlimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/page_delete.png"))); // NOI18N
-        btlimpiar.setText("LIMPIAR");
-        btlimpiar.addActionListener(new java.awt.event.ActionListener() {
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel10.setText("DOSIFICACION");
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 160, -1, 20));
+
+        btnCancelar1.setText("CANCELAR");
+        btnCancelar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btlimpiarActionPerformed(evt);
+                btnCancelar1ActionPerformed(evt);
             }
         });
-        jPanel1.add(btlimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 470, 123, 41));
+        jPanel2.add(btnCancelar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 580, 110, 30));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/ODONTO_1.png"))); // NOI18N
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, 220, 230));
+        btnInventario.setText("INVENTARIO");
+        btnInventario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInventarioActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnInventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, -1, -1));
 
-        jSeparator1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 320, 180, -1));
-
-        jSeparator2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 370, 170, -1));
-
-        jSeparator3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 420, 180, -1));
-
-        jPanel3.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 380, 619));
-
-        tablainsumo.setBackground(new java.awt.Color(204, 204, 204));
-        tablainsumo.setForeground(new java.awt.Color(0, 0, 0));
-        tablainsumo.setModel(new javax.swing.table.DefaultTableModel(
+        tablaInsumo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3"
+                "ID INSUMO", "NOMBRE", "PRECIO", "DOSIFICACION"
             }
         ));
-        tablainsumo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tablainsumoMouseClicked(evt);
-            }
-        });
-        jScrollPane2.setViewportView(tablainsumo);
+        jScrollPane2.setViewportView(tablaInsumo);
 
-        jPanel3.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 90, 470, 520));
+        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, -1, 200));
 
-        jLabel6.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel6.setFont(new java.awt.Font("Roboto Black", 1, 24)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel6.setText("BUSCAR");
-        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 40, -1, -1));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 0, 480, 660));
 
-        buscar.setForeground(new java.awt.Color(204, 204, 204));
-        buscar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                buscarMousePressed(evt);
-            }
-        });
-        buscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buscarActionPerformed(evt);
-            }
-        });
-        jPanel3.add(buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 30, 290, 40));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Vector.png"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 470, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 869, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Vector1.png"))); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        pack();
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tools.png"))); // NOI18N
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 0, -1, -1));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/welcome image.png"))); // NOI18N
+        jLabel7.setText("jLabel7");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, -1));
+
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tablainsumoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablainsumoMouseClicked
-
-        GInsumo objetoinsumo = new GInsumo();
-        objetoinsumo.seleccionarInsumo(tablainsumo, txtid_insumo, txtnombre_insumo, txtprecio_insumo);
-
-    }//GEN-LAST:event_tablainsumoMouseClicked
-
-    private void btlimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btlimpiarActionPerformed
-
-        limpiardatos();
-        }
-
-        public void limpiardatos()  {
-            txtid_insumo.setText("");
-            txtnombre_insumo.setText("");
-            txtprecio_insumo.setText("");
-
-    }//GEN-LAST:event_btlimpiarActionPerformed
-
-    private void bteliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bteliminarActionPerformed
-
-        GInsumo objetoInsumo = new GInsumo();
-        objetoInsumo.eliminarInsumo(txtid_insumo);
-        objetoInsumo.mostrarInsumo(tablainsumo);
-
-    }//GEN-LAST:event_bteliminarActionPerformed
-
-    private void btmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btmodificarActionPerformed
-        GInsumo objetoinsumo = new GInsumo();
-        objetoinsumo.modificarInsumo(txtid_insumo,txtnombre_insumo, txtprecio_insumo);
-        objetoinsumo.mostrarInsumo(tablainsumo);
-    }//GEN-LAST:event_btmodificarActionPerformed
-
-    private void btguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btguardarActionPerformed
-        GInsumo objetoinsumo = new GInsumo();
-        objetoinsumo.insertarInsumo(txtid_insumo  , txtnombre_insumo, txtprecio_insumo);
-        objetoinsumo.mostrarInsumo(tablainsumo);
-    }//GEN-LAST:event_btguardarActionPerformed
-
-    private void txtprecio_insumoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtprecio_insumoMousePressed
-
-    }//GEN-LAST:event_txtprecio_insumoMousePressed
-
-    private void txtnombre_insumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombre_insumoActionPerformed
+    private void txtDosificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDosificacionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtnombre_insumoActionPerformed
+    }//GEN-LAST:event_txtDosificacionActionPerformed
 
-    private void txtnombre_insumoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtnombre_insumoMousePressed
-
-    }//GEN-LAST:event_txtnombre_insumoMousePressed
-
-    private void txtid_insumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtid_insumoActionPerformed
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtid_insumoActionPerformed
+        claseInsumo.limpiarCampos(txtIdInsumo, txtNombre, txtPrecio, txtDosificacion);
+        claseInsumo.limpiarTabla(tablaInsumo);
+    }//GEN-LAST:event_btnLimpiarActionPerformed
 
-    private void txtid_insumoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtid_insumoMousePressed
-
-    }//GEN-LAST:event_txtid_insumoMousePressed
-
-    private void txtprecio_insumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtprecio_insumoActionPerformed
+    private void txtPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtprecio_insumoActionPerformed
+    }//GEN-LAST:event_txtPrecioActionPerformed
 
-    private void buscarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buscarMousePressed
-
-    }//GEN-LAST:event_buscarMousePressed
-
-    private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
+    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_buscarActionPerformed
+    }//GEN-LAST:event_txtNombreActionPerformed
 
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+        // TODO add your handling code here:
+     claseInsumo.agregarInsumoATabla(tablaInsumo, txtIdInsumo, txtNombre, txtPrecio, txtDosificacion);
+     claseInsumo.registrarInsumoEnBAD();
+      
+    }//GEN-LAST:event_btnRegistrarActionPerformed
 
-     
-    public static void main(String args[]) {
-     
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FInsumo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FInsumo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FInsumo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FInsumo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-       
-   
+    private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnAtrasActionPerformed
 
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FInsumo().setVisible(true);
-            }
-        });
-    }
+    private void btnCancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelar1ActionPerformed
+        // TODO add your handling code here:
+         claseInsumo.cancelarRegistro(tablaInsumo,txtIdInsumo, txtNombre, txtPrecio, txtDosificacion);
+         
+    }//GEN-LAST:event_btnCancelar1ActionPerformed
+
+    private void btnInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInventarioActionPerformed
+      
+    }//GEN-LAST:event_btnInventarioActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bteliminar;
-    private javax.swing.JButton btguardar;
-    private javax.swing.JButton btlimpiar;
-    private javax.swing.JButton btmodificar;
-    private javax.swing.JTextField buscar;
+    private javax.swing.JButton btnAtras;
+    private javax.swing.JButton btnCancelar1;
+    private javax.swing.JButton btnInventario;
+    private javax.swing.JButton btnLimpiar;
+    private javax.swing.JButton btnRegistrar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JTable tablainsumo;
-    private javax.swing.JTextField txtid_insumo;
-    private javax.swing.JTextField txtnombre_insumo;
-    private javax.swing.JTextField txtprecio_insumo;
+    private javax.swing.JTable tablaInsumo;
+    private javax.swing.JTextField txtDosificacion;
+    private javax.swing.JTextField txtIdInsumo;
+    private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtPrecio;
     // End of variables declaration//GEN-END:variables
+
+
+        
 }

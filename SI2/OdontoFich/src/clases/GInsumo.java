@@ -1,225 +1,152 @@
 package clases;
-
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.JTextField;
+import java.awt.CardLayout;
+import javax.swing.*;
+import java.sql.*;
+import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import odontofich.CConexion;
 
-
 public class GInsumo {
+     // Atributos
+    private String idInsumo;
+    private String nombreInsumo;
+    private double precioInsumo;
+    private String dosificacionInsumo;
+    private ArrayList<String> idsInsumos = new ArrayList<>();
+    private JTable tablaInsumo;
     
-    String Id_insumo ;
-    String nombre_insumo ;
-    Double precio_insumo;
-    
-
-    public String getId_insumo() {
-        return Id_insumo;
+    // Constructor vacío
+    public GInsumo() {
     }
 
-    public void setId_insumo(String Id_insumo) {
-        this.Id_insumo = Id_insumo;
+    // Getters y Setters
+    public String getIdInsumo() {
+        return idInsumo;
     }
 
-    public String getNombre_insumo() {
-        return nombre_insumo;
+    public void setIdInsumo(String idInsumo) {
+        this.idInsumo = idInsumo;
     }
 
-    public void setNombre_insumo(String nombre_insumo) {
-        this.nombre_insumo = nombre_insumo;
+    public String getNombreInsumo() {
+        return nombreInsumo;
     }
 
-    public Double getPrecio_insumo() {
-        return precio_insumo;
+    public void setNombreInsumo(String nombreInsumo) {
+        this.nombreInsumo = nombreInsumo;
     }
 
-    public void setPrecio_insumo(Double precio_insumo) {
-        this.precio_insumo = precio_insumo;
+    public double getPrecioInsumo() {
+        return precioInsumo;
     }
-    
-    
-    
 
- 
+    public void setPrecioInsumo(double precioInsumo) {
+        this.precioInsumo = precioInsumo;
+    }
+
+    public String getDosificacionInsumo() {
+        return dosificacionInsumo;
+    }
+
+    public void setDosificacionInsumo(String dosificacionInsumo) {
+        this.dosificacionInsumo = dosificacionInsumo;
+    }
+
+    public ArrayList<String> getIdsInsumos() {
+        return idsInsumos;
+    }
+
+    public void setIdsInsumos(ArrayList<String> idsInsumos) {
+        this.idsInsumos = idsInsumos;
+    }
+
+
+
+public void obtenerInsumosDeTablaYEnviarAComboBox(JTable tabla, JComboBox<String> comboBox) {
+    DefaultTableModel model = (DefaultTableModel) tabla.getModel(); 
+    int rowCount = model.getRowCount(); 
     
-    public void mostrarInsumo(JTable paramInsumo){
+    comboBox.removeAllItems();
     
-            CConexion objetoConexion = new CConexion();
-           DefaultTableModel modelo =new DefaultTableModel();
-           
-           String sql ="";
-           
-           modelo.addColumn("ID");
-           modelo.addColumn("NOMBRE"); 
-           modelo.addColumn("PRECIO");
-         
-           paramInsumo.setModel(modelo);
-           
-           sql ="select * from insumo; ";
-           
-           String [] datos =new String[3];
-           Statement st;
-         
-           try {
-            st = objetoConexion.EstablecerConexion().createStatement();
-            ResultSet rs = st.executeQuery(sql);
-                    
-               while (rs.next()) {
-                   
-                  datos[0]=rs.getString(1);
-                  datos[1]=rs.getString(2);
-                  datos[2]=rs.getString(3);
-                  
-                   modelo.addRow(datos);
-               }
-               paramInsumo.setModel(modelo);
-               
-        } catch (Exception e) {
+    for (int i = 0; i < rowCount; i++) {
+        Object idInsumo = model.getValueAt(i, 0);  
         
-               JOptionPane.showMessageDialog(null,"error"+ e.toString());
+      
+        if (idInsumo != null) {
+            comboBox.addItem(idInsumo.toString());  
         }
+    }
 }
-    
- 
-    
-    
-       public void insertarInsumo (JTextField paramid,JTextField paramnombre, JTextField paramprecio){
-    
-        setId_insumo(paramid.getText());
-        setNombre_insumo(paramnombre.getText());
-        setPrecio_insumo(Double.parseDouble(paramprecio.getText()));
 
-    
-        CConexion objetoconexion =new CConexion();
-        
-        String consulta ="insert into insumo(id_insumo,nombre_insumo,precio_insumo)values (?,?,?);";
-        
-        try {
-            
-            PreparedStatement cs  =objetoconexion.EstablecerConexion().prepareCall(consulta);
-            cs.setString(1, getId_insumo());
-            cs.setString(2 ,getNombre_insumo());
-            cs.setDouble(3, getPrecio_insumo());
-            
-            cs.execute();
-            JOptionPane.showMessageDialog(null, "se inserto correctamente");
-            
-        } catch (Exception e) {
-            
-             JOptionPane.showMessageDialog(null, "NO SE PUEDE COLOCAR DOS LLAVES PRIMARIAS");
-        }
-        
-        
-    }
-    
-     
-   /*public void seleccionarInsumo(JTable paramtablatrabajo, JTextField paramid, JTextField paramnombre, JTextField paramprecio){
-       
-       try {
-           
-           int fila = paramtablatrabajo.getSelectedRow();
-           if (fila >= 0) {
-               paramid.setText(paramtablatrabajo.getValueAt(fila, 0).toString());
-               paramnombre.setText(paramtablatrabajo.getValueAt(fila, 1).toString());
-               paramprecio.setText(paramtablatrabajo.getValueAt(fila, 2).toString());
-               
-           }
-           else
-                JOptionPane.showMessageDialog(null,"fila no seleccionada");
-           
-       } catch (Exception e) {
-           
-            JOptionPane.showMessageDialog(null, "Error"+e.toString());
-       }
-   
-   } */
-       
-       
-       
-       public void seleccionarInsumo(JTable paramtablatrabajo, JTextField paramid, JTextField paramnombre, JTextField paramprecio) {
-    try {
-        int fila = paramtablatrabajo.getSelectedRow();
-        if (fila >= 0) {
-            paramid.setText(paramtablatrabajo.getValueAt(fila, 0).toString());
-            paramnombre.setText(paramtablatrabajo.getValueAt(fila, 1).toString());
-            
-            Object precioValue = paramtablatrabajo.getValueAt(fila, 2);
-            if (precioValue != null && !precioValue.toString().isEmpty()) {
-                paramprecio.setText(precioValue.toString());
+
+    public void registrarInsumoEnBAD() {
+        String sql = "SELECT public.registrar_insumo(?, ?, CAST(? AS DECIMAL(10, 2)), ?)";
+        try (Connection conn = new CConexion().EstablecerConexion(); 
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            if (conn != null) {
+                pstmt.setString(1, idInsumo); 
+                pstmt.setString(2, nombreInsumo); 
+                pstmt.setString(3, Double.toString(precioInsumo)); 
+                pstmt.setString(4, dosificacionInsumo); 
+
+                pstmt.execute();
+                JOptionPane.showMessageDialog(null, "Insumo registrado exitosamente.");
             } else {
-                paramprecio.setText(""); // Limpia el campo si no hay precio
+                JOptionPane.showMessageDialog(null, "No se pudo conectar a la base de datos.");
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "Fila no seleccionada");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error al registrar insumo: " + e.getMessage());
         }
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(null, "Error: " + e.toString());
     }
+
+    
+    public void cancelarRegistro(JTable tabla,JTextField txtIdInsumo, JTextField txtNombre, JTextField txtPrecio, JTextField txtDosificacion) {
+        int opcion = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea cancelar?", "Cancelar", JOptionPane.YES_NO_OPTION);
+        if (opcion == JOptionPane.YES_OPTION) {
+            limpiarCampos(txtIdInsumo, txtNombre, txtPrecio, txtDosificacion);
+             ((DefaultTableModel) tabla.getModel()).setRowCount(0); 
+        }
+    }
+
+   
+    public void limpiarCampos(JTextField txtIdInsumo, JTextField txtNombre, JTextField txtPrecio, JTextField txtDosificacion) {
+        txtIdInsumo.setText("");
+        txtNombre.setText("");
+        txtPrecio.setText("");
+        txtDosificacion.setText("");
+
+    }
+
+   
+    public void agregarInsumoATabla(JTable tabla, JTextField txtIdInsumo, JTextField txtNombre, JTextField txtPrecio, JTextField txtDosificacion) {
+        setIdInsumo(txtIdInsumo.getText());
+        setNombreInsumo(txtNombre.getText());
+       
+        try {
+            setPrecioInsumo(Double.parseDouble(txtPrecio.getText())); 
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Error al poner el precio");
+            return;
+        }
+        setDosificacionInsumo(txtDosificacion.getText());
+        
+        Object[] row = {getIdInsumo(), getNombreInsumo(), getPrecioInsumo(), getDosificacionInsumo()};
+        DefaultTableModel model = (DefaultTableModel) tabla.getModel();
+        model.insertRow(0, row);
+        limpiarCampos(txtIdInsumo, txtNombre, txtPrecio, txtDosificacion);
+        
+    }
+    public void limpiarTabla(JTable tabla) {
+    DefaultTableModel model = (DefaultTableModel) tabla.getModel();
+    model.setRowCount(0); 
+}
+ 
+  
+
 }
 
    
-         public void modificarInsumo (JTextField paramid,JTextField paramnombre, JTextField paramprecio){
-    
-        setId_insumo(paramid.getText());
-        setNombre_insumo(paramnombre.getText());
-        setPrecio_insumo(Double.parseDouble(paramprecio.getText()));
 
-    
-        CConexion objetoconexion =new CConexion();
-        
-        String consulta ="UPDATE insumo SET nombre_insumo=?, precio_insumo=?  WHERE insumo.id_insumo=?;";
-        
-        try {
-            
-            PreparedStatement cs  =objetoconexion.EstablecerConexion().prepareCall(consulta);
-             
-             
-            cs.setString(1 ,getNombre_insumo());
-            cs.setDouble(2, getPrecio_insumo());
-           cs.setString(3, getId_insumo());
-         
-            cs.execute();
-            JOptionPane.showMessageDialog(null, "se modifico  correctamente");
-            
-        } catch (Exception e) {
-            
-             JOptionPane.showMessageDialog(null, " Error "+e.toString());
-        }
-        
-        
-    }
-    
-         
-          public void eliminarInsumo (JTextField paramid){
-    
-        setId_insumo(paramid.getText());
-    
-        CConexion objetoconexion =new CConexion();
-        
-        String consulta ="delete from insumo where insumo.id_insumo=?";
-       
-        try {
-            
-            PreparedStatement cs = objetoconexion.EstablecerConexion().prepareStatement(consulta);
-           
-            cs.setString(1, getId_insumo());
-            
-            cs.execute();
-            JOptionPane.showMessageDialog(null, "se Elimino correctamente");
-            
-        } catch (Exception e) {
-            
-             JOptionPane.showMessageDialog(null, "Error"+e.toString());
-        }
-        
-        
-    }
-    
-         
-    
-    
-}
+

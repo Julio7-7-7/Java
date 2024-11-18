@@ -249,9 +249,6 @@ public class GMateria {
     } catch (Exception e) {
         JOptionPane.showMessageDialog(null, "Error: " + e.toString());
     }
-}
-    
-    
-    
+}   
     
 }

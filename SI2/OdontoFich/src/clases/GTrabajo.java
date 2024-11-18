@@ -1,4 +1,3 @@
-
 package clases;
 
 import java.sql.PreparedStatement;
@@ -190,12 +189,6 @@ public class GTrabajo {
         
         
     }
-    
-   
-    
-    
-    
-    
    
 }
 

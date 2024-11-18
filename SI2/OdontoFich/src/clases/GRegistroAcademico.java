@@ -186,21 +186,6 @@ public class GRegistroAcademico {
     }
 }
 
-
-   
-
-       
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+  
     
 }
