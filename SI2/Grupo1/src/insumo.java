@@ -21,9 +21,7 @@ import javax.swing.table.DefaultTableModel;
  * @author USUARIO
  */
 public class insumo extends javax.swing.JPanel{
- // Variables de los paneles
-   
-
+ 
     // Constructor
    
     /**
@@ -31,51 +29,46 @@ public class insumo extends javax.swing.JPanel{
      */
     public insumo() {
         initComponents();
+       
     }
-    
-    private void obtenerIdsDeLaTablaYEnviarAlInventario() {
-    // Obtener el modelo de la tabla
-    DefaultTableModel model = (DefaultTableModel) jTable1.getModel(); 
-    int rowCount = model.getRowCount();
+  
+private void obtenerIdsDeLaTablaYEnviarAlInventario() {
+    DefaultTableModel model = (DefaultTableModel) tablaInsumo.getModel();
+    int rowCount = model.getRowCount(); // Obtener la cantidad de filas en la tabla
 
-    // Crear una lista para almacenar los IDs de los insumos
-    ArrayList<String> idsInsumos = new ArrayList<>();
+    ArrayList<String> idsInsumos = new ArrayList<>(); // Lista para almacenar los IDs
 
-    // Recorrer las filas de la tabla y obtener los IDs (columna 0)
+    // Recorrer las filas de la tabla
     for (int i = 0; i < rowCount; i++) {
-        String idInsumo = model.getValueAt(i, 0).toString();  
-        idsInsumos.add(idInsumo);
+        // Obtener el valor de la celda en la primera columna (índice 0)
+        Object value = model.getValueAt(i, 0);
+
+        // Verificar que el valor no sea nulo, vacío o solo contenga espacios
+        if (value != null && !value.toString().trim().isEmpty()) {
+            String idInsumo = value.toString().trim(); // Eliminar espacios antes y después
+            idsInsumos.add(idInsumo); // Agregar el ID a la lista
+            System.out.println("ID en fila " + i + ": " + idInsumo); // Depuración
+        } else {
+            System.out.println("Valor nulo o vacío en fila " + i); // Depuración
+        }
     }
 
-    // Acceder al panel inventario y actualizar el JComboBox con los IDs
-    inventario inventarioFrame = new inventario();
-    inventarioFrame.setJComboBoxInsumos(idsInsumos);  // Llamar al método en el panel inventario
-
-    // Cambiar al panel inventario en el CardLayout
-    CardLayout layout = (CardLayout) this.getParent().getLayout();
-    layout.show(this.getParent(), "inventario");  // Cambiar al panel "inventario"
+    // Mostrar la lista de IDs por consola para ver qué se ha añadido
+    System.out.println("Lista de IDs: " + idsInsumos);
+ inventario inventariof =new inventario();
+    // Actualizar el JComboBox solo si hay elementos en la lista
+    if (!idsInsumos.isEmpty()) {
+        inventariof.setJComboBoxInsumos(idsInsumos); // Llamar al método para actualizar el JComboBox
+    } else {
+        System.out.println("No hay IDs para mostrar.");
+    }
 }
 
-/*
-private void obtenerIdsDeLaTablaYEnviarAlInventario() {
-    
-    DefaultTableModel model = (DefaultTableModel) jTable1.getModel(); 
-    int rowCount = model.getRowCount();
 
-    
-    ArrayList<String> idsInsumos = new ArrayList<>();
+
+
 
    
-    for (int i = 0; i < rowCount; i++) {
-        String idInsumo = model.getValueAt(i, 0).toString();  
-        idsInsumos.add(idInsumo);  
-    }
-
-    inventario inventarioFrame = new inventario();
-    inventarioFrame.setJComboBoxInsumos(idsInsumos);
-    inventarioFrame.setVisible(true);
-}
-*/
 
 private void registrarInsumo() {
   String sql = "SELECT public.registrar_insumo(?, ?, CAST(? AS DECIMAL(10, 2)), ?)"; 
@@ -157,7 +150,7 @@ private void agregarInsumoATabla() {
     Object[] row = {idInsumo, nombreInsumo, precioInsumo, dosificacionInsumo};
 
     // Agregar la fila al modelo de la tabla
-    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+    DefaultTableModel model = (DefaultTableModel) tablaInsumo.getModel();
     model.insertRow(0, row);
 
 }
@@ -195,7 +188,7 @@ private void agregarInsumoATabla() {
         btnCancelar1 = new javax.swing.JButton();
         btnInventario = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaInsumo = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -294,7 +287,7 @@ private void agregarInsumoATabla() {
         });
         jPanel2.add(btnInventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, -1, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaInsumo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -305,7 +298,7 @@ private void agregarInsumoATabla() {
                 "ID INSUMO", "NOMBRE", "PRECIO", "DOSIFICACION"
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(tablaInsumo);
 
         jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, -1, 200));
 
@@ -348,6 +341,7 @@ private void agregarInsumoATabla() {
         // TODO add your handling code here:
         registrarInsumo();
         agregarInsumoATabla();
+        obtenerIdsDeLaTablaYEnviarAlInventario();
       
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
@@ -386,7 +380,7 @@ private void agregarInsumoATabla() {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tablaInsumo;
     private javax.swing.JTextField txtDosificacion;
     private javax.swing.JTextField txtIdInsumo;
     private javax.swing.JTextField txtNombre;

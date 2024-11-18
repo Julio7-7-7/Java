@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+ import  java.util.Date;
 
 public class adicona extends javax.swing.JFrame {
  
@@ -28,7 +29,7 @@ public class adicona extends javax.swing.JFrame {
     }
     
     private void cargarInsumosEnComboBox() {
-        String sql = "SELECT id_insumo, nombre_insumo FROM insumo"; // Consulta SQL
+        String sql = "SELECT id_insumo FROM insumo"; // Consulta SQL
 
        
         Connection conn = new CConexion().getConexion();
@@ -41,8 +42,7 @@ public class adicona extends javax.swing.JFrame {
 
                 while (rs.next()) {
                     String idInsumo = rs.getString("id_insumo");
-                    String nombreInsumo = rs.getString("nombre_insumo");
-                    jcombox.addItem(idInsumo + " - " + nombreInsumo); 
+                    jcombox.addItem(idInsumo); 
                 }
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Error al cargar insumos: " + e.getMessage());
@@ -66,44 +66,111 @@ public class adicona extends javax.swing.JFrame {
     }
     
     private void limpiarCampos() {
-        nroRegist.setText("");
+        jtcosto.setText("");
         idRegist.setText("");
         cantidadAdi.setText("");
         fechaAdi.setText("");
     }
-  private void agregarInsumoATabla() {
+ private void agregarInsumoATabla() {
     // Obtener los valores de los JTextField
-    String idpersonal = nroRegist.getText();
-    String nombrePersonal = idRegist.getText();
-    String cargoPersonal = cantidadAdi.getText();
-    String telefonoPersonal = fechaAdi.getText();
+    String idRegistro = idRegist.getText();
+    String cantidadadi = cantidadAdi.getText();
+    String costoAdi = jtcosto.getText();
+    String fechaAdis = fechaAdi.getText();
 
-   
+    // Validar la fecha
     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     sdf.setLenient(false);
+    java.util.Date fechaDate = null;
     try {
-        sdf.parse(telefonoPersonal); 
+        fechaDate = sdf.parse(fechaAdis);  // Convertir el String a Date
     } catch (ParseException e) {
         JOptionPane.showMessageDialog(null, "La fecha ingresada no es válida. Use el formato dd/MM/yyyy.");
         return; 
     }
 
-    
-    String insumoSeleccionado = (String) jcombox.getSelectedItem(); 
+    // Convertir java.util.Date a java.sql.Date para insertar en la base de datos
+    java.sql.Date fechaSql = new java.sql.Date(fechaDate.getTime());
 
-    
+    // Verificar si el insumo seleccionado es válido
+    String insumoSeleccionado = (String) jcombox.getSelectedItem(); 
     if (insumoSeleccionado == null || insumoSeleccionado.isEmpty()) {
         JOptionPane.showMessageDialog(null, "Por favor, seleccione un insumo.");
         return; 
     }
 
-    
-    Object[] row = {insumoSeleccionado, idpersonal, nombrePersonal, cargoPersonal, telefonoPersonal};
+    // Validar y convertir cantidad a Integer
+    int cantidad = 0;
+    try {
+        cantidad = Integer.parseInt(cantidadadi); // Intentar convertir a Integer
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(null, "La cantidad ingresada no es un número válido.");
+        return; 
+    }
 
+    // Validar y convertir costo a Double (tipo numérico)
+    double costo = 0.0;
+    try {
+        costo = Double.parseDouble(costoAdi); // Intentar convertir a Double
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(null, "El costo ingresado no es un número válido.");
+        return; 
+    }
+
+    // Agregar a la tabla de la interfaz gráfica
+    Object[] row = {idRegistro, insumoSeleccionado, cantidad, costo, fechaAdis};
     DefaultTableModel model = (DefaultTableModel) tablaAdicional.getModel();
     model.insertRow(0, row); 
-}
 
+    // Insertar los datos en la base de datos
+    String sqlInsert = "INSERT INTO detalle_adicional (id_registro, id_insumo, cantidad, costo, fecha) VALUES (?, ?, ?, ?, ?)";
+
+    // Obtener la conexión a la base de datos
+    try (Connection conn = new CConexion().getConexion(); 
+         PreparedStatement pstmtInsert = conn.prepareStatement(sqlInsert)) {
+
+        // Establecer los valores en la consulta SQL
+        pstmtInsert.setString(1, idRegistro);
+        pstmtInsert.setString(2, insumoSeleccionado);  // Aquí es posible que debas extraer solo el ID si insumoSeleccionado tiene más información
+        pstmtInsert.setInt(3, cantidad); // Convertir cantidad a Integer para la base de datos
+        pstmtInsert.setDouble(4, costo); // Convertir costo a Double para la base de datos
+        pstmtInsert.setDate(5, fechaSql);
+
+        // Ejecutar la inserción
+        int rowsAffected = pstmtInsert.executeUpdate();  // Ejecuta la actualización
+        if (rowsAffected > 0) {
+            JOptionPane.showMessageDialog(null, "Datos insertados correctamente en la base de datos.");
+        } else {
+            JOptionPane.showMessageDialog(null, "Error al insertar los datos en la base de datos.");
+            return;
+        }
+
+        // Disminuir el stock después de la inserción
+        String sqlStock = "UPDATE inventario SET stock = stock - ? WHERE id_insumo = ?";
+
+        // Ejecutar la actualización de stock
+        try (PreparedStatement pstmtStock = conn.prepareStatement(sqlStock)) {
+            pstmtStock.setInt(1, cantidad);  // Establecer la cantidad a restar
+            pstmtStock.setString(2, insumoSeleccionado); // El ID del insumo
+
+            // Ejecutar la actualización del stock
+            int rowsUpdated = pstmtStock.executeUpdate();
+            if (rowsUpdated > 0) {
+                JOptionPane.showMessageDialog(null, "Stock actualizado correctamente.");
+            } else {
+                JOptionPane.showMessageDialog(null, "No se pudo actualizar el stock.");
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al actualizar el stock: " + e.getMessage());
+            e.printStackTrace();
+        }
+
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "Error al insertar los datos: " + e.getMessage());
+        e.printStackTrace();
+    }
+}
 
 
     /**
@@ -128,7 +195,7 @@ public class adicona extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        nroRegist = new javax.swing.JTextField();
+        jtcosto = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         idRegist = new javax.swing.JTextField();
         jcombox = new javax.swing.JComboBox<>();
@@ -157,8 +224,8 @@ public class adicona extends javax.swing.JFrame {
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel5.setText("NRO REGISTRO");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, -1, -1));
+        jLabel5.setText("COSTO");
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 160, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel6.setText("CANTIDAD");
@@ -203,17 +270,17 @@ public class adicona extends javax.swing.JFrame {
         jButton4.setText("ATRAS");
         jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 580, 80, 30));
 
-        nroRegist.addActionListener(new java.awt.event.ActionListener() {
+        jtcosto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nroRegistActionPerformed(evt);
+                jtcostoActionPerformed(evt);
             }
         });
-        jPanel2.add(nroRegist, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 110, 170, -1));
+        jPanel2.add(jtcosto, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 190, 170, -1));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel10.setText("ID REGISTRO");
-        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 160, -1, -1));
-        jPanel2.add(idRegist, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 190, 170, 30));
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 80, -1, -1));
+        jPanel2.add(idRegist, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 110, 170, 30));
 
         jcombox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jcombox.addActionListener(new java.awt.event.ActionListener() {
@@ -231,7 +298,7 @@ public class adicona extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                " INSUMO", "NRO REGISTRO", "ID REGISTRO", "CANTIDAD ", "FECHA"
+                "ID REGISTRO", "ID INSUMO", "CANTIDAD ", "COSTO", "FECHA"
             }
         ));
         jScrollPane2.setViewportView(tablaAdicional);
@@ -273,9 +340,9 @@ public class adicona extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void nroRegistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nroRegistActionPerformed
+    private void jtcostoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtcostoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_nroRegistActionPerformed
+    }//GEN-LAST:event_jtcostoActionPerformed
 
     private void jcomboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcomboxActionPerformed
         // TODO add your handling code here:
@@ -348,7 +415,7 @@ public class adicona extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JComboBox<String> jcombox;
-    private javax.swing.JTextField nroRegist;
+    private javax.swing.JTextField jtcosto;
     private javax.swing.JTable tablaAdicional;
     // End of variables declaration//GEN-END:variables
 }

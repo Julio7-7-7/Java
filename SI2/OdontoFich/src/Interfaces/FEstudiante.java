@@ -17,7 +17,6 @@ public class FEstudiante extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         registro = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
@@ -26,11 +25,13 @@ public class FEstudiante extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         GUARDAR = new javax.swing.JButton();
         ACTUALIZAR = new javax.swing.JButton();
-        BUSCAR = new javax.swing.JButton();
-        LIMPIAR = new javax.swing.JButton();
         LISTA = new javax.swing.JButton();
+        LIMPIAR = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblistaestudiante = new javax.swing.JTable();
+        BUSCAR = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -40,7 +41,7 @@ public class FEstudiante extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(0, 102, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setFont(new java.awt.Font("Roboto Bk", 0, 36)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Roboto Bk", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("ESTUDIANTE");
         jLabel2.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -48,20 +49,14 @@ public class FEstudiante extends javax.swing.JFrame {
                 jLabel2FocusGained(evt);
             }
         });
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 240, -1));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 240, -1));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/centro-odontologico-fondo-oscuroRecurso-3-1.png"))); // NOI18N
-        jLabel3.setText("jLabel3");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 350, -1));
-
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 340, 540));
-
-        jLabel1.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setFont(new java.awt.Font("Roboto Black", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("REGISTRO");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 50, -1, -1));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, -1, -1));
 
-        registro.setBackground(new java.awt.Color(255, 255, 255));
+        registro.setBackground(new java.awt.Color(0, 102, 255));
         registro.setForeground(new java.awt.Color(204, 204, 204));
         registro.setText("12345678");
         registro.setBorder(null);
@@ -75,17 +70,17 @@ public class FEstudiante extends javax.swing.JFrame {
                 registroActionPerformed(evt);
             }
         });
-        jPanel1.add(registro, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 70, 150, -1));
+        jPanel2.add(registro, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, 150, -1));
 
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 90, 150, 10));
+        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, 150, 10));
 
-        jLabel4.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setFont(new java.awt.Font("Roboto Black", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("NOMBRE");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 50, -1, -1));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, -1, -1));
 
-        nombre.setBackground(new java.awt.Color(255, 255, 255));
+        nombre.setBackground(new java.awt.Color(0, 102, 255));
         nombre.setForeground(new java.awt.Color(204, 204, 204));
         nombre.setText("JUAN PEREZ");
         nombre.setBorder(null);
@@ -99,15 +94,16 @@ public class FEstudiante extends javax.swing.JFrame {
                 nombreActionPerformed(evt);
             }
         });
-        jPanel1.add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 70, 150, -1));
+        jPanel2.add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 290, 150, -1));
 
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 90, 150, 10));
+        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 310, 150, 10));
 
-        GUARDAR.setBackground(new java.awt.Color(0, 102, 255));
+        GUARDAR.setBackground(new java.awt.Color(51, 51, 51));
         GUARDAR.setForeground(new java.awt.Color(255, 255, 255));
+        GUARDAR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/disk.png"))); // NOI18N
         GUARDAR.setText("GUARDAR");
-        GUARDAR.setBorderPainted(false);
+        GUARDAR.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         GUARDAR.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         GUARDAR.setFocusPainted(false);
         GUARDAR.addActionListener(new java.awt.event.ActionListener() {
@@ -115,12 +111,13 @@ public class FEstudiante extends javax.swing.JFrame {
                 GUARDARActionPerformed(evt);
             }
         });
-        jPanel1.add(GUARDAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 120, -1, 30));
+        jPanel2.add(GUARDAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 360, 120, 40));
 
-        ACTUALIZAR.setBackground(new java.awt.Color(0, 102, 255));
+        ACTUALIZAR.setBackground(new java.awt.Color(51, 51, 51));
         ACTUALIZAR.setForeground(new java.awt.Color(255, 255, 255));
+        ACTUALIZAR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/page_refresh.png"))); // NOI18N
         ACTUALIZAR.setText("ACTUALIZAR");
-        ACTUALIZAR.setBorderPainted(false);
+        ACTUALIZAR.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         ACTUALIZAR.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         ACTUALIZAR.setFocusPainted(false);
         ACTUALIZAR.addActionListener(new java.awt.event.ActionListener() {
@@ -128,38 +125,13 @@ public class FEstudiante extends javax.swing.JFrame {
                 ACTUALIZARActionPerformed(evt);
             }
         });
-        jPanel1.add(ACTUALIZAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 120, -1, -1));
+        jPanel2.add(ACTUALIZAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 430, 120, 40));
 
-        BUSCAR.setBackground(new java.awt.Color(0, 102, 255));
-        BUSCAR.setForeground(new java.awt.Color(255, 255, 255));
-        BUSCAR.setText("BUSCAR");
-        BUSCAR.setBorderPainted(false);
-        BUSCAR.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        BUSCAR.setFocusPainted(false);
-        BUSCAR.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BUSCARActionPerformed(evt);
-            }
-        });
-        jPanel1.add(BUSCAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 120, -1, -1));
-
-        LIMPIAR.setBackground(new java.awt.Color(0, 102, 255));
-        LIMPIAR.setForeground(new java.awt.Color(255, 255, 255));
-        LIMPIAR.setText("LIMPIAR");
-        LIMPIAR.setBorderPainted(false);
-        LIMPIAR.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        LIMPIAR.setFocusPainted(false);
-        LIMPIAR.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LIMPIARActionPerformed(evt);
-            }
-        });
-        jPanel1.add(LIMPIAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 170, -1, -1));
-
-        LISTA.setBackground(new java.awt.Color(0, 102, 255));
+        LISTA.setBackground(new java.awt.Color(51, 51, 51));
         LISTA.setForeground(new java.awt.Color(255, 255, 255));
+        LISTA.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/page_edit.png"))); // NOI18N
         LISTA.setText("LISTA");
-        LISTA.setBorderPainted(false);
+        LISTA.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         LISTA.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         LISTA.setFocusPainted(false);
         LISTA.addActionListener(new java.awt.event.ActionListener() {
@@ -167,14 +139,30 @@ public class FEstudiante extends javax.swing.JFrame {
                 LISTAActionPerformed(evt);
             }
         });
-        jPanel1.add(LISTA, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 170, -1, -1));
+        jPanel2.add(LISTA, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 430, 130, 40));
+
+        LIMPIAR.setBackground(new java.awt.Color(51, 51, 51));
+        LIMPIAR.setForeground(new java.awt.Color(255, 255, 255));
+        LIMPIAR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/page_delete.png"))); // NOI18N
+        LIMPIAR.setText("LIMPIAR");
+        LIMPIAR.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        LIMPIAR.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        LIMPIAR.setFocusPainted(false);
+        LIMPIAR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LIMPIARActionPerformed(evt);
+            }
+        });
+        jPanel2.add(LIMPIAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, 120, 40));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/ODONTO_1.png"))); // NOI18N
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 210, 180));
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 340, 560));
 
         tblistaestudiante.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
@@ -187,15 +175,37 @@ public class FEstudiante extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblistaestudiante);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 197, 550, 360));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 97, 470, 460));
+
+        BUSCAR.setBackground(new java.awt.Color(255, 255, 255));
+        BUSCAR.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        BUSCAR.setForeground(new java.awt.Color(0, 0, 0));
+        BUSCAR.setText("BUSCAR");
+        BUSCAR.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        BUSCAR.setBorderPainted(false);
+        BUSCAR.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BUSCAR.setFocusPainted(false);
+        BUSCAR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BUSCARActionPerformed(evt);
+            }
+        });
+        jPanel1.add(BUSCAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 30, 110, 40));
+
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 30, 260, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 932, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 828, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 6, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -262,6 +272,10 @@ objetoEstudiante.mostrarEstudiantes(tblistaestudiante);    }//GEN-LAST:event_GUA
         objetoEstudiante.seleccionarEstudiante(tblistaestudiante, registro, nombre);
     }//GEN-LAST:event_tblistaestudianteMouseClicked
 
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
     public static void main(String args[]) {
        
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -286,6 +300,7 @@ objetoEstudiante.mostrarEstudiantes(tblistaestudiante);    }//GEN-LAST:event_GUA
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField nombre;
     private javax.swing.JTextField registro;
     private javax.swing.JTable tblistaestudiante;

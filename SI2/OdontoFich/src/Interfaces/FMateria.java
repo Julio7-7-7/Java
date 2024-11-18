@@ -19,12 +19,10 @@ public class FMateria extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         sigla = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel4 = new javax.swing.JLabel();
-        periodo = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel5 = new javax.swing.JLabel();
         nombre = new javax.swing.JTextField();
@@ -41,15 +39,18 @@ public class FMateria extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         pr = new javax.swing.JTextField();
         jSeparator7 = new javax.swing.JSeparator();
+        LISTA = new javax.swing.JButton();
         GUARDAR = new javax.swing.JButton();
         ACTUALIZAR = new javax.swing.JButton();
-        BUSCAR = new javax.swing.JButton();
         LIMPIAR = new javax.swing.JButton();
-        LISTA = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        comboperiodo = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblistamateria = new javax.swing.JTable();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jTextField1 = new javax.swing.JTextField();
+        periodo = new javax.swing.JTextField();
+        BUSCAR = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,23 +60,17 @@ public class FMateria extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(0, 102, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setFont(new java.awt.Font("Roboto Bk", 0, 36)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Roboto Bk", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("MATERIA");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 270, 180, -1));
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/centro-odontologico-fondo-oscuroRecurso-3-1.png"))); // NOI18N
-        jLabel3.setText("jLabel3");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 350, -1));
-
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 340, 570));
+        jLabel2.setText("MATERIAS");
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, 230, -1));
 
         jLabel1.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("SIGLA");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 30, -1, -1));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, -1, -1));
 
-        sigla.setBackground(new java.awt.Color(255, 255, 255));
+        sigla.setBackground(new java.awt.Color(0, 102, 255));
         sigla.setForeground(new java.awt.Color(204, 204, 204));
         sigla.setText("ABC-123");
         sigla.setBorder(null);
@@ -89,41 +84,27 @@ public class FMateria extends javax.swing.JFrame {
                 siglaActionPerformed(evt);
             }
         });
-        jPanel1.add(sigla, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 50, 150, -1));
+        jPanel2.add(sigla, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 150, -1));
 
-        jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 70, 150, 10));
+        jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, 120, 10));
 
         jLabel4.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("PERIODO");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 90, -1, -1));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, -1, -1));
 
-        periodo.setBackground(new java.awt.Color(255, 255, 255));
-        periodo.setForeground(new java.awt.Color(204, 204, 204));
-        periodo.setText("1/2024");
-        periodo.setBorder(null);
-        periodo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                periodoMousePressed(evt);
-            }
-        });
-        periodo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                periodoActionPerformed(evt);
-            }
-        });
-        jPanel1.add(periodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 110, 150, -1));
-
-        jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 130, 150, 10));
+        jSeparator2.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 120, 10));
 
         jLabel5.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("NOMBRE");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 150, -1, -1));
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, -1, -1));
 
-        nombre.setBackground(new java.awt.Color(255, 255, 255));
+        nombre.setBackground(new java.awt.Color(0, 102, 255));
         nombre.setForeground(new java.awt.Color(204, 204, 204));
         nombre.setText("OPERATORIA 1");
         nombre.setBorder(null);
@@ -137,17 +118,18 @@ public class FMateria extends javax.swing.JFrame {
                 nombreActionPerformed(evt);
             }
         });
-        jPanel1.add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 170, 150, -1));
+        jPanel2.add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, 150, -1));
 
-        jSeparator3.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 190, 150, 10));
+        jSeparator3.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, 120, 10));
 
         jLabel6.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("CREDITOS");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 220, -1, -1));
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, -1, -1));
 
-        creditos.setBackground(new java.awt.Color(255, 255, 255));
+        creditos.setBackground(new java.awt.Color(0, 102, 255));
         creditos.setForeground(new java.awt.Color(204, 204, 204));
         creditos.setText("5");
         creditos.setBorder(null);
@@ -161,17 +143,18 @@ public class FMateria extends javax.swing.JFrame {
                 creditosActionPerformed(evt);
             }
         });
-        jPanel1.add(creditos, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 240, 150, -1));
+        jPanel2.add(creditos, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 450, 150, -1));
 
-        jSeparator4.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 260, 150, 10));
+        jSeparator4.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 470, 120, 10));
 
         jLabel7.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("HORAS TEORICAS");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 30, -1, -1));
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 230, -1, -1));
 
-        ht.setBackground(new java.awt.Color(255, 255, 255));
+        ht.setBackground(new java.awt.Color(0, 102, 255));
         ht.setForeground(new java.awt.Color(204, 204, 204));
         ht.setText("10");
         ht.setBorder(null);
@@ -185,17 +168,18 @@ public class FMateria extends javax.swing.JFrame {
                 htActionPerformed(evt);
             }
         });
-        jPanel1.add(ht, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 50, 150, -1));
+        jPanel2.add(ht, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 250, 150, -1));
 
-        jSeparator5.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 70, 150, 10));
+        jSeparator5.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator5.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel2.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 270, 120, 10));
 
         jLabel8.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("HORAS PRACTICAS");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 90, -1, -1));
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 290, -1, -1));
 
-        hp.setBackground(new java.awt.Color(255, 255, 255));
+        hp.setBackground(new java.awt.Color(0, 102, 255));
         hp.setForeground(new java.awt.Color(204, 204, 204));
         hp.setText("18");
         hp.setBorder(null);
@@ -209,17 +193,18 @@ public class FMateria extends javax.swing.JFrame {
                 hpActionPerformed(evt);
             }
         });
-        jPanel1.add(hp, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 110, 150, -1));
+        jPanel2.add(hp, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 310, 150, -1));
 
-        jSeparator6.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 130, 150, 10));
+        jSeparator6.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator6.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel2.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 330, 120, 10));
 
         jLabel9.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("PRE-REQUISITO");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 150, -1, -1));
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 350, -1, -1));
 
-        pr.setBackground(new java.awt.Color(255, 255, 255));
+        pr.setBackground(new java.awt.Color(0, 102, 255));
         pr.setForeground(new java.awt.Color(204, 204, 204));
         pr.setText("DEF-456");
         pr.setBorder(null);
@@ -233,15 +218,33 @@ public class FMateria extends javax.swing.JFrame {
                 prActionPerformed(evt);
             }
         });
-        jPanel1.add(pr, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 170, 150, -1));
+        jPanel2.add(pr, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 370, 150, -1));
 
-        jSeparator7.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 190, 150, 10));
+        jSeparator7.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator7.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel2.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 390, 120, 10));
 
-        GUARDAR.setBackground(new java.awt.Color(0, 102, 255));
+        LISTA.setBackground(new java.awt.Color(51, 51, 51));
+        LISTA.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        LISTA.setForeground(new java.awt.Color(255, 255, 255));
+        LISTA.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/page_edit.png"))); // NOI18N
+        LISTA.setText("LISTA");
+        LISTA.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        LISTA.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        LISTA.setFocusPainted(false);
+        LISTA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LISTAActionPerformed(evt);
+            }
+        });
+        jPanel2.add(LISTA, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 500, 120, 30));
+
+        GUARDAR.setBackground(new java.awt.Color(51, 51, 51));
+        GUARDAR.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
         GUARDAR.setForeground(new java.awt.Color(255, 255, 255));
+        GUARDAR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/disk.png"))); // NOI18N
         GUARDAR.setText("GUARDAR");
-        GUARDAR.setBorderPainted(false);
+        GUARDAR.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         GUARDAR.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         GUARDAR.setFocusPainted(false);
         GUARDAR.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -254,12 +257,14 @@ public class FMateria extends javax.swing.JFrame {
                 GUARDARActionPerformed(evt);
             }
         });
-        jPanel1.add(GUARDAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 250, -1, 30));
+        jPanel2.add(GUARDAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 500, 110, 30));
 
-        ACTUALIZAR.setBackground(new java.awt.Color(0, 102, 255));
+        ACTUALIZAR.setBackground(new java.awt.Color(51, 51, 51));
+        ACTUALIZAR.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
         ACTUALIZAR.setForeground(new java.awt.Color(255, 255, 255));
+        ACTUALIZAR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/page_refresh.png"))); // NOI18N
         ACTUALIZAR.setText("ACTUALIZAR");
-        ACTUALIZAR.setBorderPainted(false);
+        ACTUALIZAR.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         ACTUALIZAR.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         ACTUALIZAR.setFocusPainted(false);
         ACTUALIZAR.addActionListener(new java.awt.event.ActionListener() {
@@ -267,25 +272,14 @@ public class FMateria extends javax.swing.JFrame {
                 ACTUALIZARActionPerformed(evt);
             }
         });
-        jPanel1.add(ACTUALIZAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 250, -1, 30));
+        jPanel2.add(ACTUALIZAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 550, 120, 30));
 
-        BUSCAR.setBackground(new java.awt.Color(0, 102, 255));
-        BUSCAR.setForeground(new java.awt.Color(255, 255, 255));
-        BUSCAR.setText("BUSCAR");
-        BUSCAR.setBorderPainted(false);
-        BUSCAR.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        BUSCAR.setFocusPainted(false);
-        BUSCAR.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BUSCARActionPerformed(evt);
-            }
-        });
-        jPanel1.add(BUSCAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 250, -1, 30));
-
-        LIMPIAR.setBackground(new java.awt.Color(0, 102, 255));
+        LIMPIAR.setBackground(new java.awt.Color(51, 51, 51));
+        LIMPIAR.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
         LIMPIAR.setForeground(new java.awt.Color(255, 255, 255));
+        LIMPIAR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/page_delete.png"))); // NOI18N
         LIMPIAR.setText("LIMPIAR");
-        LIMPIAR.setBorderPainted(false);
+        LIMPIAR.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         LIMPIAR.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         LIMPIAR.setFocusPainted(false);
         LIMPIAR.addActionListener(new java.awt.event.ActionListener() {
@@ -293,20 +287,25 @@ public class FMateria extends javax.swing.JFrame {
                 LIMPIARActionPerformed(evt);
             }
         });
-        jPanel1.add(LIMPIAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 250, -1, 30));
+        jPanel2.add(LIMPIAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 550, 110, 30));
 
-        LISTA.setBackground(new java.awt.Color(0, 102, 255));
-        LISTA.setForeground(new java.awt.Color(255, 255, 255));
-        LISTA.setText("LISTA");
-        LISTA.setBorderPainted(false);
-        LISTA.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        LISTA.setFocusPainted(false);
-        LISTA.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LISTAActionPerformed(evt);
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/ODONTO_1.png"))); // NOI18N
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 260, 180));
+
+        comboperiodo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1er Año", "2do Año", "3er Año", "4to Año", "5to Año" }));
+        comboperiodo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                comboperiodoMouseClicked(evt);
             }
         });
-        jPanel1.add(LISTA, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 250, -1, 30));
+        comboperiodo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboperiodoActionPerformed(evt);
+            }
+        });
+        jPanel2.add(comboperiodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 120, -1));
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 360, 610));
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Lista Materias"));
 
@@ -332,37 +331,66 @@ public class FMateria extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 608, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(0, 12, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 538, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 485, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 310, 630, 250));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 70, 560, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 110, -1, -1));
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 30, 300, 30));
+
+        periodo.setBackground(new java.awt.Color(0, 102, 255));
+        periodo.setForeground(new java.awt.Color(204, 204, 204));
+        periodo.setText("1/2024");
+        periodo.setBorder(null);
+        periodo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                periodoMousePressed(evt);
+            }
+        });
+        periodo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                periodoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(periodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 150, -1));
+
+        BUSCAR.setBackground(new java.awt.Color(255, 255, 255));
+        BUSCAR.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        BUSCAR.setForeground(new java.awt.Color(0, 0, 0));
+        BUSCAR.setText("BUSCAR");
+        BUSCAR.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BUSCAR.setFocusPainted(false);
+        BUSCAR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BUSCARActionPerformed(evt);
+            }
+        });
+        jPanel1.add(BUSCAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 30, -1, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1021, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 943, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 624, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 21, Short.MAX_VALUE))
         );
 
         pack();
@@ -475,6 +503,18 @@ public class FMateria extends javax.swing.JFrame {
         objetoMateria.buscarMateria(sigla, tblistamateria);
     }//GEN-LAST:event_BUSCARActionPerformed
 
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void comboperiodoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboperiodoMouseClicked
+        periodo.setText(comboperiodo.getItemAt(WIDTH));
+    }//GEN-LAST:event_comboperiodoMouseClicked
+
+    private void comboperiodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboperiodoActionPerformed
+        periodo.setText(comboperiodo.getItemAt(WIDTH));
+    }//GEN-LAST:event_comboperiodoActionPerformed
+
     public static void main(String args[]) {
         
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -490,10 +530,10 @@ public class FMateria extends javax.swing.JFrame {
     private javax.swing.JButton GUARDAR;
     private javax.swing.JButton LIMPIAR;
     private javax.swing.JButton LISTA;
+    private javax.swing.JComboBox<String> comboperiodo;
     private javax.swing.JTextField creditos;
     private javax.swing.JTextField hp;
     private javax.swing.JTextField ht;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -514,6 +554,7 @@ public class FMateria extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField nombre;
     private javax.swing.JTextField periodo;
     private javax.swing.JTextField pr;
