@@ -13,7 +13,7 @@ public class FLista extends javax.swing.JFrame {
         initComponents();
         DefaultTableModel model = new DefaultTableModel();
         tablaInventario.setModel(model);
-        ClaseLista = new GLista(model);
+        ClaseLista = new GLista(model,tablaInventario);
         ClaseLista.cargarInsumosEnTabla();
       
     }
@@ -26,7 +26,6 @@ public class FLista extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaInventario = new javax.swing.JTable();
@@ -43,7 +42,12 @@ public class FLista extends javax.swing.JFrame {
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, -1, 30));
 
         jButton4.setText("ATRAS");
-        jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 580, 80, 30));
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 580, 80, 30));
 
         jButton1.setText("BORRAR");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -51,15 +55,7 @@ public class FLista extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 580, -1, 30));
-
-        jButton2.setText("ACTUALIZAR");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 580, -1, 30));
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 580, -1, 30));
 
         jButton3.setText("MODIFICAR");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -67,7 +63,7 @@ public class FLista extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 580, -1, 30));
+        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 580, -1, 30));
 
         tablaInventario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -110,18 +106,22 @@ public class FLista extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        ClaseLista.borrarRegistro(idInventario);
+        ClaseLista.borrarFilaSeleccionada();
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        ClaseLista.actualizarRegistro(idInventario, idInventario);
-    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        ClaseLista.modificarFilaSeleccionada();
         
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+         this.dispose();
+
+        FInventario inventario = new FInventario();
+        inventario.setVisible(true);
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -161,7 +161,6 @@ public class FLista extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel3;

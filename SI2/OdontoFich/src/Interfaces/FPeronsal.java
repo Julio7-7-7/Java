@@ -19,126 +19,41 @@ public class FPeronsal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        edadTexto = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        cargoTexto = new javax.swing.JTextField();
-        idPersonal = new javax.swing.JTextField();
-        jButton6 = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
-        nombreTexto = new javax.swing.JTextField();
-        telTexto = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaPersonal = new javax.swing.JTable();
+        jPanel3 = new javax.swing.JPanel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
+        jSeparator3 = new javax.swing.JSeparator();
+        jSeparator4 = new javax.swing.JSeparator();
+        jSeparator5 = new javax.swing.JSeparator();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        nombreTexto = new javax.swing.JTextField();
+        idPersonal = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        cargoTexto = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        telTexto = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        edadTexto = new javax.swing.JTextField();
+        jButton3 = new javax.swing.JButton();
         guardarCam = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
         guardaBaseD = new javax.swing.JButton();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jPanel1.setBackground(new java.awt.Color(255, 51, 51));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel3.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
-        jLabel3.setText("REGISTRAR PERSONAL");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, 30));
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel4.setText("ID PERSONAL");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel5.setText("EDAD");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, -1, 20));
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel6.setText("CARGO");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, -1, 30));
-
-        edadTexto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                edadTextoActionPerformed(evt);
-            }
-        });
-        jPanel2.add(edadTexto, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 170, -1));
-
-        jButton1.setText("CANCELAR");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 580, 110, 30));
-
-        jButton3.setText("MODIFICAR");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, 100, 30));
-
-        jButton4.setText("ATRAS");
-        jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 580, 80, 30));
-        jPanel2.add(cargoTexto, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 170, 30));
-        jPanel2.add(idPersonal, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 170, -1));
-
-        jButton6.setText("REGISTRAR");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 580, 100, 30));
-
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel7.setText("NOMBRE");
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, -1, 20));
-
-        nombreTexto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nombreTextoActionPerformed(evt);
-            }
-        });
-        jPanel2.add(nombreTexto, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 110, 170, -1));
-
-        telTexto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                telTextoActionPerformed(evt);
-            }
-        });
-        jPanel2.add(telTexto, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 190, 170, -1));
-
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel8.setText("TELEFONO");
-        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, -1, 20));
-
-        jButton5.setText("LIMPIAR");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 580, 100, 30));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/get-a-job-promotion.png"))); // NOI18N
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 190, 220, 200));
 
         tablaPersonal.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -153,113 +68,251 @@ public class FPeronsal extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tablaPersonal);
 
-        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, -1, 210));
+        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 100, 440, 450));
 
-        guardarCam.setText("GUARDAR CAMBIOS");
+        jPanel3.setBackground(new java.awt.Color(0, 102, 255));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel3.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 270, 170, 10));
+        jPanel3.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 310, 160, 10));
+        jPanel3.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 350, 160, 10));
+        jPanel3.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 390, 160, 10));
+        jPanel3.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 430, 170, 10));
+
+        jLabel10.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel10.setFont(new java.awt.Font("Arial Black", 1, 36)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("REGISTRAR");
+        jPanel3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, -1, 30));
+
+        jLabel3.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel3.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("PERSONAL");
+        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, -1, 30));
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("ID PERSONAL");
+        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, -1, -1));
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("NOMBRE");
+        jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, -1, 20));
+
+        nombreTexto.setBackground(new java.awt.Color(0, 102, 255));
+        nombreTexto.setBorder(null);
+        nombreTexto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nombreTextoActionPerformed(evt);
+            }
+        });
+        jPanel3.add(nombreTexto, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 290, 170, -1));
+
+        idPersonal.setBackground(new java.awt.Color(0, 102, 255));
+        idPersonal.setBorder(null);
+        jPanel3.add(idPersonal, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 170, -1));
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("CARGO");
+        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, -1, 30));
+
+        cargoTexto.setBackground(new java.awt.Color(0, 102, 255));
+        cargoTexto.setBorder(null);
+        jPanel3.add(cargoTexto, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 330, 170, 30));
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("TELEFONO");
+        jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, -1, 20));
+
+        telTexto.setBackground(new java.awt.Color(0, 102, 255));
+        telTexto.setBorder(null);
+        telTexto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                telTextoActionPerformed(evt);
+            }
+        });
+        jPanel3.add(telTexto, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 370, 170, -1));
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("EDAD");
+        jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, -1, 20));
+
+        edadTexto.setBackground(new java.awt.Color(0, 102, 255));
+        edadTexto.setBorder(null);
+        edadTexto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                edadTextoActionPerformed(evt);
+            }
+        });
+        jPanel3.add(edadTexto, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 410, 170, -1));
+
+        jButton3.setBackground(new java.awt.Color(0, 0, 0));
+        jButton3.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setText("MODIFICAR");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 510, 100, 30));
+
+        guardarCam.setBackground(new java.awt.Color(0, 0, 0));
+        guardarCam.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        guardarCam.setForeground(new java.awt.Color(255, 255, 255));
+        guardarCam.setText("GUARDAR C");
         guardarCam.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 guardarCamActionPerformed(evt);
             }
         });
-        jPanel2.add(guardarCam, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, 160, 30));
+        jPanel3.add(guardarCam, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 450, 130, 30));
 
+        jButton1.setBackground(new java.awt.Color(0, 0, 0));
+        jButton1.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("CANCELAR");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 480, 110, 30));
+
+        jButton6.setBackground(new java.awt.Color(0, 0, 0));
+        jButton6.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(255, 255, 255));
+        jButton6.setText("REGISTRAR");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 480, 100, 30));
+
+        jButton5.setBackground(new java.awt.Color(0, 0, 0));
+        jButton5.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        jButton5.setForeground(new java.awt.Color(255, 255, 255));
+        jButton5.setText("LIMPIAR");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 450, 100, 30));
+
+        guardaBaseD.setBackground(new java.awt.Color(0, 0, 0));
+        guardaBaseD.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        guardaBaseD.setForeground(new java.awt.Color(255, 255, 255));
         guardaBaseD.setText("GUARDAR TODO ");
         guardaBaseD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 guardaBaseDActionPerformed(evt);
             }
         });
-        jPanel2.add(guardaBaseD, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 620, -1, -1));
+        jPanel3.add(guardaBaseD, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 510, -1, -1));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 0, 480, 660));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/ODONTO_1.png"))); // NOI18N
+        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, 210, 190));
 
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/image44.png"))); // NOI18N
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 120, -1, -1));
+        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 340, 560));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Vector 4.png"))); // NOI18N
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, -1, -1));
+        jButton4.setText("ATRAS");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 20, 80, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1090, Short.MAX_VALUE)
+            .addGap(0, 805, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 805, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 663, Short.MAX_VALUE)
+            .addGap(0, 566, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void edadTextoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edadTextoActionPerformed
+    private void guardaBaseDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardaBaseDActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_edadTextoActionPerformed
+        ClasePersonal.insertarEnBaseDeDatos();
+    }//GEN-LAST:event_guardaBaseDActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-      ClasePersonal.cancelarRegistro(tablaPersonal, idPersonal, nombreTexto, cargoTexto, telTexto, edadTexto);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-         int filaSeleccionada = tablaPersonal.getSelectedRow(); 
-
-    if (filaSeleccionada != -1) {
-        ClasePersonal.mostrarDatosEnCampos(filaSeleccionada, tablaPersonal, idPersonal, nombreTexto, cargoTexto, telTexto, edadTexto);
-      
-    } else {
-        JOptionPane.showMessageDialog(null, "Selecciona una fila para modificar.");
-    }
-        
-
-    }//GEN-LAST:event_jButton3ActionPerformed
+        ClasePersonal.limpiarCampos(idPersonal, nombreTexto, cargoTexto, telTexto, edadTexto);
+        ClasePersonal.limpiarTabla(tablaPersonal);
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
         ClasePersonal.agregarPersonalATabla(tablaPersonal, idPersonal, nombreTexto, cargoTexto, telTexto, edadTexto);
     }//GEN-LAST:event_jButton6ActionPerformed
 
-    private void nombreTextoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreTextoActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        ClasePersonal.cancelarRegistro(tablaPersonal, idPersonal, nombreTexto, cargoTexto, telTexto, edadTexto);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void guardarCamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarCamActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_nombreTextoActionPerformed
+        int filaSeleccionada = tablaPersonal.getSelectedRow();
+
+        if (filaSeleccionada != -1) {
+            ClasePersonal.modificarDatos(filaSeleccionada, tablaPersonal, idPersonal, nombreTexto, cargoTexto, telTexto, edadTexto);
+
+        }
+        ClasePersonal.limpiarCampos(idPersonal, nombreTexto, cargoTexto, telTexto, edadTexto);
+    }//GEN-LAST:event_guardarCamActionPerformed
 
     private void telTextoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_telTextoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_telTextoActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void nombreTextoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreTextoActionPerformed
         // TODO add your handling code here:
-       ClasePersonal.limpiarCampos(idPersonal, nombreTexto, cargoTexto, telTexto, edadTexto);
-       ClasePersonal.limpiarTabla(tablaPersonal);      
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_nombreTextoActionPerformed
 
-    private void guardarCamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarCamActionPerformed
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-              int filaSeleccionada = tablaPersonal.getSelectedRow(); 
+        int filaSeleccionada = tablaPersonal.getSelectedRow();
 
-    if (filaSeleccionada != -1) {
-        ClasePersonal.modificarDatos(filaSeleccionada, tablaPersonal, idPersonal, nombreTexto, cargoTexto, telTexto, edadTexto);
-      
-    } 
-    ClasePersonal.limpiarCampos(idPersonal, nombreTexto, cargoTexto, telTexto, edadTexto);
-  
-    }//GEN-LAST:event_guardarCamActionPerformed
+        if (filaSeleccionada != -1) {
+            ClasePersonal.mostrarDatosEnCampos(filaSeleccionada, tablaPersonal, idPersonal, nombreTexto, cargoTexto, telTexto, edadTexto);
 
-    private void guardaBaseDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardaBaseDActionPerformed
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecciona una fila para modificar.");
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void edadTextoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edadTextoActionPerformed
         // TODO add your handling code here:
-        ClasePersonal.insertarEnBaseDeDatos();
-    }//GEN-LAST:event_guardaBaseDActionPerformed
+    }//GEN-LAST:event_edadTextoActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+          this.dispose();
+
+        EncargadoInsu encargado = new EncargadoInsu();
+        encargado.setVisible(true);
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -308,17 +361,21 @@ public class FPeronsal extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
     private javax.swing.JTextField nombreTexto;
     private javax.swing.JTable tablaPersonal;
     private javax.swing.JTextField telTexto;

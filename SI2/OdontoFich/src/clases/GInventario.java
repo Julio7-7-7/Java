@@ -7,6 +7,10 @@ import java.sql.*;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import odontofich.CConexion;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.sql.*;
+import java.text.ParseException;
 
 public class GInventario {
     private ArrayList<String> idsInsumos;
@@ -15,16 +19,23 @@ public class GInventario {
     private JComboBox<String> JcUnidadMedida;
     private JTextField idInventario;
     private JTextField fechaRegist;
+     private JTextField stock;
+    
+     private JTable tablaInsumo;
+   
+     
 
     public GInventario(JComboBox<String> jcInsumoinve, JComboBox<String> JcPersonal,
                            JComboBox<String> JcUnidadMedida, JTextField idInventario,
-                           JTextField fechaRegist) {
+                           JTextField fechaRegist,JTextField stock) {
         this.idsInsumos = new ArrayList<>();
         this.jcInsumoinve = jcInsumoinve;
         this.JcPersonal = JcPersonal;
         this.JcUnidadMedida = JcUnidadMedida;
         this.idInventario = idInventario;
         this.fechaRegist = fechaRegist;
+        this.stock = stock;
+        
     }
 
     public ArrayList<String> getIdsInsumos() {
@@ -33,7 +44,7 @@ public class GInventario {
 
 
     public void cargarPersonalEnComboBox() {
-        String sql = "SELECT id_personal, nombre FROM personal";
+        String sql = "SELECT id_personal FROM personal";
         Connection conn = new CConexion().EstablecerConexion();
 
         if (conn != null) {
@@ -44,8 +55,7 @@ public class GInventario {
 
                 while (rs.next()) {
                     String idPersonal = rs.getString("id_personal");
-                    String nombre = rs.getString("nombre");
-                    JcPersonal.addItem(idPersonal + " - " + nombre);
+                    JcPersonal.addItem(idPersonal);
                 }
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Error al cargar personal: " + e.getMessage());
@@ -75,14 +85,86 @@ public class GInventario {
         fechaRegist.setText("");
     }
 
-    public void regresarAPanelInsumo(JPanel parentPanel) {
-        CardLayout layout = (CardLayout) parentPanel.getLayout();
-        layout.show(parentPanel, "insumo");
+  
+ 
+public void obtenerIdsDeInsumosYEnviarAlInventario(JComboBox<String> jcInsumoinve) {
+    String sql = "SELECT id_insumo FROM insumo;";
+    
+    try (Connection conn = new CConexion().EstablecerConexion(); 
+         PreparedStatement pstmt = conn.prepareStatement(sql);
+         ResultSet rs = pstmt.executeQuery()) {
+
+        if (conn != null) {
+         
+            jcInsumoinve.removeAllItems();
+            
+           
+            while (rs.next()) {
+                String idInsumo = rs.getString("id_insumo");
+                jcInsumoinve.addItem(idInsumo);  
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "No se pudo conectar a la base de datos.");
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(null, "Error al obtener los insumos: " + e.getMessage());
+    }
+}
+
+public void registrarInventarioEnBD() {
+ 
+    String idInventari = idInventario.getText(); 
+    String idInsumo = jcInsumoinve.getSelectedItem().toString();  
+    String fechaRegistro = fechaRegist.getText();  
+    String stocks = stock.getText();  
+    String unidadMedida = JcUnidadMedida.getSelectedItem().toString();  
+    String personal = JcPersonal.getSelectedItem().toString();  
+    
+   
+    java.sql.Date sqlFechaRegistro = null;
+    try {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); 
+        Date date = sdf.parse(fechaRegistro); 
+        sqlFechaRegistro = new java.sql.Date(date.getTime()); 
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "Error al convertir la fecha: " + e.getMessage());
     }
 
-    public void cambiarAPanelListaInventario(JPanel parentPanel) {
-        CardLayout layout = (CardLayout) parentPanel.getLayout();
-        layout.show(parentPanel, "ListaInventario");
+    float stockValor = 0;
+    try {
+        stockValor = Float.parseFloat(stocks); 
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(null, "El valor del stock debe ser un número válido.");
+        return;  
     }
-  
+
+   
+    String sql = "INSERT INTO inventario (id_inventario, id_insumo, fecha_registro, stock, unidad_medida, id_personal) VALUES (?, ?, ?, ?, ?, ?);";
+
+    try (Connection conn = new CConexion().EstablecerConexion(); 
+         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+      
+        pstmt.setString(1, idInventari);  
+        pstmt.setString(2, idInsumo); 
+        pstmt.setDate(3, sqlFechaRegistro);  
+        pstmt.setFloat(4, stockValor);  
+        pstmt.setString(5, unidadMedida); 
+        pstmt.setString(6, personal);
+
+        
+        int filasAfectadas = pstmt.executeUpdate();
+        
+        if (filasAfectadas > 0) {
+            JOptionPane.showMessageDialog(null, "Inventario registrado exitosamente.");
+        } else {
+            JOptionPane.showMessageDialog(null, "No se pudo registrar el inventario.");
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(null, "Error al registrar inventario: " + e.getMessage());
+    }
+}
+
 }

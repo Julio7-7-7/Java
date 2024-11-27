@@ -1,6 +1,7 @@
 package Interfaces;
 
 import clases.GDetInsumo;
+import javax.swing.table.DefaultTableModel;
 
 public class FDetalleInsumo extends javax.swing.JFrame {
 
@@ -9,12 +10,12 @@ public class FDetalleInsumo extends javax.swing.JFrame {
         initComponents();
      
          
-        this.setLocationRelativeTo(null);
+       this.setLocationRelativeTo(null);
     
-        GDetInsumo objetodetalleinsumo = new GDetInsumo();
-        objetodetalleinsumo.mostrarDetalleInsumo(tabladetalle);
+       GDetInsumo objetodetalleinsumo = new GDetInsumo();
+      objetodetalleinsumo.mostrarDetalleInsumo(tabladetalle);
     
-          objetodetalleinsumo.mostrarTrab(CBidtrabajo);        
+       objetodetalleinsumo.mostrarTrab(CBidtrabajo);        
        
         objetodetalleinsumo.mostraRinsum(CBidinsumo);
         
@@ -32,7 +33,7 @@ public class FDetalleInsumo extends javax.swing.JFrame {
         CBidinsumo = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txtCantidad = new javax.swing.JTextField();
+        Cantidad = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         BTguardar = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -43,6 +44,8 @@ public class FDetalleInsumo extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tabladetalle = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
+        idtrabajo = new javax.swing.JTextField();
+        idinsumo = new javax.swing.JTextField();
         jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -82,14 +85,14 @@ public class FDetalleInsumo extends javax.swing.JFrame {
         jLabel3.setText("CANTIDAD");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, -1, -1));
 
-        txtCantidad.setBackground(new java.awt.Color(0, 102, 255));
-        txtCantidad.setBorder(null);
-        txtCantidad.addActionListener(new java.awt.event.ActionListener() {
+        Cantidad.setBackground(new java.awt.Color(0, 102, 255));
+        Cantidad.setBorder(null);
+        Cantidad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCantidadActionPerformed(evt);
+                CantidadActionPerformed(evt);
             }
         });
-        jPanel1.add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 330, 164, -1));
+        jPanel1.add(Cantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 330, 164, -1));
 
         jButton1.setBackground(new java.awt.Color(0, 0, 0));
         jButton1.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
@@ -120,6 +123,11 @@ public class FDetalleInsumo extends javax.swing.JFrame {
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/delete.png"))); // NOI18N
         jButton3.setText("ELIMINAR");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 430, -1, 40));
 
         jButton4.setBackground(new java.awt.Color(0, 0, 0));
@@ -127,6 +135,11 @@ public class FDetalleInsumo extends javax.swing.JFrame {
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/page_delete.png"))); // NOI18N
         jButton4.setText("MODIFICAR");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 430, -1, 40));
 
         jSeparator1.setBackground(new java.awt.Color(255, 255, 255));
@@ -150,6 +163,11 @@ public class FDetalleInsumo extends javax.swing.JFrame {
                 "IDTRABAJO", "IDINSUMO", "CANTIDAD"
             }
         ));
+        tabladetalle.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabladetalleMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabladetalle);
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 80, 460, 450));
@@ -158,6 +176,12 @@ public class FDetalleInsumo extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
         jLabel4.setText("BUSCAR");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 30, 110, -1));
+
+        idtrabajo.setText("jTextField2");
+        jPanel2.add(idtrabajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 240, 160, -1));
+
+        idinsumo.setText("jTextField3");
+        jPanel2.add(idinsumo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 280, 160, -1));
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -180,34 +204,57 @@ public class FDetalleInsumo extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantidadActionPerformed
+    private void CantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CantidadActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCantidadActionPerformed
+    }//GEN-LAST:event_CantidadActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+     
+        limpiardatos();
+        
+    }                                         
+     public void limpiardatos()  {
+    idtrabajo.setText("");
+    idinsumo.setText("");
+    Cantidad.setText("");
+    
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void CBidtrabajoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBidtrabajoActionPerformed
-       // CBidtrabajo.removeAllItems();
-        
-       // GDetInsumo objetodetalleinsumo = new GDetInsumo();
-       //  objetodetalleinsumo.mostrartrab(CBidtrabajo);        
+          CBidtrabajo.addActionListener(e -> idtrabajo.setText((String) CBidtrabajo.getSelectedItem()));
+           
     }//GEN-LAST:event_CBidtrabajoActionPerformed
 
     private void BTguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTguardarActionPerformed
-        GDetInsumo objetoinsumo = new GDetInsumo();
-       objetoinsumo.insertarDetInsumo(CBidtrabajo, CBidinsumo, txtCantidad);
-        objetoinsumo.mostrarDetalleInsumo(tabladetalle);
+   GDetInsumo objetodetalleinsumo = new GDetInsumo();
+       objetodetalleinsumo.insertarDetInsumo(idtrabajo, idinsumo, Cantidad);
+        objetodetalleinsumo.mostrarDetalleInsumo(tabladetalle);        
     }//GEN-LAST:event_BTguardarActionPerformed
 
     private void CBidinsumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBidinsumoActionPerformed
-        // TODO add your handling code here:
+        CBidinsumo.addActionListener(e -> idinsumo.setText((String) CBidinsumo.getSelectedItem()));
     }//GEN-LAST:event_CBidinsumoActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void tabladetalleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabladetalleMouseClicked
+          GDetInsumo objetodetalleinsumo = new GDetInsumo();
+        objetodetalleinsumo.seleccionarDetInsumo(tabladetalle, idtrabajo, idinsumo, Cantidad);
+    }//GEN-LAST:event_tabladetalleMouseClicked
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        GDetInsumo objetodetalleinsumo = new GDetInsumo();
+        objetodetalleinsumo.modificarDetInsumo(idtrabajo,idinsumo, Cantidad);
+        objetodetalleinsumo.mostrarDetalleInsumo(tabladetalle);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+            GDetInsumo objetodetalleinsumo = new GDetInsumo();
+        objetodetalleinsumo.eliminardetalleinsumo(idtrabajo,idinsumo);
+        objetodetalleinsumo.mostrarDetalleInsumo(tabladetalle);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -251,6 +298,9 @@ public class FDetalleInsumo extends javax.swing.JFrame {
     private javax.swing.JButton BTguardar;
     private javax.swing.JComboBox<String> CBidinsumo;
     private javax.swing.JComboBox<String> CBidtrabajo;
+    private javax.swing.JTextField Cantidad;
+    private javax.swing.JTextField idinsumo;
+    private javax.swing.JTextField idtrabajo;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -266,6 +316,5 @@ public class FDetalleInsumo extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTable tabladetalle;
-    private javax.swing.JTextField txtCantidad;
     // End of variables declaration//GEN-END:variables
 }

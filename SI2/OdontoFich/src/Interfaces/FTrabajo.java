@@ -71,7 +71,7 @@ public class FTrabajo extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("PRECIO UNIDAD");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, -1, -1));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, -1, -1));
 
         txtid_trabajo.setBackground(new java.awt.Color(0, 102, 255));
         txtid_trabajo.setBorder(null);
@@ -113,7 +113,7 @@ public class FTrabajo extends javax.swing.JFrame {
                 txtprecio_unidadActionPerformed(evt);
             }
         });
-        jPanel2.add(txtprecio_unidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 320, 188, 20));
+        jPanel2.add(txtprecio_unidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 330, 188, 20));
 
         btGuardar.setBackground(new java.awt.Color(0, 0, 0));
         btGuardar.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
@@ -125,7 +125,7 @@ public class FTrabajo extends javax.swing.JFrame {
                 btGuardarActionPerformed(evt);
             }
         });
-        jPanel2.add(btGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, 139, -1));
+        jPanel2.add(btGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, 139, 50));
 
         BtModificar.setBackground(new java.awt.Color(0, 0, 0));
         BtModificar.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
@@ -137,7 +137,7 @@ public class FTrabajo extends javax.swing.JFrame {
                 BtModificarActionPerformed(evt);
             }
         });
-        jPanel2.add(BtModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, -1, 40));
+        jPanel2.add(BtModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 460, -1, 50));
 
         BtEliminar.setBackground(new java.awt.Color(0, 0, 0));
         BtEliminar.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
@@ -149,7 +149,7 @@ public class FTrabajo extends javax.swing.JFrame {
                 BtEliminarActionPerformed(evt);
             }
         });
-        jPanel2.add(BtEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 440, -1, -1));
+        jPanel2.add(BtEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 470, -1, 50));
 
         BtLimpiar.setBackground(new java.awt.Color(0, 0, 0));
         BtLimpiar.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
@@ -161,7 +161,7 @@ public class FTrabajo extends javax.swing.JFrame {
                 BtLimpiarActionPerformed(evt);
             }
         });
-        jPanel2.add(BtLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 380, 139, -1));
+        jPanel2.add(BtLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 400, 139, 50));
         jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 270, -1, -1));
 
         jSeparator2.setBackground(new java.awt.Color(255, 255, 255));
@@ -171,7 +171,7 @@ public class FTrabajo extends javax.swing.JFrame {
         jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 310, 160, 10));
 
         jSeparator4.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 340, 150, 10));
+        jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 350, 150, 10));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/ODONTO_1.png"))); // NOI18N
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, 210, 190));

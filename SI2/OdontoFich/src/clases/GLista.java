@@ -3,19 +3,27 @@ package clases;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import odontofich.CConexion;
+import java.time.format.DateTimeParseException;
+
 
 public class GLista {
     private DefaultTableModel model;
+    private JTable tablaInventario;
     private ArrayList<String[]> inventarioData = new ArrayList<>();
     
 
    
-    public GLista(DefaultTableModel model) {
+    public GLista(DefaultTableModel model, JTable tablaInventario) {
         this.model = model;
+        this.tablaInventario = tablaInventario; // Iniciamos la referencia de la tabla
         model.addColumn("ID INVENTARIO");
         model.addColumn("ID INSUMO");
         model.addColumn("FECHA REGISTRO");
@@ -55,67 +63,60 @@ public class GLista {
         }
     }
 
-    public void borrarRegistro(String idInventario) {
-        String sql = "DELETE FROM inventario WHERE id_inventario = ?";
-        try (Connection conn = new CConexion().EstablecerConexion();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+   public void borrarFilaSeleccionada() {
+    // Obtener la fila seleccionada
+    int selectedRow = tablaInventario.getSelectedRow();
 
-            pstmt.setString(1, idInventario);
-            int rowsAffected = pstmt.executeUpdate();
+    if (selectedRow != -1) {
+        // Obtener el id_inventario de la fila seleccionada
+        String idInventario = (String) tablaInventario.getValueAt(selectedRow, 0); // Columna 0 es id_inventario
 
-            if (rowsAffected > 0) {
-                JOptionPane.showMessageDialog(null, "Registro eliminado correctamente.");
-                cargarInsumosEnTabla(); // Actualizar tabla después de borrar
-            } else {
-                JOptionPane.showMessageDialog(null, "Error al eliminar el registro.");
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al eliminar el registro: " + e.getMessage());
-            e.printStackTrace();
-        }
+        // Llamar al método para borrar el registro de la base de datos
+        borrarRegistro(idInventario);
+
+        // Eliminar la fila de la tabla
+        model.removeRow(selectedRow);
+    } else {
+        JOptionPane.showMessageDialog(null, "Por favor seleccione una fila para eliminar.");
     }
+}
 
-    public void actualizarRegistro(String idInventario, String nuevoStock) {
-        String sql = "UPDATE inventario SET stock = ? WHERE id_inventario = ?";
-        try (Connection conn = new CConexion().EstablecerConexion();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
-            pstmt.setString(1, nuevoStock);
-            pstmt.setString(2, idInventario);
-            int rowsAffected = pstmt.executeUpdate();
-
-            if (rowsAffected > 0) {
-                JOptionPane.showMessageDialog(null, "Registro actualizado correctamente.");
-                cargarInsumosEnTabla(); 
-            } else {
-                JOptionPane.showMessageDialog(null, "Error al actualizar el registro.");
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al actualizar el registro: " + e.getMessage());
-            e.printStackTrace();
-        }
-    }
-    public void modificarRegistro(String idInventario, String nuevoIdInsumo, String nuevaFechaRegistro, 
-                              String nuevoStock, String nuevaUnidadMedida, String nuevoIdPersonal) {
-    String sql = "UPDATE inventario SET id_insumo = ?, fecha_registro = ?, stock = ?, unidad_medida = ?, id_personal = ? WHERE id_inventario = ?";
-    
+public void borrarRegistro(String idInventario) {
+    String sql = "DELETE FROM inventario WHERE id_inventario = ?";
     try (Connection conn = new CConexion().EstablecerConexion();
          PreparedStatement pstmt = conn.prepareStatement(sql)) {
-        
-        
-        pstmt.setString(1, nuevoIdInsumo);
-        pstmt.setString(2, nuevaFechaRegistro);
-        pstmt.setString(3, nuevoStock);
-        pstmt.setString(4, nuevaUnidadMedida);
-        pstmt.setString(5, nuevoIdPersonal);
-        pstmt.setString(6, idInventario);
-        
-       
+
+        pstmt.setString(1, idInventario);
         int rowsAffected = pstmt.executeUpdate();
-        
+
+        if (rowsAffected > 0) {
+            JOptionPane.showMessageDialog(null, "Registro eliminado correctamente.");
+            cargarInsumosEnTabla(); // Recargar la tabla después de eliminar
+        } else {
+            JOptionPane.showMessageDialog(null, "Error al eliminar el registro.");
+        }
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "Error al eliminar el registro: " + e.getMessage());
+        e.printStackTrace();
+    }
+}
+
+ 
+
+public void modificarRegistro(String idInventario, java.sql.Date nuevaFechaRegistro, double nuevoStock) {
+    String sql = "UPDATE inventario SET fecha_registro = ?, stock = ? WHERE id_inventario = ?";
+    try (Connection conn = new CConexion().EstablecerConexion();
+         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+        pstmt.setDate(1, nuevaFechaRegistro); 
+        pstmt.setDouble(2, nuevoStock); 
+        pstmt.setString(3, idInventario); 
+
+        int rowsAffected = pstmt.executeUpdate();
+
         if (rowsAffected > 0) {
             JOptionPane.showMessageDialog(null, "Registro modificado correctamente.");
-            cargarInsumosEnTabla(); // Actualizar la tabla después de modificar el registro
+            cargarInsumosEnTabla();
         } else {
             JOptionPane.showMessageDialog(null, "Error al modificar el registro.");
         }
@@ -124,6 +125,49 @@ public class GLista {
         e.printStackTrace();
     }
 }
+
+
+public void modificarFilaSeleccionada() {
+    
+    int selectedRow = tablaInventario.getSelectedRow();
+
+    if (selectedRow != -1) {
+        
+        String idInventario = (String) tablaInventario.getValueAt(selectedRow, 0); 
+
+       
+        String nuevaFechaRegistroStr = JOptionPane.showInputDialog(null, "Ingrese la nueva fecha de registro (YYYY-MM-DD):");
+        String nuevoStockStr = JOptionPane.showInputDialog(null, "Ingrese el nuevo stock ");
+
+        try {
+            
+            if (nuevaFechaRegistroStr != null && !nuevaFechaRegistroStr.isEmpty()) {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                LocalDate localDate = LocalDate.parse(nuevaFechaRegistroStr, formatter); 
+                java.sql.Date nuevaFechaRegistro = java.sql.Date.valueOf(localDate); 
+
+                if (nuevoStockStr != null && !nuevoStockStr.isEmpty()) {
+                    double nuevoStock = Double.parseDouble(nuevoStockStr); 
+
+                  
+                    modificarRegistro(idInventario, nuevaFechaRegistro, nuevoStock);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Por favor ingrese un valor válido para el stock.");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Por favor ingrese una fecha válida.");
+            }
+        } catch (DateTimeParseException e) {
+            JOptionPane.showMessageDialog(null, "La fecha ingresada no tiene un formato válido. Use YYYY-MM-DD.");
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "El valor ingresado para el stock debe ser un número real.");
+        }
+    } else {
+        JOptionPane.showMessageDialog(null, "Por favor seleccione una fila para modificar.");
+    }
+}
+
+
 
 }
 

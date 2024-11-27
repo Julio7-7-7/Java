@@ -15,106 +15,46 @@ public class FAdicional extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        jcomboxInsumo = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
+        jSeparator4 = new javax.swing.JSeparator();
         cantidadAdi = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        fechaAdi = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jtcosto = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         idRegist = new javax.swing.JTextField();
-        jcomboxInsumo = new javax.swing.JComboBox<>();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tablaAdicional = new javax.swing.JTable();
-        GuardarBD = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jtcosto = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        fechaAdi = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        GuardarBD = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jSeparator3 = new javax.swing.JSeparator();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tablaAdicional = new javax.swing.JTable();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jPanel1.setBackground(new java.awt.Color(51, 102, 255));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
-        jLabel3.setText("REGISTRAR ADICIONAL !");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, 30));
+        jPanel1.setBackground(new java.awt.Color(0, 102, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("INSUMO");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel5.setText("COSTO");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 160, -1, -1));
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel6.setText("CANTIDAD");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, -1, -1));
-
-        cantidadAdi.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cantidadAdiActionPerformed(evt);
-            }
-        });
-        jPanel2.add(cantidadAdi, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, 170, -1));
-
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel7.setText("FECHA");
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 240, -1, -1));
-        jPanel2.add(fechaAdi, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 280, 170, -1));
-
-        jButton1.setText("CANCELAR");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 580, 110, 30));
-
-        jButton2.setText("LIMPIAR");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 580, 90, 30));
-
-        jButton3.setText("REGISTRAR");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 580, 100, 30));
-
-        jButton4.setText("ATRAS");
-        jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 580, 80, 30));
-
-        jtcosto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtcostoActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jtcosto, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 190, 170, -1));
-
-        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel10.setText("ID REGISTRO");
-        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 80, -1, -1));
-        jPanel2.add(idRegist, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 110, 170, 30));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, -1, -1));
 
         jcomboxInsumo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jcomboxInsumo.addActionListener(new java.awt.event.ActionListener() {
@@ -122,7 +62,125 @@ public class FAdicional extends javax.swing.JFrame {
                 jcomboxInsumoActionPerformed(evt);
             }
         });
-        jPanel2.add(jcomboxInsumo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 250, 30));
+        jPanel1.add(jcomboxInsumo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 250, 180, -1));
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("CANTIDAD");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, -1, -1));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, 150, -1));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 330, 150, -1));
+        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 408, 140, -1));
+
+        cantidadAdi.setBackground(new java.awt.Color(0, 102, 255));
+        cantidadAdi.setForeground(new java.awt.Color(255, 255, 255));
+        cantidadAdi.setBorder(null);
+        cantidadAdi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cantidadAdiActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cantidadAdi, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 280, 150, -1));
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("ID REGISTRO");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, -1, -1));
+
+        idRegist.setBackground(new java.awt.Color(0, 102, 255));
+        idRegist.setForeground(new java.awt.Color(255, 255, 255));
+        idRegist.setBorder(null);
+        jPanel1.add(idRegist, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 310, 150, 30));
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("COSTO");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, -1, -1));
+
+        jtcosto.setBackground(new java.awt.Color(0, 102, 255));
+        jtcosto.setForeground(new java.awt.Color(255, 255, 255));
+        jtcosto.setBorder(null);
+        jtcosto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtcostoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jtcosto, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 350, 150, 20));
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("FECHA");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, -1, -1));
+
+        fechaAdi.setBackground(new java.awt.Color(0, 102, 255));
+        fechaAdi.setForeground(new java.awt.Color(255, 255, 255));
+        fechaAdi.setBorder(null);
+        jPanel1.add(fechaAdi, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 390, 150, -1));
+
+        jLabel3.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel3.setFont(new java.awt.Font("Arial Black", 1, 36)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("REGISTRAR ");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, 30));
+
+        jLabel1.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("ADICIONAL ");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, -1, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/ODONTO_1.png"))); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, 240, 180));
+
+        jButton2.setBackground(new java.awt.Color(51, 51, 51));
+        jButton2.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/page_delete.png"))); // NOI18N
+        jButton2.setText("LIMPIAR");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 440, 120, 40));
+
+        jButton3.setBackground(new java.awt.Color(0, 0, 0));
+        jButton3.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/page_edit.png"))); // NOI18N
+        jButton3.setText("REGISTRAR");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 490, -1, 40));
+
+        GuardarBD.setBackground(new java.awt.Color(0, 0, 0));
+        GuardarBD.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        GuardarBD.setForeground(new java.awt.Color(255, 255, 255));
+        GuardarBD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/disk.png"))); // NOI18N
+        GuardarBD.setText("GUARDAR T");
+        GuardarBD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GuardarBDActionPerformed(evt);
+            }
+        });
+        jPanel1.add(GuardarBD, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 440, -1, 40));
+
+        jButton1.setBackground(new java.awt.Color(0, 0, 0));
+        jButton1.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/cross.png"))); // NOI18N
+        jButton1.setText("CANCELAR");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 490, 140, 40));
+        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 370, 140, 10));
+
+        jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 330, 550));
 
         tablaAdicional.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -137,59 +195,38 @@ public class FAdicional extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tablaAdicional);
 
-        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, -1, 180));
+        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 100, 460, 440));
 
-        GuardarBD.setText("GUARDAR TODO");
-        GuardarBD.addActionListener(new java.awt.event.ActionListener() {
+        jButton4.setText("ATRAS");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                GuardarBDActionPerformed(evt);
+                jButton4ActionPerformed(evt);
             }
         });
-        jPanel2.add(GuardarBD, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 620, -1, -1));
-
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 0, 480, 660));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Vector.png"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 470, -1, -1));
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Vector1.png"))); // NOI18N
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, -1, -1));
-
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Component 2.png"))); // NOI18N
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 190, -1, -1));
+        jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 20, 80, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 819, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 556, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cantidadAdiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cantidadAdiActionPerformed
+    private void GuardarBDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarBDActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cantidadAdiActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        ClaseAdicional.cancelarRegistro(tablaAdicional, idRegist, cantidadAdi, jtcosto, fechaAdi);
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jtcostoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtcostoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtcostoActionPerformed
-
-    private void jcomboxInsumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcomboxInsumoActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_jcomboxInsumoActionPerformed
+        ClaseAdicional.insertarDatosEnBaseDeDatos();
+    }//GEN-LAST:event_GuardarBDActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
@@ -202,10 +239,30 @@ public class FAdicional extends javax.swing.JFrame {
         ClaseAdicional.limpiarTabla(tablaAdicional);
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void GuardarBDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarBDActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        ClaseAdicional.insertarDatosEnBaseDeDatos();
-    }//GEN-LAST:event_GuardarBDActionPerformed
+        ClaseAdicional.cancelarRegistro(tablaAdicional, idRegist, cantidadAdi, jtcosto, fechaAdi);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jcomboxInsumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcomboxInsumoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcomboxInsumoActionPerformed
+
+    private void jtcostoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtcostoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtcostoActionPerformed
+
+    private void cantidadAdiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cantidadAdiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cantidadAdiActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+           this.dispose();
+
+        EncargadoInsu encargado = new EncargadoInsu();
+        encargado.setVisible(true);
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -260,10 +317,13 @@ public class FAdicional extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
     private javax.swing.JComboBox<String> jcomboxInsumo;
     private javax.swing.JTextField jtcosto;
     private javax.swing.JTable tablaAdicional;
