@@ -25,6 +25,7 @@ public class FRegistroAcademico extends javax.swing.JFrame {
         grupo = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
         jLabel6 = new javax.swing.JLabel();
+        sigla = new javax.swing.JTextField();
         gestion = new javax.swing.JTextField();
         jSeparator4 = new javax.swing.JSeparator();
         GUARDAR = new javax.swing.JButton();
@@ -36,7 +37,6 @@ public class FRegistroAcademico extends javax.swing.JFrame {
         BUSCAR = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblistaregistroacad = new javax.swing.JTable();
-        sigla = new javax.swing.JTextField();
         jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -120,6 +120,22 @@ public class FRegistroAcademico extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("GESTION");
         jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, -1, -1));
+
+        sigla.setBackground(new java.awt.Color(0, 102, 255));
+        sigla.setForeground(new java.awt.Color(204, 204, 204));
+        sigla.setText("ABC-123");
+        sigla.setBorder(null);
+        sigla.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                siglaMousePressed(evt);
+            }
+        });
+        sigla.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                siglaActionPerformed(evt);
+            }
+        });
+        jPanel2.add(sigla, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 280, 150, -1));
 
         gestion.setBackground(new java.awt.Color(0, 102, 255));
         gestion.setForeground(new java.awt.Color(204, 204, 204));
@@ -245,22 +261,6 @@ public class FRegistroAcademico extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tblistaregistroacad);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 80, 500, 510));
-
-        sigla.setBackground(new java.awt.Color(0, 102, 255));
-        sigla.setForeground(new java.awt.Color(204, 204, 204));
-        sigla.setText("ABC-123");
-        sigla.setBorder(null);
-        sigla.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                siglaMousePressed(evt);
-            }
-        });
-        sigla.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                siglaActionPerformed(evt);
-            }
-        });
-        jPanel1.add(sigla, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 330, 150, -1));
         jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 40, 250, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

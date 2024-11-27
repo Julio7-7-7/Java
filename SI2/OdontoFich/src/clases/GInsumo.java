@@ -80,14 +80,14 @@ public void obtenerInsumosDeTablaYEnviarAComboBox(JTable tabla, JComboBox<String
 
 
     public void registrarInsumoEnBAD() {
-        String sql = "SELECT public.registrar_insumo(?, ?, CAST(? AS DECIMAL(10, 2)), ?)";
+        String sql = "INSERT INTO insumo (id_insumo,nombre_insumo,precio_insumo,dosificacion) VALUES (?, ?, ?, ?);";
         try (Connection conn = new CConexion().EstablecerConexion(); 
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             if (conn != null) {
                 pstmt.setString(1, idInsumo); 
                 pstmt.setString(2, nombreInsumo); 
-                pstmt.setString(3, Double.toString(precioInsumo)); 
+                pstmt.setDouble(3, (precioInsumo)); 
                 pstmt.setString(4, dosificacionInsumo); 
 
                 pstmt.execute();

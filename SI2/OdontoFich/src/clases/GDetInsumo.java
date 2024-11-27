@@ -1,6 +1,7 @@
 package clases;
 
 import com.sun.source.tree.TryTree;
+import java.sql.CallableStatement;
 import javax.swing.JComboBox;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -61,18 +62,16 @@ public class GDetInsumo {
     CConexion objetoConexion = new CConexion();
     DefaultTableModel modelo = new DefaultTableModel();
 
-    // Configurar columnas del modelo de tabla
     modelo.addColumn("ID TRABAJO");
-    modelo.addColumn("NOM TRABAJO");
     modelo.addColumn("ID INSUMO");
     modelo.addColumn("CANTIDAD");
 
     paramdetalleinsumo.setModel(modelo);
 
    
-    String sql = "SELECT det_insumo.id_trabajo, trabajo.nombre, det_insumo.id_insumo, det_insumo.cantidad " +
-                 "FROM det_insumo " +
-                 "JOIN trabajo ON det_insumo.id_trabajo = trabajo.id_trabajo;";
+    String sql = "SELECT * from det_insumo"; //.id_trabajo, trabajo.nombre, det_insumo.id_insumo, det_insumo.cantidad " +
+                // "FROM det_insumo " +
+                 //"JOIN trabajo ON det_insumo.id_trabajo = trabajo.id_trabajo;";
 
     String[] datos = new String[4]; 
     Statement st;
@@ -82,10 +81,9 @@ public class GDetInsumo {
         ResultSet rs = st.executeQuery(sql);
 
         while (rs.next()) {
-            datos[0] = rs.getString("id_trabajo");     
-            datos[1] = rs.getString("nombre");  
-            datos[2] = rs.getString("id_insumo");      
-            datos[3] = rs.getString("cantidad");        
+            datos[0] = rs.getString("id_trabajo");      
+            datos[1] = rs.getString("id_insumo");      
+            datos[2] = rs.getString("cantidad");        
 
             modelo.addRow(datos);
         }
@@ -103,16 +101,10 @@ public class GDetInsumo {
        // trab.removeAllItems();
        CConexion objetoConexion = new CConexion();
             
-    String sql  = "SELECT trabajo.id_trabajo, trabajo.nombre " +
-                   "FROM trabajo "+
-                   "ORDER BY trabajo.id_trabajo";
+    String sql  = "SELECT *from trabajo"; //.id_trabajo, trabajo.nombre " +
+                //   "FROM trabajo "+
+                //   "ORDER BY trabajo.id_trabajo";
     
-    //"SELECT DISTINCT trabajo.id_trabajo, trabajo.nombre " +
-        //      "FROM trabajo " +
-      //        "LEFT JOIN DET_INSUMO ON trabajo.id_trabajo = DET_INSUMO.id_trabajo " +
-    //          "ORDER BY trabajo.id_trabajo";
-    
-      String[] datos = new String[4]; 
     Statement st;
             
     try {
@@ -120,7 +112,7 @@ public class GDetInsumo {
         ResultSet rs = st.executeQuery(sql);
         
         while (rs.next()) {
-           String trabajo = rs.getString("id_trabajo")+"   --   "+rs.getString("nombre");
+           String trabajo = rs.getString("id_trabajo");// +"   --   "+rs.getString("nombre");
           paramtrabajo.addItem(trabajo);
            
         }
@@ -136,9 +128,9 @@ public class GDetInsumo {
        // trab.removeAllItems();
        CConexion objetoConexion = new CConexion();
             
-    String sql  = "SELECT insumo.id_insumo, insumo.nombre_insumo " +
-                   "FROM insumo "+
-                   "ORDER BY insumo.id_insumo";
+    String sql  = "SELECT * from insumo"; //.id_insumo, insumo.nombre_insumo " +
+                   //"FROM insumo "+
+                  // "ORDER BY insumo.id_insumo";
     Statement st;
             
     try {
@@ -146,8 +138,8 @@ public class GDetInsumo {
         ResultSet rs = st.executeQuery(sql);
         
         while (rs.next()) {
-           String insumo = rs.getString("nombre_insumo");
-         paraminsumo.addItem(insumo);
+          String insumo = rs.getString("id_insumo");  //+"   --   "+rs.getString("nombre_insumo");
+          paraminsumo.addItem(insumo);
            
         }
      
@@ -158,35 +150,117 @@ public class GDetInsumo {
 }
   
    
- 
-   
-   public void insertarDetInsumo(JComboBox paramtrabajo, JComboBox paraminsumo, JTextField paramcantidad) {
-
-    String id_trabajo= paramtrabajo.getSelectedItem().toString().split("   --   ")[0];  
-    String id_insumo = paraminsumo.getSelectedItem().toString().split("   --   ")[0];  
-    double cantidad = Double.parseDouble(paramcantidad.getText());  
-
-    CConexion objetoconexion = new CConexion();
-
-    String consulta = "INSERT INTO det_insumo (id_trabajo, id_insumo, cantidad) VALUES (?, ?, ?);";
-
+    public void insertarDetInsumo(JTextField paraidtrabajo, JTextField paraidinsumo, JTextField paracantidad) {
+        
+        String idtrabajo = paraidtrabajo.getText();
+        String idinsumo = paraidinsumo.getText();
+        double Cantidad = Double.parseDouble(paracantidad.getText());
+    
+        CConexion objetoConexion = new CConexion();
+    
+        String consulta = "INSERT INTO det_insumo (id_trabajo,id_insumo,cantidad) VALUES (?, ?, ?);";
+    
+        try {
+            CallableStatement cs = objetoConexion.EstablecerConexion().prepareCall(consulta);
+        
+           
+            cs.setString(1, idtrabajo);
+            cs.setString(2, idinsumo);
+            cs.setDouble(3, Cantidad);
+            
+        
+            cs.execute();
+            JOptionPane.showMessageDialog(null, "Se Inserto Correctamente");
+        
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.toString());
+        }
+    }
+    
+    
+    public void seleccionarDetInsumo(JTable paramTabladetinsumo, JTextField paraidtrabajo, JTextField paraidinsumo, JTextField paracantidad) {
     try {
-      
-        PreparedStatement cs = objetoconexion.EstablecerConexion().prepareStatement(consulta);
-        cs.setString(1, id_trabajo);  
-        cs.setString(2, id_insumo);  
-        cs.setDouble(3, cantidad);              
-
-
-        cs.executeUpdate();
-
-        JOptionPane.showMessageDialog(null, "Se insertó correctamente");
-
+        int fila = paramTabladetinsumo.getSelectedRow();
+        if (fila >= 0) {
+            paraidtrabajo.setText(paramTabladetinsumo.getValueAt(fila, 0).toString());
+            paraidinsumo.setText(paramTabladetinsumo.getValueAt(fila, 1).toString());
+            
+            Object precioValue = paramTabladetinsumo.getValueAt(fila, 2);
+            if (precioValue != null && !precioValue.toString().isEmpty()) {
+                paracantidad.setText(precioValue.toString());
+            } else {
+                paracantidad.setText(""); // Limpia el campo si no hay precio
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Fila no seleccionada");
+        }
     } catch (Exception e) {
- 
-        JOptionPane.showMessageDialog(null, "Error al insertar: " + e.toString());
+        JOptionPane.showMessageDialog(null, "Error: " + e.toString());
     }
 }
+    
+    
+     
+    public void modificarDetInsumo (JTextField paraidtrabajo,JTextField paraidinsumo, JTextField paracantidad){
+    
+        setId_trabajo(paraidtrabajo.getText());
+        setId_insumo(paraidinsumo.getText());
+        setCantidad(Double.parseDouble(paracantidad.getText()));
+
+    
+        CConexion objetoconexion =new CConexion();
+        
+        String consulta ="UPDATE det_insumo SET cantidad = ? WHERE id_trabajo = ? AND id_insumo = ? ";
+        
+        try {
+            
+            PreparedStatement cs  =objetoconexion.EstablecerConexion().prepareCall(consulta);
+             
+              cs.setDouble(1, getCantidad());
+            cs.setString(2 ,getId_trabajo());
+           cs.setString(3, getId_insumo());
+           
+         
+            cs.execute();
+            JOptionPane.showMessageDialog(null, "se modifico  correctamente");
+            
+        } catch (Exception e) {
+            
+             JOptionPane.showMessageDialog(null, " Error "+e.toString());
+        }
+        
+    }
+    
+    
+    
+      public void eliminardetalleinsumo (JTextField paramidtrabajo,JTextField paramidinsumo){
+    
+        setId_trabajo(paramidtrabajo.getText());
+         setId_insumo(paramidinsumo.getText());
+    
+        CConexion objetoconexion =new CConexion();
+        
+        String consulta ="delete from det_insumo where id_trabajo=? and id_insumo=?";
        
+        try {
+            
+            PreparedStatement cs = objetoconexion.EstablecerConexion().prepareStatement(consulta);
+           
+            cs.setString(1, getId_trabajo());
+            cs.setString(2, getId_insumo());
+            
+            cs.execute();
+            JOptionPane.showMessageDialog(null, "se Elimino correctamente");
+            
+        } catch (Exception e) {
+            
+             JOptionPane.showMessageDialog(null, "Error"+e.toString());
+        }
+              
+    }
+      
+      
+      
+   
            
 }
