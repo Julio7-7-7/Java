@@ -310,7 +310,7 @@ public class FPeronsal extends javax.swing.JFrame {
         // TODO add your handling code here:
           this.dispose();
 
-        EncargadoInsu encargado = new EncargadoInsu();
+        FEncargadoInsu encargado = new FEncargadoInsu();
         encargado.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 

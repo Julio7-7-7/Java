@@ -275,7 +275,7 @@ private GInsumo claseInsumo;
         // TODO add your handling code here:
          this.dispose();
 
-        EncargadoInsu encargado = new EncargadoInsu();
+        FEncargadoInsu encargado = new FEncargadoInsu();
         encargado.setVisible(true);
     }//GEN-LAST:event_btnAtrasActionPerformed
 

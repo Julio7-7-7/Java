@@ -98,7 +98,7 @@ public class FPrincipal extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-         Admin administrador = new Admin();
+         FAdmin administrador = new FAdmin();
 
         administrador.setVisible(true);
 
@@ -107,7 +107,7 @@ public class FPrincipal extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-         EncargadoInsu encargadoIn = new EncargadoInsu();
+         FEncargadoInsu encargadoIn = new FEncargadoInsu();
 
         encargadoIn.setVisible(true);
 
@@ -116,7 +116,7 @@ public class FPrincipal extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-            Caja cajero = new Caja();
+            FCaja cajero = new FCaja();
 
         cajero.setVisible(true);
 
