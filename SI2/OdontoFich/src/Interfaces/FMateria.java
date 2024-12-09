@@ -470,7 +470,7 @@ public class FMateria extends javax.swing.JFrame {
     }//GEN-LAST:event_prMousePressed
 
     private void LISTAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LISTAActionPerformed
-        
+       
         GMateria objetoMateria = new GMateria();
         objetoMateria.mostrarMateria(tblistamateria);
     }//GEN-LAST:event_LISTAActionPerformed
