@@ -46,6 +46,12 @@ public class FPruebaDetalles extends javax.swing.JFrame {
         });
         jPanel1.add(txtsiglamateria, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 60, 110, -1));
         jPanel1.add(txtnombremateria, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 60, 210, -1));
+
+        txtestudiante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtestudianteActionPerformed(evt);
+            }
+        });
         jPanel1.add(txtestudiante, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 110, 330, -1));
 
         paneldetalle.setBackground(new java.awt.Color(153, 153, 153));
@@ -90,6 +96,10 @@ public class FPruebaDetalles extends javax.swing.JFrame {
     objetoprueba.mostrarTrabajos(siglaMateria, paneldetalle); // Llama al método y pasa el panel donde se mostrarán los trabajos
     ;
     }//GEN-LAST:event_BMostrarActionPerformed
+
+    private void txtestudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtestudianteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtestudianteActionPerformed
  
     public void setDatos(String sigla, String nombre, String estudiante) {
     txtsiglamateria.setText(sigla);

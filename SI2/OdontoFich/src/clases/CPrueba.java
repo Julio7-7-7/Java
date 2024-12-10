@@ -1,6 +1,7 @@
 package clases;
 
 import Interfaces.FPruebaDetalles;
+import Interfaces.FReporteRapido;
 import java.awt.FlowLayout;
 import java.sql.Statement;
 import javax.swing.JTable;
@@ -128,6 +129,19 @@ public class CPrueba{
         panelMaterias.removeAll();
         panelMaterias.setLayout(new BoxLayout(panelMaterias, BoxLayout.Y_AXIS));
         
+     
+             JButton btnReporte = new JButton("REPORTE RAPIDO"); 
+                btnReporte.addActionListener(e -> {     
+                FReporteRapido detallesFor = new FReporteRapido();
+                detallesFor.setLocationRelativeTo(null);
+                detallesFor.setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
+                detallesFor.setDatos(nombreEstudiante);
+                detallesFor.setVisible(true);
+                });
+               
+
+
+          
         while (rs3.next()) {
             String siglaMateria = rs3.getString("sigla");
 
@@ -139,10 +153,11 @@ public class CPrueba{
             if (rs4.next()) {
                 nombreMateria = rs4.getString("nombre_materia");
             }
-
+            
             JPanel materiaPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
             JLabel lblMateria = new JLabel(siglaMateria);
             JButton btnDetalle = new JButton("Detalle");
+            
            
             String finalNombreMateria = nombreMateria; 
             btnDetalle.addActionListener(e -> {
@@ -154,12 +169,15 @@ public class CPrueba{
                 detallesForm.setDatos(siglaMateria, finalNombreMateria, nombreEstudiante);
 
                 detallesForm.setVisible(true);
+                
             });
-
+           
             materiaPanel.add(lblMateria);
             materiaPanel.add(btnDetalle);
+            materiaPanel.add(btnReporte);
 
             panelMaterias.add(materiaPanel);
+            
         }
 
         panelMaterias.revalidate();
