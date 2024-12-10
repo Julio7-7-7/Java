@@ -55,6 +55,7 @@ private GInsumo claseInsumo;
         jSeparator4 = new javax.swing.JSeparator();
         jSeparator5 = new javax.swing.JSeparator();
         btnAtras = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -210,6 +211,14 @@ private GInsumo claseInsumo;
         });
         jPanel2.add(btnAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 20, 80, 30));
 
+        jButton1.setText("Recibo");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 20, 80, 30));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -275,9 +284,18 @@ private GInsumo claseInsumo;
         // TODO add your handling code here:
          this.dispose();
 
-        FEncargadoInsu encargado = new FEncargadoInsu();
+        EncargadoInsu encargado = new EncargadoInsu();
         encargado.setVisible(true);
     }//GEN-LAST:event_btnAtrasActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+         FreciboInsumo recibo = new FreciboInsumo();
+
+        recibo.setVisible(true);
+
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -320,6 +338,7 @@ private GInsumo claseInsumo;
     private javax.swing.JButton btnInventario;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnRegistrar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel3;

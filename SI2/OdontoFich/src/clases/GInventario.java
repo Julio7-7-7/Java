@@ -5,15 +5,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.sql.*;
 import java.util.ArrayList;
-import javax.swing.table.DefaultTableModel;
 import odontofich.CConexion;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.sql.*;
-import java.text.ParseException;
+
 
 public class GInventario {
-    private ArrayList<String> idsInsumos;
+     private ArrayList<String> idsInsumos;
     private JComboBox<String> jcInsumoinve;
     private JComboBox<String> JcPersonal;
     private JComboBox<String> JcUnidadMedida;
@@ -139,28 +137,49 @@ public void registrarInventarioEnBD() {
         return;  
     }
 
-   
-    String sql = "INSERT INTO inventario (id_inventario, id_insumo, fecha_registro, stock, unidad_medida, id_personal) VALUES (?, ?, ?, ?, ?, ?);";
-
-    try (Connection conn = new CConexion().EstablecerConexion(); 
-         PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
-      
-        pstmt.setString(1, idInventari);  
-        pstmt.setString(2, idInsumo); 
-        pstmt.setDate(3, sqlFechaRegistro);  
-        pstmt.setFloat(4, stockValor);  
-        pstmt.setString(5, unidadMedida); 
-        pstmt.setString(6, personal);
-
+    String sqlprev = "SELECT stock FROM inventario where id_inventario = ?";
+    String sqlInsert = "INSERT INTO inventario (id_inventario, id_insumo, fecha_registro, stock, unidad_medida, id_personal) VALUES (?, ?, ?, ?, ?, ?);";
+    String sqlUpdate = "UPDATE inventario SET id_insumo = ?, fecha_registro = ?, stock = ?, unidad_medida = ?, id_personal = ? WHERE id_inventario = ?";
+    try (Connection conn = new CConexion().EstablecerConexion()) {
+          
+        PreparedStatement pstmtprev = conn.prepareStatement(sqlprev);
+        pstmtprev.setString(1, idInventari);
+        ResultSet res = pstmtprev.executeQuery();
+        PreparedStatement pstmt = null;
+        if (res.next()) {
+            System.out.println("actualizando");
+            pstmt = conn.prepareStatement(sqlUpdate);
+            pstmt.setString(1, idInsumo);
+            pstmt.setDate(2, sqlFechaRegistro);
+            pstmt.setFloat(3, stockValor+res.getFloat(1));
+            pstmt.setString(4, unidadMedida);
+            pstmt.setString(5, personal);
+            pstmt.setString(6, idInventari);
+            int filasAfectadas = pstmt.executeUpdate();
         
-        int filasAfectadas = pstmt.executeUpdate();
-        
-        if (filasAfectadas > 0) {
-            JOptionPane.showMessageDialog(null, "Inventario registrado exitosamente.");
+            if (filasAfectadas > 0) {
+                JOptionPane.showMessageDialog(null, "Inventario existente actualizado exitosamente.");
+            } else {
+                JOptionPane.showMessageDialog(null, "No se pudo actualizar el inventario.");
+            }
         } else {
-            JOptionPane.showMessageDialog(null, "No se pudo registrar el inventario.");
+            pstmt = conn.prepareStatement(sqlInsert);
+            pstmt.setString(1, idInventari);  
+            pstmt.setString(2, idInsumo); 
+            pstmt.setDate(3, sqlFechaRegistro);  
+            pstmt.setFloat(4, stockValor);  
+            pstmt.setString(5, unidadMedida); 
+            pstmt.setString(6, personal);
+            int filasAfectadas = pstmt.executeUpdate();
+        
+            if (filasAfectadas > 0) {
+                JOptionPane.showMessageDialog(null, "Inventario registrado exitosamente.");
+            } else {
+                JOptionPane.showMessageDialog(null, "No se pudo registrar el inventario.");
+            }
         }
+        
+        
     } catch (SQLException e) {
         e.printStackTrace();
         JOptionPane.showMessageDialog(null, "Error al registrar inventario: " + e.getMessage());
@@ -168,3 +187,4 @@ public void registrarInventarioEnBD() {
 }
 
 }
+

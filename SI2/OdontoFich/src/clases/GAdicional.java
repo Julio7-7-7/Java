@@ -16,18 +16,18 @@ import odontofich.CConexion;
 
 public class GAdicional {
 
-    private String idRegistro;
+   private int idRegistro;
     private String insumoSeleccionado;
     private int cantidad;
     private double costo;
     private Date fecha;
 
     // Getters y Setters
-    public String getIdRegistro() {
+    public int getIdRegistro() {
         return idRegistro;
     }
 
-    public void setIdRegistro(String idRegistro) {
+    public void setIdRegistro(int idRegistro) {
         this.idRegistro = idRegistro;
     }
 
@@ -65,9 +65,8 @@ public class GAdicional {
         this.fecha = sdf.parse(fechaStr);
     }
 
-  
     public void cargarInsumosEnComboBox(JComboBox<String> comboBox) {
-        String sql = "SELECT id_insumo FROM insumo";
+        String sql = "SELECT id_insumo ,nombre_insumo FROM insumo";
         try (Connection conn = new CConexion().EstablecerConexion();
              PreparedStatement pstmt = conn.prepareStatement(sql);
              ResultSet rs = pstmt.executeQuery()) {
@@ -75,8 +74,9 @@ public class GAdicional {
             comboBox.removeAllItems();
 
             while (rs.next()) {
-                String idInsumo = rs.getString("id_insumo");
-                comboBox.addItem(idInsumo);
+              
+            String displayText = rs.getString("id_insumo") + " - " + rs.getString("nombre_insumo");
+            comboBox.addItem(displayText);
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al cargar insumos: " + e.getMessage());
@@ -102,59 +102,111 @@ public class GAdicional {
 
     
 public void agregarDatosATabla(JTable tabla, JTextField idRegist, JComboBox<String> comboBoxInsumo, JTextField cantidadAdi, JTextField jtcosto, JTextField fechaAdi) {
-   
-    setIdRegistro(idRegist.getText()); 
-    setCantidad(Integer.parseInt(cantidadAdi.getText())); 
-    setCosto(Double.parseDouble(jtcosto.getText())); 
-    
-    
-    String insumoSeleccionado = comboBoxInsumo.getSelectedItem().toString();
-    String fechaTexto = fechaAdi.getText();
-    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-    sdf.setLenient(false);  
-    
-    if (!fechaTexto.matches("^\\d{2}/\\d{2}/\\d{4}$")) {
-        JOptionPane.showMessageDialog(null, "La fecha debe estar en el formato dd/MM/yyyy (por ejemplo, 12/06/2024).", "Error de Fecha", JOptionPane.ERROR_MESSAGE);
-        return; 
-    }
-
     try {
-   
-        java.util.Date fechaDate = sdf.parse(fechaTexto);
-        Object[] row = {getIdRegistro(), insumoSeleccionado, getCantidad(), getCosto(), fechaTexto};
+       
+        setIdRegistro(Integer.parseInt(idRegist.getText()));
+        setCantidad(Integer.parseInt(cantidadAdi.getText()));
+        setCosto(Double.parseDouble(jtcosto.getText()));
+
+        
+        String insumoSeleccionado = comboBoxInsumo.getSelectedItem().toString();
+        String[] insumoParts = insumoSeleccionado.split(" - "); 
+        String idInsumo = insumoParts[0]; 
+        setInsumoSeleccionado(idInsumo); 
 
        
+        String fechaTexto = fechaAdi.getText();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        sdf.setLenient(false);
+
+        if (!fechaTexto.matches("^\\d{2}/\\d{2}/\\d{4}$")) {
+            JOptionPane.showMessageDialog(null, "La fecha debe estar en el formato dd/MM/yyyy (por ejemplo, 12/06/2024).", "Error de Fecha", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        setFecha(fechaTexto);
+
+       
+        Object[] row = {getIdRegistro(), idInsumo, getCantidad(), getCosto(), fechaTexto};
+
         DefaultTableModel model = (DefaultTableModel) tabla.getModel();
-        model.insertRow(0, row);
-        
+        model.insertRow(0, row); 
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(null, "Error: El ID, la cantidad y el costo deben ser números válidos.", "Error de Formato", JOptionPane.ERROR_MESSAGE);
     } catch (ParseException e) {
         JOptionPane.showMessageDialog(null, "La fecha ingresada no es válida. Use el formato dd/MM/yyyy.", "Error de Fecha", JOptionPane.ERROR_MESSAGE);
-        return; 
     }
 }
 
-   
-    public void insertarDatosEnBaseDeDatos() {
-        String sqlInsert = "INSERT INTO detalle_adicional (id_registro, id_insumo, cantidad, costo, fecha) VALUES (?, ?, ?, ?, ?)";
-        try (Connection conn = new CConexion().EstablecerConexion();
-             PreparedStatement pstmt = conn.prepareStatement(sqlInsert)) {
-          if (conn != null) {
-            pstmt.setString(1, getIdRegistro());
-            pstmt.setString(2, getInsumoSeleccionado());
-            pstmt.setInt(3, getCantidad());
-            pstmt.setDouble(4, getCosto());
-            pstmt.setDate(5, new java.sql.Date(getFecha().getTime()));
 
-            pstmt.execute();
-         
-                JOptionPane.showMessageDialog(null, "Datos insertados correctamente en la base de datos.");
-            } else {
-                JOptionPane.showMessageDialog(null, "Error al insertar los datos en la base de datos.");
-            }
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al insertar los datos: " + e.getMessage());
-        }
+public void insertarDatosEnBaseDeDatos() {
+    if (getFecha() == null) {
+        JOptionPane.showMessageDialog(null, "La fecha no puede estar vacía.");
+        return;
     }
+
+    String sqlCheckStock = "SELECT stock FROM inventario WHERE id_insumo = ?";
+    String sqlInsert = "INSERT INTO detalle_adicional (registro, id_insumo, cantidad, costo, fecha) VALUES (?, ?, ?, ?, ?)";
+    String sqlUpdate = "UPDATE inventario SET stock = stock - ? WHERE id_insumo = ?";
+
+    try (Connection conn = new CConexion().EstablecerConexion()) {
+      
+        PreparedStatement pstmtCheckStock = conn.prepareStatement(sqlCheckStock);
+        pstmtCheckStock.setString(1, getInsumoSeleccionado());
+        ResultSet rs = pstmtCheckStock.executeQuery();
+
+        if (rs.next()) {
+            int stockDisponible = rs.getInt("stock");
+
+            
+            if (stockDisponible < getCantidad()) {
+                JOptionPane.showMessageDialog(null, "No se puede realizar la operación. Stock insuficiente (Disponible: " + stockDisponible + ").");
+                return;
+            }
+
+           
+            if (stockDisponible - getCantidad() < 5) {
+                JOptionPane.showMessageDialog(null, "Advertencia: El stock quedará bajo (" + (stockDisponible - getCantidad()) + " unidades restantes).");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "El insumo seleccionado no existe en el inventario.");
+            return;
+        }
+
+      
+        PreparedStatement pstmtInsert = conn.prepareStatement(sqlInsert);
+        pstmtInsert.setInt(1, getIdRegistro());
+        pstmtInsert.setString(2, getInsumoSeleccionado());
+        pstmtInsert.setInt(3, getCantidad());
+        pstmtInsert.setDouble(4, getCosto());
+        pstmtInsert.setDate(5, new java.sql.Date(getFecha().getTime()));
+
+        int rowsAffected = pstmtInsert.executeUpdate();
+
+        if (rowsAffected > 0) {
+           
+            PreparedStatement pstmtUpdate = conn.prepareStatement(sqlUpdate);
+            pstmtUpdate.setInt(1, getCantidad());
+            pstmtUpdate.setString(2, getInsumoSeleccionado());
+
+            int rowsUpdated = pstmtUpdate.executeUpdate();
+
+            if (rowsUpdated > 0) {
+                JOptionPane.showMessageDialog(null, "Datos insertados y cantidad actualizada en inventario.");
+            } else {
+                JOptionPane.showMessageDialog(null, "No se pudo actualizar la cantidad en el inventario.");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "No se insertaron datos en la base de datos.");
+        }
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "Error al insertar los datos: " + e.getMessage());
+        e.printStackTrace();
+    }
+}
+
+
+
     private void actualizarStock(int cantidad, String insumoSeleccionado, Connection conn) {
         String sqlStock = "UPDATE inventario SET stock = stock - ? WHERE id_insumo = ?";
         try (PreparedStatement pstmtStock = conn.prepareStatement(sqlStock)) {
