@@ -14,7 +14,12 @@ public class FPrincipal extends javax.swing.JFrame {
      * Creates new form FPrincipal
      */
     public FPrincipal() {
+        
+        
+         
         initComponents();
+        
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -98,7 +103,7 @@ public class FPrincipal extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-         FAdmin administrador = new FAdmin();
+         Admin administrador = new Admin();
 
         administrador.setVisible(true);
 
@@ -107,7 +112,7 @@ public class FPrincipal extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-         FEncargadoInsu encargadoIn = new FEncargadoInsu();
+         EncargadoInsu encargadoIn = new EncargadoInsu();
 
         encargadoIn.setVisible(true);
 
@@ -116,7 +121,7 @@ public class FPrincipal extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-            FCaja cajero = new FCaja();
+            Caja cajero = new Caja();
 
         cajero.setVisible(true);
 

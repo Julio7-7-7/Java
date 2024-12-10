@@ -40,8 +40,6 @@ public class FPeronsal extends javax.swing.JFrame {
         telTexto = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         edadTexto = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
-        guardarCam = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
@@ -150,28 +148,6 @@ public class FPeronsal extends javax.swing.JFrame {
         });
         jPanel3.add(edadTexto, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 410, 170, -1));
 
-        jButton3.setBackground(new java.awt.Color(0, 0, 0));
-        jButton3.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("MODIFICAR");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 510, 100, 30));
-
-        guardarCam.setBackground(new java.awt.Color(0, 0, 0));
-        guardarCam.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
-        guardarCam.setForeground(new java.awt.Color(255, 255, 255));
-        guardarCam.setText("GUARDAR C");
-        guardarCam.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                guardarCamActionPerformed(evt);
-            }
-        });
-        jPanel3.add(guardarCam, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 450, 130, 30));
-
         jButton1.setBackground(new java.awt.Color(0, 0, 0));
         jButton1.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
@@ -181,7 +157,7 @@ public class FPeronsal extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 480, 110, 30));
+        jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 500, 110, 30));
 
         jButton6.setBackground(new java.awt.Color(0, 0, 0));
         jButton6.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
@@ -192,7 +168,7 @@ public class FPeronsal extends javax.swing.JFrame {
                 jButton6ActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 480, 100, 30));
+        jPanel3.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 450, 100, 30));
 
         jButton5.setBackground(new java.awt.Color(0, 0, 0));
         jButton5.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
@@ -214,7 +190,7 @@ public class FPeronsal extends javax.swing.JFrame {
                 guardaBaseDActionPerformed(evt);
             }
         });
-        jPanel3.add(guardaBaseD, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 510, -1, -1));
+        jPanel3.add(guardaBaseD, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 500, -1, 30));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/ODONTO_1.png"))); // NOI18N
         jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, 210, 190));
@@ -253,13 +229,12 @@ public class FPeronsal extends javax.swing.JFrame {
 
     private void guardaBaseDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardaBaseDActionPerformed
         // TODO add your handling code here:
-        ClasePersonal.insertarEnBaseDeDatos();
+        ClasePersonal.insertarEnBaseDeDatos(tablaPersonal);
     }//GEN-LAST:event_guardaBaseDActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
         ClasePersonal.limpiarCampos(idPersonal, nombreTexto, cargoTexto, telTexto, edadTexto);
-        ClasePersonal.limpiarTabla(tablaPersonal);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -271,17 +246,6 @@ public class FPeronsal extends javax.swing.JFrame {
         ClasePersonal.cancelarRegistro(tablaPersonal, idPersonal, nombreTexto, cargoTexto, telTexto, edadTexto);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void guardarCamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarCamActionPerformed
-        // TODO add your handling code here:
-        int filaSeleccionada = tablaPersonal.getSelectedRow();
-
-        if (filaSeleccionada != -1) {
-            ClasePersonal.modificarDatos(filaSeleccionada, tablaPersonal, idPersonal, nombreTexto, cargoTexto, telTexto, edadTexto);
-
-        }
-        ClasePersonal.limpiarCampos(idPersonal, nombreTexto, cargoTexto, telTexto, edadTexto);
-    }//GEN-LAST:event_guardarCamActionPerformed
-
     private void telTextoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_telTextoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_telTextoActionPerformed
@@ -289,18 +253,6 @@ public class FPeronsal extends javax.swing.JFrame {
     private void nombreTextoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreTextoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_nombreTextoActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        int filaSeleccionada = tablaPersonal.getSelectedRow();
-
-        if (filaSeleccionada != -1) {
-            ClasePersonal.mostrarDatosEnCampos(filaSeleccionada, tablaPersonal, idPersonal, nombreTexto, cargoTexto, telTexto, edadTexto);
-
-        } else {
-            JOptionPane.showMessageDialog(null, "Selecciona una fila para modificar.");
-        }
-    }//GEN-LAST:event_jButton3ActionPerformed
 
     private void edadTextoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edadTextoActionPerformed
         // TODO add your handling code here:
@@ -310,7 +262,7 @@ public class FPeronsal extends javax.swing.JFrame {
         // TODO add your handling code here:
           this.dispose();
 
-        FEncargadoInsu encargado = new FEncargadoInsu();
+        EncargadoInsu encargado = new EncargadoInsu();
         encargado.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -353,10 +305,8 @@ public class FPeronsal extends javax.swing.JFrame {
     private javax.swing.JTextField cargoTexto;
     private javax.swing.JTextField edadTexto;
     private javax.swing.JButton guardaBaseD;
-    private javax.swing.JButton guardarCam;
     private javax.swing.JTextField idPersonal;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;

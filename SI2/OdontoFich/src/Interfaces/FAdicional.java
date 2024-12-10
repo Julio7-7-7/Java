@@ -41,6 +41,7 @@ public class FAdicional extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaAdicional = new javax.swing.JTable();
         jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -84,7 +85,7 @@ public class FAdicional extends javax.swing.JFrame {
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("ID REGISTRO");
+        jLabel10.setText("NRO REGISTRO");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, -1, -1));
 
         idRegist.setBackground(new java.awt.Color(0, 102, 255));
@@ -190,7 +191,7 @@ public class FAdicional extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "ID REGISTRO", "ID INSUMO", "CANTIDAD ", "COSTO", "FECHA"
+                "NRO REGISTRO", "ID INSUMO", "CANTIDAD ", "COSTO", "FECHA"
             }
         ));
         jScrollPane2.setViewportView(tablaAdicional);
@@ -203,15 +204,21 @@ public class FAdicional extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 20, 80, 30));
+        jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 30, 80, 20));
+
+        jButton5.setText("REPORTE");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 30, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 819, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 838, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -231,6 +238,7 @@ public class FAdicional extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         ClaseAdicional.agregarDatosATabla(tablaAdicional, idRegist,jcomboxInsumo, cantidadAdi, jtcosto, fechaAdi);
+        ClaseAdicional.limpiarCampos(idRegist, jtcosto, cantidadAdi, fechaAdi);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -260,9 +268,18 @@ public class FAdicional extends javax.swing.JFrame {
         // TODO add your handling code here:
            this.dispose();
 
-        FEncargadoInsu encargado = new FEncargadoInsu();
+        EncargadoInsu encargado = new EncargadoInsu();
         encargado.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+            FReporteFiltrado reporte = new FReporteFiltrado();
+
+        reporte.setVisible(true);
+
+        this.dispose();
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -309,6 +326,7 @@ public class FAdicional extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;

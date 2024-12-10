@@ -79,7 +79,7 @@ public class FPlanMateria extends javax.swing.JFrame {
                 CBidtrabajoActionPerformed(evt);
             }
         });
-        jPanel2.add(CBidtrabajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 280, 167, -1));
+        jPanel2.add(CBidtrabajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 290, 167, -1));
 
         CBSigla.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
