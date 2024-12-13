@@ -6,7 +6,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import odontofich.CConexion;
-
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import javax.swing.JTextField;
 
 public class GReporteRapido {
          String SIGLA ;
@@ -94,26 +96,27 @@ public class GReporteRapido {
     
     
     
-
-    public void mostrarRepoteRapido(JTable paramreporte ){//String registro
+        public void mostrarReporteRapido(JTable paramReporte, JTextField txtNombreEstudiante) {
     
-   CConexion objetoConexion = new CConexion();
-           DefaultTableModel modelo =new DefaultTableModel();
-           
-           String sql =" ";
-           
-           modelo.addColumn("SIGLA");
-           modelo.addColumn("NOMBRE"); 
-           modelo.addColumn("TRABAJOS");
-           modelo.addColumn("TRAB_REALIZADOS");
-           modelo.addColumn("TRAB_NO_REALIZADO"); 
-           modelo.addColumn("PRECIO U");
-           modelo.addColumn("MONTO PAGADO");
-           modelo.addColumn("MONTO POR PAGAR"); 
-          
-           paramreporte.setModel(modelo);
-           
-   sql = """
+    CConexion conexionBD = new CConexion();
+    DefaultTableModel modeloTabla = new DefaultTableModel();
+
+    // Configurar columnas del modelo de la tabla
+    modeloTabla.addColumn("SIGLA");
+    modeloTabla.addColumn("NOMBRE");
+    modeloTabla.addColumn("TRABAJOS");
+    modeloTabla.addColumn("TRAB_REALIZADOS");
+    modeloTabla.addColumn("TRAB_NO_REALIZADO");
+    modeloTabla.addColumn("PRECIO U");
+    modeloTabla.addColumn("MONTO PAGADO");
+    modeloTabla.addColumn("MONTO POR PAGAR");
+
+    paramReporte.setModel(modeloTabla);
+
+    // estoy agarrando el balo que ingrese en el jtextfiel
+    String textoIngresado = txtNombreEstudiante.getText().trim();
+    
+    String consultaSQL = """
         SELECT 
             CASE WHEN ROW_NUMBER() OVER (PARTITION BY m.sigla ORDER BY t.nombre) = 1 THEN m.sigla ELSE '' END AS Sigla,
             CASE WHEN ROW_NUMBER() OVER (PARTITION BY m.sigla ORDER BY t.nombre) = 1 THEN m.nombre_materia ELSE '' END AS Nombre_de_Materia,
@@ -129,46 +132,48 @@ public class GReporteRapido {
             plan_materia pm ON pm.sigla = m.sigla
         JOIN 
             trabajo t ON pm.id_trabajo = t.id_trabajo
-       -- JOIN 
-     --       registroacademico r ON r.sigla = m.sigla
-     --   WHERE 
-        --    r.registro = ?  
+        JOIN 
+            registroacademico r ON r.sigla = m.sigla
+        JOIN
+            estudiante e ON e.registro = r.registro
+        WHERE 
+            e.nombre LIKE ?
         ORDER BY 
             m.sigla, t.nombre
     """;
 
+    try {
+        Connection conexion = conexionBD.EstablecerConexion();
+        PreparedStatement preparedStatement = conexion.prepareStatement(consultaSQL);
 
-           
-         String [] datos =new String[8];
-           Statement st;
+
+        preparedStatement.setString(1, "%" + textoIngresado + "%");
+
+        ResultSet resultado = preparedStatement.executeQuery();
+        String[] filaDatos = new String[8];
+
+
+        while (resultado.next()) {
+            filaDatos[0] = resultado.getString(1); 
+            filaDatos[1] = resultado.getString(2); 
+            filaDatos[2] = resultado.getString(3); 
+            filaDatos[3] = resultado.getString(4); 
+            filaDatos[4] = resultado.getString(5); 
+            filaDatos[5] = resultado.getString(6); 
+            filaDatos[6] = resultado.getString(7); 
+            filaDatos[7] = resultado.getString(8); 
+
          
-           try {
-               
-               
-            st = objetoConexion.EstablecerConexion().createStatement();
-            ResultSet rs = st.executeQuery(sql);
-                    
-               while (rs.next()) {
-                   
-                  datos[0]=rs.getString(1);
-                  datos[1]=rs.getString(2);
-                  datos[2]=rs.getString(3);
-                  datos[3]=rs.getString(4);
-                  datos[4]=rs.getString(5);
-                  datos[5]=rs.getString(6);
-                  datos[6]=rs.getString(7);
-                  datos[7]=rs.getString(8);
-                  
-                  
-                   modelo.addRow(datos);
-               }
-             paramreporte.setModel(modelo);
-               
-        } catch (Exception e) {
-        
-               JOptionPane.showMessageDialog(null,"error"+ e.toString());
+            modeloTabla.addRow(filaDatos);
         }
+
+        paramReporte.setModel(modeloTabla);
+
+    } catch (Exception ex) {
+        JOptionPane.showMessageDialog(null, "Error al generar el reporte: " + ex.getMessage());
     }
+}
+
      }
    
 

@@ -7,7 +7,8 @@ package Interfaces;
    import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import clases.GReporteRapido;
-
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 /**
  *
  * @author amc77
@@ -19,9 +20,12 @@ public class FReporteRapido extends javax.swing.JFrame {
      */
     public FReporteRapido() {
         initComponents();
+        
+        
+        
       
-        GReporteRapido objetotrabajo = new GReporteRapido();
-         objetotrabajo.mostrarRepoteRapido(tablaReporteRapido);
+       // GReporteRapido objetotrabajo = new GReporteRapido();
+       
         
          this.setLocationRelativeTo(null);
   
@@ -48,6 +52,7 @@ public class FReporteRapido extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaReporteRapido = new javax.swing.JTable();
+        btnBuscar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -78,18 +83,34 @@ public class FReporteRapido extends javax.swing.JFrame {
 
         tablaReporteRapido.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "SIGLA", "NOMBRE", "TRABAJOS", "TRAB_REALIZADOS", "TRAB_NO_REALIZADO", "PRECIO U", "MONTO PAGADO", "MONTO POR PAGAR"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, true, true, true, true, true, true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tablaReporteRapido);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 850, 270));
+
+        btnBuscar.setText("MOSTRAR REPORTE");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 60, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -116,12 +137,22 @@ public class FReporteRapido extends javax.swing.JFrame {
 
     private void txtEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEstudianteActionPerformed
        
-String registro = txtEstudiante.getText(); 
-GReporteRapido objetotrabajo = new GReporteRapido();
-//objetotrabajo.mostrarRepoteRapido(tablaReporteRapido, registro);
+
          
 
     }//GEN-LAST:event_txtEstudianteActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+btnBuscar.addActionListener(new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+         
+       GReporteRapido objetotrabajo = new GReporteRapido();
+         objetotrabajo.mostrarReporteRapido(tablaReporteRapido, txtEstudiante);
+    }
+});
+
+    }//GEN-LAST:event_btnBuscarActionPerformed
    public void setDatos( String estudiante) {
     txtEstudiante.setText(estudiante);
     
@@ -162,6 +193,7 @@ GReporteRapido objetotrabajo = new GReporteRapido();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

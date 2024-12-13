@@ -5,7 +5,7 @@ import java.sql.Statement;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JTable;
 import java.sql.ResultSet;
-//import java.sql.Connection;
+import java.sql.Connection;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import odontofich.CConexion;
