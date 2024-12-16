@@ -10,7 +10,6 @@ import java.awt.RenderingHints;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JButton;
-import javax.swing.JComponent;
 
 public class FPrueba extends javax.swing.JFrame {
      public FPrueba() {
@@ -111,7 +110,7 @@ public class FPrueba extends javax.swing.JFrame {
                 BBuscarActionPerformed(evt);
             }
         });
-        jPanel2.add(BBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, -1, -1));
+        jPanel2.add(BBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 60, 170, -1));
 
         TOTAL.setText("TOTAL RECAUDADO");
         TOTAL.addActionListener(new java.awt.event.ActionListener() {
@@ -119,7 +118,7 @@ public class FPrueba extends javax.swing.JFrame {
                 TOTALActionPerformed(evt);
             }
         });
-        jPanel2.add(TOTAL, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 60, -1, -1));
+        jPanel2.add(TOTAL, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 60, 170, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 460, 110));
 
@@ -167,124 +166,107 @@ public class FPrueba extends javax.swing.JFrame {
     }
 
     private void efectoBotones(JButton button) {
-    // Asegurar transparencia total
-    button.setOpaque(false);
-    button.setContentAreaFilled(false);
-    button.setFocusPainted(false);
-
-    // Personalizar texto
-    button.setForeground(Color.WHITE);
-    button.setFont(new Font("Arial", Font.BOLD, 14));
-
-    // Crear un borde redondeado visible
-    button.setBorder(new javax.swing.border.AbstractBorder() {
+        //haciendo transparentes los botones
+        button.setOpaque(false);
+        button.setContentAreaFilled(false);
+        button.setFocusPainted(false);
+        
+        //letra
+        button.setForeground(Color.WHITE);
+        button.setFont(new Font("Arial", Font.BOLD, 14));
+    
+        //creando borde
+        button.setBorder(new javax.swing.border.AbstractBorder() {
         @Override
         public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
             Graphics2D g2d = (Graphics2D) g;
             g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-            // Color y grosor del borde
-            g2d.setColor(new Color(200, 200, 200)); // Gris claro
-            g2d.setStroke(new java.awt.BasicStroke(2)); // Grosor del borde
+            // borde gris y redondeado
+            g2d.setColor(new Color(200, 200, 200));
+            g2d.setStroke(new java.awt.BasicStroke(2));
+            g2d.drawRoundRect(x, y, width - 1, height - 1, 30, 30);
+            }
 
-            // Dibujar el borde redondeado
-            g2d.drawRoundRect(x, y, width - 1, height - 1, 30, 30); // Radio de 30 para bordes redondeados
-        }
+            @Override
+            //distancia entre texto y borde
+            public Insets getBorderInsets(Component c) {
+                return new Insets(7, 7, 7, 7);
+            }
 
-        @Override
-        public Insets getBorderInsets(Component c) {
-            return new Insets(7, 7, 7, 7); // Ajuste interno entre texto y borde
-        }
+            @Override
+            public boolean isBorderOpaque() {
+                return false;
+            }
+        });
 
-        @Override
-        public boolean isBorderOpaque() {
-            return false; // Garantiza que el fondo sea transparente
-        }
-    });
-
-    // Cambiar cursor al pasar sobre el botón
+    // poner manito al pasar el puntero
     button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-    // Agregar efectos visuales al pasar el mouse
+    
+    //efecto al poner encima el mouse
     button.addMouseListener(new MouseAdapter() {
         @Override
         public void mouseEntered(MouseEvent e) {
-            // Obtener el color del texto actual
             Color textColor = button.getForeground();
 
-            // Cambiar el color del texto y del borde al pasar el mouse
-            button.setForeground(new Color(202, 207, 250)); // Blanco con transparencia ajustada
+            button.setForeground(new Color(202, 207, 250));
             button.repaint();
 
-            // Cambiar el color del borde para que coincida con el color del texto
             button.setBorder(new javax.swing.border.AbstractBorder() {
                 @Override
                 public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
                     Graphics2D g2d = (Graphics2D) g;
                     g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-                    // Usar el mismo color que el texto para el borde
-                    g2d.setColor(button.getForeground()); // Usar el color de texto
-                    g2d.setStroke(new java.awt.BasicStroke(2)); // Grosor del borde
+                    g2d.setColor(button.getForeground()); 
+                    g2d.setStroke(new java.awt.BasicStroke(2)); 
 
-                    // Dibujar el borde redondeado
-                    g2d.drawRoundRect(x, y, width - 1, height - 1, 30, 30); // Radio de 30 para bordes redondeados
+                    g2d.drawRoundRect(x, y, width - 1, height - 1, 30, 30);
                 }
 
                 @Override
                 public Insets getBorderInsets(Component c) {
-                    return new Insets(10, 10, 10, 10); // Ajuste interno entre texto y borde
+                    return new Insets(10, 10, 10, 10);
                 }
 
                 @Override
                 public boolean isBorderOpaque() {
-                    return false; // Garantiza que el fondo sea transparente
+                    return false;
                 }
             });
         }
 
         @Override
-        public void mouseExited(MouseEvent e) {
-            // Revertir el texto y el borde a sus valores originales
-            button.setForeground(Color.WHITE); // Revertir el texto a blanco
+        //efecto al quitar el mouse
+        public void mouseExited(MouseEvent e) {            
+            button.setForeground(Color.WHITE); 
             button.repaint();
 
-            // Revertir el borde al color original
             button.setBorder(new javax.swing.border.AbstractBorder() {
                 @Override
                 public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
                     Graphics2D g2d = (Graphics2D) g;
                     g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-                    // Color y grosor del borde original
-                    g2d.setColor(new Color(200, 200, 200)); // Gris claro
-                    g2d.setStroke(new java.awt.BasicStroke(2)); // Grosor del borde
+                    g2d.setColor(new Color(200, 200, 200));
+                    g2d.setStroke(new java.awt.BasicStroke(2)); 
 
-                    // Dibujar el borde redondeado
-                    g2d.drawRoundRect(x, y, width - 1, height - 1, 30, 30); // Radio de 30 para bordes redondeados
+                    g2d.drawRoundRect(x, y, width - 1, height - 1, 30, 30);
                 }
 
                 @Override
                 public Insets getBorderInsets(Component c) {
-                    return new Insets(7, 7, 7, 7); // Ajuste interno entre texto y borde
+                    return new Insets(7, 7, 7, 7);
                 }
 
                 @Override
                 public boolean isBorderOpaque() {
-                    return false; // Garantiza que el fondo sea transparente
+                    return false;
                 }
             });
         }
     });
 }
-
-
-
-
-
-
-
-
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -131,12 +131,10 @@ public class CPrueba{
             paramGestion.setText("");
         }
 
-        // Limpiar el panel de materias
         panelMaterias.removeAll();
         panelMaterias.setLayout(new BoxLayout(panelMaterias, BoxLayout.Y_AXIS));
-        panelMaterias.setBackground(Color.WHITE); // Cambiar el fondo del panelMaterias a blanco
+        panelMaterias.setBackground(Color.WHITE); 
 
-        // Llenar el panel con las materias
         while (rs3.next()) {
             String siglaMateria = rs3.getString("sigla");
 
@@ -149,14 +147,12 @@ public class CPrueba{
                 nombreMateria = rs4.getString("nombre_materia");
             }
 
-            // Crear el panel de la materia
-            JPanel materiaPanel = new JPanel(); // Espaciado horizontal entre componentes
-            materiaPanel.setBackground(Color.WHITE); // Fondo blanco
+            JPanel materiaPanel = new JPanel(); 
+            materiaPanel.setBackground(Color.WHITE); 
 
             JLabel lblMateria = new JLabel(siglaMateria);
             JButton btnDetalle = new JButton("Detalle");
-
-            // Aplicar estilo al botón
+            
             efectoBotones(btnDetalle);
 
             String finalNombreMateria = nombreMateria;
@@ -168,18 +164,15 @@ public class CPrueba{
                 detallesForm.setVisible(true);
             });
 
-            // Añadir los componentes al panel con separación
-            materiaPanel.add(lblMateria, BorderLayout.WEST); // Nombre de la materia alineado a la izquierda
-            materiaPanel.add(btnDetalle, BorderLayout.EAST); // Botón alineado a la derecha
+            materiaPanel.add(lblMateria, BorderLayout.WEST); 
+            materiaPanel.add(btnDetalle, BorderLayout.EAST); 
             panelMaterias.add(materiaPanel);
         }
 
-        // Crear el botón "Reporte Rápido" en su propio panel
         JPanel panelReporte = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        panelReporte.setBackground(Color.WHITE); // Fondo blanco
+        panelReporte.setBackground(Color.WHITE); 
         JButton btnReporte = new JButton("REPORTE RÁPIDO");
 
-        // Aplicar estilo al botón
         efectoBotones(btnReporte);
 
         btnReporte.addActionListener(e -> {
@@ -191,7 +184,6 @@ public class CPrueba{
         });
         panelReporte.add(btnReporte);
 
-        // Agregar el panel del botón al panel de materias
         panelMaterias.add(panelReporte);
 
         panelMaterias.revalidate();
@@ -204,90 +196,77 @@ public class CPrueba{
     }
 }
 
-
     private void efectoBotones(JButton button) {
-    // Asegurar transparencia total
-    button.setOpaque(false);
-    button.setContentAreaFilled(false);
-    button.setFocusPainted(false);
+        button.setOpaque(false);
+        button.setContentAreaFilled(false);
+        button.setFocusPainted(false);
 
-    // Personalizar texto
-    button.setForeground(new Color(200, 200, 200));
-    button.setFont(new Font("Arial", Font.BOLD, 14));
+        button.setForeground(new Color(200, 200, 200));
+        button.setFont(new Font("Arial", Font.BOLD, 14));
 
-    // Crear un borde redondeado visible
-    Border originalBorder = new javax.swing.border.AbstractBorder() {
-        @Override
-        public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
-            Graphics2D g2d = (Graphics2D) g;
-            g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        Border originalBorder = new javax.swing.border.AbstractBorder() {
+            @Override
+            public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+                Graphics2D g2d = (Graphics2D) g;
+                g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-            // Color y grosor del borde
-            g2d.setColor(new Color(200, 200, 200)); // Gris claro
-            g2d.setStroke(new java.awt.BasicStroke(2)); // Grosor del borde
+                g2d.setColor(new Color(200, 200, 200));
+                g2d.setStroke(new java.awt.BasicStroke(2));
 
-            // Dibujar el borde redondeado
-            g2d.drawRoundRect(x, y, width - 1, height - 1, 30, 30); // Radio de 30 para bordes redondeados
-        }
+                g2d.drawRoundRect(x, y, width - 1, height - 1, 30, 30); 
+                }   
 
-        @Override
-        public Insets getBorderInsets(Component c) {
-            return new Insets(7, 7, 7, 7); // Ajuste interno entre texto y borde
-        }
+            @Override
+            public Insets getBorderInsets(Component c) {
+                return new Insets(7, 7, 7, 7); 
+            }
 
-        @Override
-        public boolean isBorderOpaque() {
-            return false; // Garantiza que el fondo sea transparente
-        }
-    };
+            @Override
+            public boolean isBorderOpaque() {
+                return false;
+            }
+        };
 
-    button.setBorder(originalBorder);
+        button.setBorder(originalBorder);
 
-    // Cambiar cursor al pasar sobre el botón
-    button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-    // Agregar efectos visuales al pasar el mouse
-    button.addMouseListener(new MouseAdapter() {
-        @Override
-        public void mouseEntered(MouseEvent e) {
-            // Cambiar el color del texto y el borde al pasar el mouse
-            button.setForeground(new Color(202, 207, 250)); // Gris claro para texto
+        button.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                button.setForeground(new Color(202, 207, 250)); 
 
-            // Actualizar el borde al color del texto
-            button.setBorder(new javax.swing.border.AbstractBorder() {
-                @Override
-                public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
-                    Graphics2D g2d = (Graphics2D) g;
-                    g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                button.setBorder(new javax.swing.border.AbstractBorder() {
+                    @Override
+                    public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+                        Graphics2D g2d = (Graphics2D) g;
+                        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-                    // Usar el mismo color que el texto para el borde
-                    g2d.setColor(button.getForeground()); // Usar el color de texto
-                    g2d.setStroke(new java.awt.BasicStroke(2)); // Grosor del borde
+                        g2d.setColor(button.getForeground()); 
+                        g2d.setStroke(new java.awt.BasicStroke(2)); 
 
-                    // Dibujar el borde redondeado
-                    g2d.drawRoundRect(x, y, width - 1, height - 1, 30, 30); // Radio de 30 para bordes redondeados
-                }
+                        g2d.drawRoundRect(x, y, width - 1, height - 1, 30, 30); 
+                    }
 
-                @Override
-                public Insets getBorderInsets(Component c) {
-                    return new Insets(10, 10, 10, 10); // Ajuste interno entre texto y borde
-                }
+                    @Override
+                    public Insets getBorderInsets(Component c) {
+                        return new Insets(10, 10, 10, 10); 
+                    }
 
-                @Override
-                public boolean isBorderOpaque() {
-                    return false; // Garantiza que el fondo sea transparente
-                }
-            });
-        }
+                    @Override
+                    public boolean isBorderOpaque() {
+                        return false; 
+                    }
+                });
+            }
 
-        @Override
-        public void mouseExited(MouseEvent e) {
-            // Revertir el texto y el borde a sus valores originales
-            button.setForeground(new Color(200, 200, 200)); // Revertir el texto a gris claro
-            button.setBorder(originalBorder); // Restaurar el borde original
-        }
-    });
-}
+            @Override
+            public void mouseExited(MouseEvent e) {
+                button.setForeground(new Color(200, 200, 200));
+                button.setBorder(originalBorder);
+            }
+        });
+    }
 
 
    
