@@ -17,7 +17,7 @@ public class GReporteAdic {
     
     
      public void llenarComboBoxOpciones(JComboBox comboBox) {
-        // Agregamos las opciones "Fecha" y "Registro" al comboBox
+        
          comboBox.removeAllItems();
         comboBox.addItem("Fecha");
         comboBox.addItem("Registro");
@@ -26,7 +26,7 @@ public void buscarPorFechaORegistro(JComboBox<String> comboBox, JTextField textF
     CConexion objetoConexion = new CConexion();
     String sql = "";
     
-    // Determinar la consulta según la opción seleccionada
+   
     if (comboBox.getSelectedItem().equals("Fecha")) {
         sql = "SELECT * FROM detalle_adicional WHERE fecha BETWEEN ? AND ?";
     } else {
@@ -37,7 +37,7 @@ public void buscarPorFechaORegistro(JComboBox<String> comboBox, JTextField textF
          PreparedStatement pst = conn.prepareStatement(sql)) {
 
         if (comboBox.getSelectedItem().equals("Fecha")) {
-            // Obtener las fechas de los JTextField
+           
             String busquedaInicio = textFieldInicio.getText().trim();
             String busquedaFin = textFieldFin.getText().trim();
 
@@ -46,9 +46,9 @@ public void buscarPorFechaORegistro(JComboBox<String> comboBox, JTextField textF
                 return;
             }
 
-            // Validar y convertir las fechas a formato SQL
+          
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            sdf.setLenient(false); // Asegurar formato estricto
+            sdf.setLenient(false); 
             java.sql.Date fechaInicioSQL;
             java.sql.Date fechaFinSQL;
 
@@ -60,11 +60,11 @@ public void buscarPorFechaORegistro(JComboBox<String> comboBox, JTextField textF
                 return;
             }
 
-            // Establecer los parámetros de la consulta
+           
             pst.setDate(1, fechaInicioSQL);
             pst.setDate(2, fechaFinSQL);
         } else {
-            // Obtener el número de registro del JTextField
+          
             String busquedaRegistro = textFieldRegistro.getText().trim();
 
             if (busquedaRegistro.isEmpty()) {
@@ -82,7 +82,7 @@ public void buscarPorFechaORegistro(JComboBox<String> comboBox, JTextField textF
 
         ResultSet rs = pst.executeQuery();
 
-        // Configurar el modelo de la tabla
+        
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Registro");
         model.addColumn("ID Insumo");
@@ -93,18 +93,18 @@ public void buscarPorFechaORegistro(JComboBox<String> comboBox, JTextField textF
         if (!rs.isBeforeFirst()) {
             JOptionPane.showMessageDialog(null, "No se encontraron resultados para la búsqueda.");
         } else {
-            // Llenar la tabla con los resultados
+           
             while (rs.next()) {
                 model.addRow(new Object[]{
                     rs.getInt("registro"),
                     rs.getString("id_insumo"),
                     rs.getInt("cantidad"),
                     rs.getBigDecimal("costo"),
-                    rs.getDate("fecha").toString() // Mostrar como texto "AAAA-MM-DD"
+                    rs.getDate("fecha").toString() 
                 });
             }
 
-            // Asignar el modelo a la tabla de resultados
+           
             tablaResultado.setModel(model);
         }
     } catch (SQLException e) {
@@ -113,7 +113,7 @@ public void buscarPorFechaORegistro(JComboBox<String> comboBox, JTextField textF
 }
 public void imprimirTabla(JTable tabla) {
     try {
-        // Imprimir la tabla con encabezado y pie de página
+       
         boolean completado = tabla.print(JTable.PrintMode.FIT_WIDTH, 
                 new java.text.MessageFormat("Lista de Detalles Adicionales"), 
                 new java.text.MessageFormat("Página - {0}"));

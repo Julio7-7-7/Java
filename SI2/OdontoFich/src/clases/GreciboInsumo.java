@@ -16,7 +16,7 @@ public class GreciboInsumo {
 
   
    public void llenarComboBoxOpciones(JComboBox comboBox) {
-        // Agregamos las opciones "Fecha" y "Registro" al comboBox
+       
          comboBox.removeAllItems();
         comboBox.addItem("Fecha");
         comboBox.addItem("Registro");
@@ -28,7 +28,7 @@ public class GreciboInsumo {
     CConexion objetoConexion = new CConexion();
     String sql = "";
     
-    // Determinar la consulta según la opción seleccionada
+   
     if (comboBox.getSelectedItem().equals("Fecha")) {
         sql = "SELECT * FROM detalle_estudiante WHERE fecha BETWEEN ? AND ?";
     } else {
@@ -39,7 +39,7 @@ public class GreciboInsumo {
         PreparedStatement pst = objetoConexion.EstablecerConexion().prepareStatement(sql);
         
         if (comboBox.getSelectedItem().equals("Fecha")) {
-            // Obtener las fechas de los JTextField
+            
             String busquedaInicio = textFieldInicio.getText().trim();
             String busquedaFin = textFieldFin.getText().trim();
             
@@ -47,23 +47,23 @@ public class GreciboInsumo {
                 JOptionPane.showMessageDialog(null, "Por favor, ingrese ambas fechas para buscar por rango.");
                 return;
             }
-            // Convertir las fechas a java.sql.Date
+          
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             java.sql.Date fechaInicioSQL = new java.sql.Date(sdf.parse(busquedaInicio).getTime());
             java.sql.Date fechaFinSQL = new java.sql.Date(sdf.parse(busquedaFin).getTime());
 
-            // Establecer los parámetros de la consulta
+         
             pst.setDate(1, fechaInicioSQL);
             pst.setDate(2, fechaFinSQL);
         } else {
-            // Obtener el número de registro del JTextField
+            
             String busquedaRegistro = textFieldRegistro.getText().trim();
             pst.setInt(1, Integer.parseInt(busquedaRegistro));
         }
 
         ResultSet rs = pst.executeQuery();
 
-        // Configurar el modelo de la tabla
+       
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Registro");
         model.addColumn("Nombre");
@@ -76,7 +76,7 @@ public class GreciboInsumo {
         if (!rs.isBeforeFirst()) {
             JOptionPane.showMessageDialog(null, "No se encontraron resultados para la búsqueda.");
         } else {
-            // Llenar la tabla con los resultados
+           
             while (rs.next()) {
                 model.addRow(new Object[]{
                     rs.getInt("registro"),
@@ -89,7 +89,7 @@ public class GreciboInsumo {
                 });
             }
 
-            // Asignar el modelo a la tabla de resultados
+           
             tablaResultado.setModel(model);
         }
     } catch (SQLException | java.text.ParseException e) {
@@ -98,7 +98,7 @@ public class GreciboInsumo {
 }
  public void imprimirTabla(JTable tabla) {
     try {
-        // Imprimir la tabla con encabezado y pie de página
+        
         boolean completado = tabla.print(JTable.PrintMode.FIT_WIDTH, 
                 new java.text.MessageFormat("Lista de Detalles Adicionales"), 
                 new java.text.MessageFormat("Página - {0}"));
