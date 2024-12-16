@@ -32,6 +32,7 @@ public class FTotalRecaudado extends javax.swing.JFrame {
         GTotalRecaudado objetotrabajo = new GTotalRecaudado();
          objetotrabajo.mostrarTotalRecaudado(TABLATOTAL);
 
+
         
     }
 
@@ -51,6 +52,7 @@ public class FTotalRecaudado extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TABLATOTAL = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
@@ -81,14 +83,22 @@ public class FTotalRecaudado extends javax.swing.JFrame {
         });
         jPanel1.add(AÑO, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 70, 90, -1));
 
+        jLabel1.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
         jLabel1.setText("FECHA DE REPORTE");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
+        jLabel2.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
         jLabel2.setText("HORA DE REPORTE");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
 
+        jLabel3.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
         jLabel3.setText("AÑO DE REPORTE");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
+
+        jPanel2.setBackground(new java.awt.Color(0, 153, 255));
+        jPanel2.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 110));
 
         TABLATOTAL.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -108,7 +118,7 @@ public class FTotalRecaudado extends javax.swing.JFrame {
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 740, 320));
 
         jLabel4.setText("TOTAL RECAUDADO");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 440, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 450, -1, -1));
 
         jTextField4.setText("00,00");
         jTextField4.addActionListener(new java.awt.event.ActionListener() {
@@ -116,7 +126,7 @@ public class FTotalRecaudado extends javax.swing.JFrame {
                 jTextField4ActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 430, 140, -1));
+        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 440, 150, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -199,6 +209,7 @@ public class FTotalRecaudado extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables

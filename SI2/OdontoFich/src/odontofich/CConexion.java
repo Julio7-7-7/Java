@@ -13,7 +13,7 @@ public class CConexion {
     private final String PUERTO = "5432";
     private final String DB = "clinicafich";
     private final String USER = "postgres";
-    private final String PASSWORD = "adminjt";
+    private final String PASSWORD = "1981Ardaya";
     
     String Cadena = "jdbc:postgresql://" + HOST + ":" + PUERTO + "/" + DB;
 

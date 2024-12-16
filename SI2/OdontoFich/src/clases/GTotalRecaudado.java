@@ -1,7 +1,79 @@
+package clases;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import odontofich.CConexion;
+
+public class GTotalRecaudado {
+
+    public void mostrarTotalRecaudado(JTable paramReporte) {
+        CConexion conexionBD = new CConexion();
+        DefaultTableModel modeloTabla = new DefaultTableModel();
+
+        // Configurar columnas del modelo de la tabla
+        modeloTabla.addColumn("REGISTRO");
+        modeloTabla.addColumn("NOMBRE COMPLETO");
+        modeloTabla.addColumn("TOTAL RECAUDADO");
+
+        paramReporte.setModel(modeloTabla);
+
+        String consultaSQL = """
+        WITH TrabajosRealizados AS (
+            SELECT 
+                registro, 
+                id_trabajo, 
+                COUNT(DISTINCT fecha) AS Total_Realizados
+            FROM 
+                detalle_estudiante
+            GROUP BY 
+                registro, id_trabajo
+        )
+        SELECT 
+            e.registro,
+            e.nombre AS Nombre_Estudiante,
+            SUM(t.precio_unidad * COALESCE(tr.Total_Realizados, 0)) AS Total_Recaudado
+        FROM 
+            estudiante e
+        LEFT JOIN 
+            TrabajosRealizados tr ON e.registro = tr.registro
+        LEFT JOIN 
+            trabajo t ON tr.id_trabajo = t.id_trabajo
+        GROUP BY 
+            e.registro, e.nombre
+        ORDER BY 
+            e.registro;
+        """;
+
+        try {
+            Connection conexion = conexionBD.EstablecerConexion();
+            PreparedStatement preparedStatement = conexion.prepareStatement(consultaSQL);
+            ResultSet resultado = preparedStatement.executeQuery();
+            String[] filaDatos = new String[3];
+
+            // Procesar los resultados
+            while (resultado.next()) {
+                filaDatos[0] = resultado.getString("registro");
+                filaDatos[1] = resultado.getString("Nombre_Estudiante");
+                filaDatos[2] = String.format("%.2f", resultado.getDouble("Total_Recaudado"));
+
+                modeloTabla.addRow(filaDatos);
+            }
+
+            paramReporte.setModel(modeloTabla);
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error al generar el reporte: " + ex.getMessage());
+        }
+    }
+}
+
+
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package clases;
 
 import java.sql.Connection;
@@ -59,7 +131,7 @@ public class GTotalRecaudado {
 }
 
      }
-   
+   */
 
     
     

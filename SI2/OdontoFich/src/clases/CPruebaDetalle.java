@@ -39,7 +39,7 @@ public class CPruebaDetalle {
 
         while (rsTrabajos.next()) {
             String idTrabajo = rsTrabajos.getString("id_trabajo");
-            String nombreTrabajo = rsTrabajos.getString("nombre");
+            String nombreTrabajo =  rsTrabajos.getString("nombre");
             double precioUnidad = rsTrabajos.getDouble("precio_unidad");
             int cantidadTrabajo = rsTrabajos.getInt("cantidad_trabajo");
 
