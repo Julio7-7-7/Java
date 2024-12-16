@@ -12,9 +12,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 
-public class FPruebaDetalles extends javax.swing.JFrame {
+public class FDetTrabajo extends javax.swing.JFrame {
  
-    public FPruebaDetalles() {
+    public FDetTrabajo() {
         initComponents();
         aplicarEfectoBotones();
     }
@@ -174,7 +174,7 @@ public class FPruebaDetalles extends javax.swing.JFrame {
  
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FPruebaDetalles().setVisible(true);
+                new FDetTrabajo().setVisible(true);
             }
         });
     }

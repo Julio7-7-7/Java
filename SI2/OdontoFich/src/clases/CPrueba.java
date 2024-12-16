@@ -1,6 +1,6 @@
 package clases;
 
-import Interfaces.FPruebaDetalles;
+import Interfaces.FDetTrabajo;
 import Interfaces.FReporteRapido;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -157,7 +157,7 @@ public class CPrueba{
 
             String finalNombreMateria = nombreMateria;
             btnDetalle.addActionListener(e -> {
-                FPruebaDetalles detallesForm = new FPruebaDetalles();
+                FDetTrabajo detallesForm = new FDetTrabajo();
                 detallesForm.setLocationRelativeTo(null);
                 detallesForm.setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
                 detallesForm.setDatos(siglaMateria, finalNombreMateria, nombreEstudiante, String.valueOf(registroBuscado));

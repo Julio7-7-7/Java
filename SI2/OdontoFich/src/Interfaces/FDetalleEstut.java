@@ -18,6 +18,7 @@ private GDetalleEstudiante claseEstudiante;
     public FDetalleEstut() {
         initComponents();
          claseEstudiante = new GDetalleEstudiante();
+         claseEstudiante.cargarTrabajosEnComboBox(cbIdtrabajo);
     }
 
     /**
@@ -32,12 +33,8 @@ private GDetalleEstudiante claseEstudiante;
         jPanel1 = new javax.swing.JPanel();
         btnBuscarRe = new javax.swing.JButton();
         txtRegistro = new javax.swing.JTextField();
-        btnBuscarTrab = new javax.swing.JButton();
-        txtTrabajo = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaRegistro = new javax.swing.JTable();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tablaTrabajo = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
         tablaGeneral = new javax.swing.JTable();
         btnReg = new javax.swing.JButton();
@@ -50,33 +47,24 @@ private GDetalleEstudiante claseEstudiante;
         jLabel2 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        cbIdtrabajo = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(0, 255, 204));
+        jPanel1.setBackground(new java.awt.Color(51, 51, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnBuscarRe.setBackground(new java.awt.Color(255, 255, 0));
-        btnBuscarRe.setFont(new java.awt.Font("SimSun-ExtB", 1, 14)); // NOI18N
-        btnBuscarRe.setText("Buscar");
+        btnBuscarRe.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnBuscarRe.setText("BUSCAR");
         btnBuscarRe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarReActionPerformed(evt);
             }
         });
-        jPanel1.add(btnBuscarRe, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, -1));
-        jPanel1.add(txtRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, 240, -1));
-
-        btnBuscarTrab.setBackground(new java.awt.Color(255, 255, 51));
-        btnBuscarTrab.setFont(new java.awt.Font("SimSun-ExtB", 1, 14)); // NOI18N
-        btnBuscarTrab.setText("Buscar");
-        btnBuscarTrab.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarTrabActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnBuscarTrab, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 120, -1, -1));
-        jPanel1.add(txtTrabajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 120, 260, -1));
+        jPanel1.add(btnBuscarRe, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, -1, -1));
+        jPanel1.add(txtRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 170, -1));
 
         tablaRegistro.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -91,22 +79,7 @@ private GDetalleEstudiante claseEstudiante;
         ));
         jScrollPane1.setViewportView(tablaRegistro);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 350, 110));
-
-        tablaTrabajo.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane2.setViewportView(tablaTrabajo);
-
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 160, 380, 120));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 380, 90));
 
         tablaGeneral.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -121,11 +94,10 @@ private GDetalleEstudiante claseEstudiante;
         ));
         jScrollPane3.setViewportView(tablaGeneral);
 
-        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, 610, 200));
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 370, 640, 200));
 
-        btnReg.setBackground(new java.awt.Color(255, 153, 153));
-        btnReg.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
-        btnReg.setText("Registrar");
+        btnReg.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnReg.setText("REGISTRAR");
         btnReg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegActionPerformed(evt);
@@ -134,19 +106,18 @@ private GDetalleEstudiante claseEstudiante;
         jPanel1.add(btnReg, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, -1, -1));
 
         btnGuardar.setBackground(new java.awt.Color(255, 51, 51));
-        btnGuardar.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
-        btnGuardar.setText("Guardar Todo");
+        btnGuardar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnGuardar.setText("GUARDAR TODO");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 330, -1, -1));
-        jPanel1.add(txtFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 580, 100, -1));
+        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 330, 150, -1));
+        jPanel1.add(txtFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 580, 130, -1));
 
-        jButton1.setBackground(new java.awt.Color(255, 153, 153));
-        jButton1.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
-        jButton1.setText("Guardar fecha");
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton1.setText("GUARDAR FECHA");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -154,34 +125,35 @@ private GDetalleEstudiante claseEstudiante;
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 580, -1, -1));
 
-        jButton2.setBackground(new java.awt.Color(51, 51, 255));
-        jButton2.setFont(new java.awt.Font("SimSun-ExtB", 1, 14)); // NOI18N
-        jButton2.setText("Limpiar tablas");
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton2.setText("LIMPIAR TABLA");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 330, -1, -1));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 330, -1, -1));
 
-        jButton3.setBackground(new java.awt.Color(0, 0, 255));
-        jButton3.setFont(new java.awt.Font("SimSun-ExtB", 1, 14)); // NOI18N
-        jButton3.setText("limpiar registro");
+        jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton3.setText("LIMPIAR REGISTROS");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 330, -1, -1));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 330, -1, -1));
 
-        jLabel1.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("BUSCAR NRO REGISTRO ");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("BUSCAR ID TRABAJO");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 90, 210, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 100, 210, -1));
 
+        jButton5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton5.setText("ATRAS");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -190,19 +162,29 @@ private GDetalleEstudiante claseEstudiante;
         });
         jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 20, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 24)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("CONTROL DE ESTUDIANTE");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 30, -1, -1));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/ODONTO_1.png"))); // NOI18N
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 350, 240, 220));
+
+        cbIdtrabajo.setBackground(new java.awt.Color(255, 0, 0));
+        cbIdtrabajo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(cbIdtrabajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 130, 320, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 930, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 642, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 627, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -219,21 +201,9 @@ private GDetalleEstudiante claseEstudiante;
     }
     }//GEN-LAST:event_btnBuscarReActionPerformed
 
-    private void btnBuscarTrabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarTrabActionPerformed
-        // TODO add your handling code here:
-       // Obtener el texto del JTextField
-    String idTrabajo = txtTrabajo.getText().trim();
-    
-    if (!idTrabajo.isEmpty()) {
-        claseEstudiante.buscarPorIdTrabajo(idTrabajo, tablaTrabajo);
-    } else {
-        JOptionPane.showMessageDialog(this, "Por favor, ingresa un ID de trabajo válido.");
-    }
-    }//GEN-LAST:event_btnBuscarTrabActionPerformed
-
     private void btnRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegActionPerformed
         // TODO add your handling code here:
-       claseEstudiante.combinarDatosEnNuevaTabla(tablaRegistro, tablaTrabajo, tablaGeneral);
+       claseEstudiante.combinarDatosEnNuevaTabla(tablaRegistro, cbIdtrabajo, tablaGeneral);
         
     }//GEN-LAST:event_btnRegActionPerformed
 
@@ -249,7 +219,7 @@ private GDetalleEstudiante claseEstudiante;
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        claseEstudiante.limpiarTablas(tablaRegistro, tablaTrabajo);
+        claseEstudiante.limpiarTablas(tablaRegistro);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -291,6 +261,7 @@ private GDetalleEstudiante claseEstudiante;
             java.util.logging.Logger.getLogger(FDetalleEstut.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -302,9 +273,9 @@ private GDetalleEstudiante claseEstudiante;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscarRe;
-    private javax.swing.JButton btnBuscarTrab;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnReg;
+    private javax.swing.JComboBox<String> cbIdtrabajo;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -312,15 +283,13 @@ private GDetalleEstudiante claseEstudiante;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable tablaGeneral;
     private javax.swing.JTable tablaRegistro;
-    private javax.swing.JTable tablaTrabajo;
     private javax.swing.JTextField txtFecha;
     private javax.swing.JTextField txtRegistro;
-    private javax.swing.JTextField txtTrabajo;
     // End of variables declaration//GEN-END:variables
 }
