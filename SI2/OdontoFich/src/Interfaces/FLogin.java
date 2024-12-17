@@ -35,9 +35,9 @@ public class FLogin extends javax.swing.JFrame {
         nombre_usuario = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
         jSeparator4 = new javax.swing.JSeparator();
-        contraseña = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
+        contraseña = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("INICIO DE SESION");
@@ -84,17 +84,6 @@ public class FLogin extends javax.swing.JFrame {
         jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 150, 240, 10));
         jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 210, 240, 10));
 
-        contraseña.setBackground(new java.awt.Color(255, 255, 255));
-        contraseña.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        contraseña.setToolTipText("");
-        contraseña.setBorder(null);
-        contraseña.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                contraseñaActionPerformed(evt);
-            }
-        });
-        jPanel1.add(contraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, 240, -1));
-
         jPanel2.setBackground(new java.awt.Color(0, 102, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -104,6 +93,10 @@ public class FLogin extends javax.swing.JFrame {
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, 190, 30));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 420, 100));
+
+        contraseña.setBackground(new java.awt.Color(255, 255, 255));
+        contraseña.setBorder(null);
+        jPanel1.add(contraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 182, 220, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -130,10 +123,6 @@ public class FLogin extends javax.swing.JFrame {
             error.setText("Acceso denegado");
         }
     }//GEN-LAST:event_Iniciar_sesionActionPerformed
-
-    private void contraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contraseñaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_contraseñaActionPerformed
 
     private void nombre_usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombre_usuarioActionPerformed
         // TODO add your handling code here:
@@ -227,7 +216,7 @@ public class FLogin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Iniciar_sesion;
-    private javax.swing.JTextField contraseña;
+    private javax.swing.JPasswordField contraseña;
     private javax.swing.JLabel error;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
