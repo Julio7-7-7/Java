@@ -150,10 +150,10 @@ public class FPrueba extends javax.swing.JFrame {
     }//GEN-LAST:event_BBuscarActionPerformed
 
     private void TOTALActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TOTALActionPerformed
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         FTotalRecaudado Total = new FTotalRecaudado();
-        Total.setVisible(true);
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        Total.setLocationRelativeTo(null); 
+        Total.setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE); 
+        Total.setVisible(true); 
     }//GEN-LAST:event_TOTALActionPerformed
 
     private void txtregistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtregistroActionPerformed

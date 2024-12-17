@@ -123,7 +123,7 @@ public class FLogin extends javax.swing.JFrame {
         GLogin lg= new GLogin();
         boolean sesion=lg.iniciarSesion(nombre_usuario.getText(), contraseña.getText());
         if(sesion){
-            new FPrueba().setVisible(true);
+            new FDetalleEstut().setVisible(true);
             this.dispose();
             error.setText("");
         }else{
