@@ -17,6 +17,7 @@ public class FDetTrabajo extends javax.swing.JFrame {
     public FDetTrabajo() {
         initComponents();
         aplicarEfectoBotones();
+     setLocationRelativeTo(null);
     }
     private CPruebaDetalle pruebaDetalle = new CPruebaDetalle();
 

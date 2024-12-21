@@ -17,6 +17,7 @@ private GDetalleEstudiante claseEstudiante;
      */
     public FDetalleEstut() {
         initComponents();
+     setLocationRelativeTo(null);
          claseEstudiante = new GDetalleEstudiante();
          claseEstudiante.cargarTrabajosEnComboBox(cbIdtrabajo);
     }

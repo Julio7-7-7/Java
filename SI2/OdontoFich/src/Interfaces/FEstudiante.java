@@ -8,6 +8,7 @@ public class FEstudiante extends javax.swing.JFrame {
 
     public FEstudiante() {
         initComponents();
+     setLocationRelativeTo(null);
     }
 
     @SuppressWarnings("unchecked")

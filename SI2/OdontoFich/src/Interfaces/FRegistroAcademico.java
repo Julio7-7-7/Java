@@ -6,6 +6,8 @@ public class FRegistroAcademico extends javax.swing.JFrame {
 
     public FRegistroAcademico() {
         initComponents();
+     setLocationRelativeTo(null);
+        
     }
 
     @SuppressWarnings("unchecked")

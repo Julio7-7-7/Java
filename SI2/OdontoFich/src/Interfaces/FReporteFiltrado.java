@@ -16,6 +16,7 @@ private GReporteAdic claseReporte;
         initComponents();
         claseReporte =new GReporteAdic();
         claseReporte.llenarComboBoxOpciones(jcfiltro);
+     setLocationRelativeTo(null);
     }
 
     /**

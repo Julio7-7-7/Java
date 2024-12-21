@@ -19,6 +19,7 @@ private GInsumo claseInsumo;
     public FInsumos() {
         initComponents();
         claseInsumo = new GInsumo();
+     setLocationRelativeTo(null);
     }
 
     /**

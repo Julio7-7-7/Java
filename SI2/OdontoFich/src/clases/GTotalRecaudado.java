@@ -1,3 +1,10 @@
+
+
+
+
+
+
+
 package clases;
 
 import java.sql.Connection;
@@ -10,12 +17,16 @@ import javax.swing.table.DefaultTableModel;
 import odontofich.CConexion;
 
 public class GTotalRecaudado {
+    
+ 
+
+
 
     public void mostrarTotalRecaudado(JTable paramReporte,JTextField TotalRecaudadoF) {
         CConexion conexionBD = new CConexion();
         DefaultTableModel modeloTabla = new DefaultTableModel();
 
-        // Configurar columnas del modelo de la tabla
+       
         modeloTabla.addColumn("REGISTRO");
         modeloTabla.addColumn("NOMBRE COMPLETO");
         modeloTabla.addColumn("TOTAL RECAUDADO");
@@ -55,7 +66,7 @@ public class GTotalRecaudado {
             ResultSet resultado = preparedStatement.executeQuery();
             String[] filaDatos = new String[3];
             double totalRecaudado=0;
-            // Procesar los resultados
+            
             while (resultado.next()) {
                 filaDatos[0] = resultado.getString("registro");
                 filaDatos[1] = resultado.getString("Nombre_Estudiante");
@@ -75,9 +86,9 @@ public class GTotalRecaudado {
 }
 
 
-/*
 
-package clases;
+
+/*package clases;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -133,8 +144,8 @@ public class GTotalRecaudado {
     }
 }
 
-     }
-   */
+     }*/
+   
 
     
     

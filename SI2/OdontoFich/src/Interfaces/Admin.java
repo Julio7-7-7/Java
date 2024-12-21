@@ -15,6 +15,7 @@ public class Admin extends javax.swing.JFrame {
      */
     public Admin() {
         initComponents();
+     setLocationRelativeTo(null);
     }
 
     /**

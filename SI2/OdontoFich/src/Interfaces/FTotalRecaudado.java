@@ -20,6 +20,7 @@ public class FTotalRecaudado extends javax.swing.JFrame {
      */
     public FTotalRecaudado() {
         initComponents();
+     setLocationRelativeTo(null);
         
         
            this.setLocationRelativeTo(null);

@@ -13,6 +13,7 @@ public class FPeronsal extends javax.swing.JFrame {
     public FPeronsal() {
         initComponents();
         ClasePersonal= new GPersonal();
+     setLocationRelativeTo(null);
     }
    
     @SuppressWarnings("unchecked")

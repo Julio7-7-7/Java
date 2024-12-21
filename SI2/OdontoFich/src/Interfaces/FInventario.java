@@ -11,6 +11,7 @@ public class FInventario extends javax.swing.JFrame {
    
     public FInventario() {
          initComponents();
+     setLocationRelativeTo(null);
         ClaseInventario = new GInventario(jcInsumoinve, JcPersonal, JcUnidadMedida, idInventario, fechaRegist,stock);
         
         

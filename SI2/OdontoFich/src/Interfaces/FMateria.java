@@ -9,6 +9,7 @@ public class FMateria extends javax.swing.JFrame {
 
     public FMateria() {
         initComponents();
+     setLocationRelativeTo(null);
         
     }
 
@@ -500,7 +501,7 @@ public class FMateria extends javax.swing.JFrame {
 
     private void BUSCARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUSCARActionPerformed
         GMateria objetoMateria = new GMateria();
-        objetoMateria.buscarMateria(sigla, tblistamateria);
+        objetoMateria.buscarMateria(jTextField1, tblistamateria);
     }//GEN-LAST:event_BUSCARActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed

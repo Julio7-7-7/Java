@@ -18,6 +18,7 @@ private GreciboInsumo claseRecibo;
         initComponents();
          claseRecibo = new GreciboInsumo();
          claseRecibo.llenarComboBoxOpciones(jcFiltro);
+     setLocationRelativeTo(null);
           
     }
    
@@ -92,6 +93,11 @@ private GreciboInsumo claseRecibo;
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 600, -1, 30));
 
         jcFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcFiltro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcFiltroActionPerformed(evt);
+            }
+        });
         jPanel1.add(jcFiltro, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 130, -1));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -171,6 +177,10 @@ private GreciboInsumo claseRecibo;
         FInsumos insumo = new FInsumos();
         insumo.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jcFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcFiltroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcFiltroActionPerformed
 
     /**
      * @param args the command line arguments

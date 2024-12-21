@@ -15,6 +15,7 @@ public class EncargadoInsu extends javax.swing.JFrame {
      */
     public EncargadoInsu() {
         initComponents();
+     setLocationRelativeTo(null);
     }
 
     /**

@@ -5,6 +5,7 @@ public class FAdicional extends javax.swing.JFrame {
    
     public FAdicional() {
         initComponents(); 
+     setLocationRelativeTo(null);
         ClaseAdicional= new GAdicional();
         ClaseAdicional.cargarInsumosEnComboBox(jcomboxInsumo);
         

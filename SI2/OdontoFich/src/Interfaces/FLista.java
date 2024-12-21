@@ -15,6 +15,7 @@ public class FLista extends javax.swing.JFrame {
         tablaInventario.setModel(model);
         ClaseLista = new GLista(model,tablaInventario);
         ClaseLista.cargarInsumosEnTabla();
+     setLocationRelativeTo(null);
       
     }
   
