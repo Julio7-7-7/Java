@@ -1,3 +1,10 @@
+
+
+
+
+
+
+
 package clases;
 
 import java.sql.Connection;
@@ -5,16 +12,21 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import odontofich.CConexion;
 
 public class GTotalRecaudado {
+    
+ 
 
-    public void mostrarTotalRecaudado(JTable paramReporte) {
+
+
+    public void mostrarTotalRecaudado(JTable paramReporte,JTextField TotalRecaudadoF) {
         CConexion conexionBD = new CConexion();
         DefaultTableModel modeloTabla = new DefaultTableModel();
 
-        // Configurar columnas del modelo de la tabla
+       
         modeloTabla.addColumn("REGISTRO");
         modeloTabla.addColumn("NOMBRE COMPLETO");
         modeloTabla.addColumn("TOTAL RECAUDADO");
@@ -26,7 +38,7 @@ public class GTotalRecaudado {
             SELECT 
                 registro, 
                 id_trabajo, 
-                COUNT(DISTINCT fecha) AS Total_Realizados
+                cast(COUNT(DISTINCT fecha) as numeric(10,2)) AS Total_Realizados
             FROM 
                 detalle_estudiante
             GROUP BY 
@@ -38,9 +50,9 @@ public class GTotalRecaudado {
             SUM(t.precio_unidad * COALESCE(tr.Total_Realizados, 0)) AS Total_Recaudado
         FROM 
             estudiante e
-        LEFT JOIN 
+        inner JOIN 
             TrabajosRealizados tr ON e.registro = tr.registro
-        LEFT JOIN 
+        inner JOIN 
             trabajo t ON tr.id_trabajo = t.id_trabajo
         GROUP BY 
             e.registro, e.nombre
@@ -53,16 +65,18 @@ public class GTotalRecaudado {
             PreparedStatement preparedStatement = conexion.prepareStatement(consultaSQL);
             ResultSet resultado = preparedStatement.executeQuery();
             String[] filaDatos = new String[3];
-
-            // Procesar los resultados
+            double totalRecaudado=0;
+            
             while (resultado.next()) {
                 filaDatos[0] = resultado.getString("registro");
                 filaDatos[1] = resultado.getString("Nombre_Estudiante");
                 filaDatos[2] = String.format("%.2f", resultado.getDouble("Total_Recaudado"));
 
                 modeloTabla.addRow(filaDatos);
+                totalRecaudado+=resultado.getDouble("Total_Recaudado");
             }
 
+            TotalRecaudadoF.setText(String.format("%.2f", totalRecaudado));
             paramReporte.setModel(modeloTabla);
 
         } catch (Exception ex) {
@@ -72,9 +86,9 @@ public class GTotalRecaudado {
 }
 
 
-/*
 
-package clases;
+
+/*package clases;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -130,8 +144,8 @@ public class GTotalRecaudado {
     }
 }
 
-     }
-   */
+     }*/
+   
 
     
     

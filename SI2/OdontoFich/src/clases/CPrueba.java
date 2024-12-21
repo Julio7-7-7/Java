@@ -175,13 +175,27 @@ public class CPrueba{
 
         efectoBotones(btnReporte);
 
-        btnReporte.addActionListener(e -> {
+        
+        /*btnReporte.addActionListener(e -> {
             FReporteRapido detallesFor = new FReporteRapido();
             detallesFor.setLocationRelativeTo(null);
             detallesFor.setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
             detallesFor.setDatos(nombreEstudiante);
             detallesFor.setVisible(true);
-        });
+        });*/
+        
+btnReporte.addActionListener(e -> {
+    FReporteRapido detallesFor = new FReporteRapido();
+    detallesFor.setLocationRelativeTo(null);
+    detallesFor.setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
+    detallesFor.setDatos(nombreEstudiante, String.valueOf(registroBuscado));
+
+    detallesFor.setVisible(true);
+});
+
+        
+        
+        
         panelReporte.add(btnReporte);
 
         panelMaterias.add(panelReporte);

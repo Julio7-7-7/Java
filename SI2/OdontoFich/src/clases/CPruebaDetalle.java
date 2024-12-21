@@ -18,56 +18,57 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 
 public class CPruebaDetalle {
             
 
-    public void mostrarTrabajos(String siglaMateria, JPanel panelTrabajos) {
+    public void mostrarTrabajos(String siglaMateria, int registroEstudiante, JPanel panelTrabajos) {
     panelTrabajos.setLayout(new BoxLayout(panelTrabajos, BoxLayout.Y_AXIS));
     CConexion conexion = new CConexion();
 
     try (Connection conn = conexion.EstablecerConexion()) {
-        String consultaTrabajos = "SELECT pm.id_trabajo, t.nombre, t.precio_unidad, pm.cantidad_trabajo " +
+        String consultaTrabajos = "SELECT pm.id_trabajo, t.nombre, t.precio_unidad, pm.cantidad_trabajo, " +
+                                  "COUNT(DISTINCT de.fecha) AS trabajos_realizados " +
                                   "FROM plan_materia pm " +
                                   "JOIN trabajo t ON pm.id_trabajo = t.id_trabajo " +
-                                  "WHERE pm.sigla = ?";
+                                  "LEFT JOIN detalle_estudiante de ON de.id_trabajo = pm.id_trabajo " +
+                                  "AND de.registro = ? " + 
+                                  "WHERE pm.sigla = ? " +
+                                  "GROUP BY pm.id_trabajo, t.nombre, t.precio_unidad, pm.cantidad_trabajo";
+
         PreparedStatement psTrabajos = conn.prepareStatement(consultaTrabajos);
-        psTrabajos.setString(1, siglaMateria);
+        psTrabajos.setInt(1, registroEstudiante);  
+        psTrabajos.setString(2, siglaMateria);   
+
         ResultSet rsTrabajos = psTrabajos.executeQuery();
+
+        panelTrabajos.removeAll(); 
 
         while (rsTrabajos.next()) {
             String idTrabajo = rsTrabajos.getString("id_trabajo");
-            String nombreTrabajo =  rsTrabajos.getString("nombre");
+            String nombreTrabajo = rsTrabajos.getString("nombre");
             double precioUnidad = rsTrabajos.getDouble("precio_unidad");
             int cantidadTrabajo = rsTrabajos.getInt("cantidad_trabajo");
-
-            String consultaRealizados = "SELECT COUNT(DISTINCT fecha) AS trabajos_realizados " +
-                                        "FROM detalle_estudiante " +
-                                        "WHERE id_trabajo = ?";
-            PreparedStatement psRealizados = conn.prepareStatement(consultaRealizados);
-            psRealizados.setString(1, idTrabajo);
-            ResultSet rsRealizados = psRealizados.executeQuery();
-
-            int trabajosRealizados = 0;
-            if (rsRealizados.next()) {
-                trabajosRealizados = rsRealizados.getInt("trabajos_realizados");
-            }
+            int trabajosRealizados = rsTrabajos.getInt("trabajos_realizados");
 
             JPanel trabajoPanel = new JPanel();
             trabajoPanel.setPreferredSize(new Dimension(550, 100));
             trabajoPanel.setBorder(BorderFactory.createLineBorder(new Color(200, 200, 200), 2));
             trabajoPanel.setLayout(new BorderLayout());
 
+            
             if (trabajosRealizados == 0) {
-                trabajoPanel.setBackground(new Color(255, 100, 100)); 
+                trabajoPanel.setBackground(new Color(255, 100, 100)); // Rojo
             } else if (trabajosRealizados < cantidadTrabajo) {
-                trabajoPanel.setBackground(new Color(255, 255, 100)); 
+                trabajoPanel.setBackground(new Color(255, 255, 100)); // Amarillo
             } else {
-                trabajoPanel.setBackground(new Color(100, 255, 100));
+                trabajoPanel.setBackground(new Color(100, 255, 100)); // Verde
             }
 
+            // formatear los cmpos de la tabla
             String infoTrabajo = String.format(
                 "<html><center>ID: %s<br>Nombre: %s<br>Precio: Bs. %.2f<br>Cantidad: %d/%d</center></html>",
                 idTrabajo, nombreTrabajo, precioUnidad, trabajosRealizados, cantidadTrabajo
@@ -79,14 +80,22 @@ public class CPruebaDetalle {
 
             trabajoPanel.add(lblTrabajo, BorderLayout.CENTER);
             panelTrabajos.add(trabajoPanel);
-            }   
+        }
 
-            } catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, "Error al obtener los trabajos: " + e.getMessage());
-            }
-   }
+        panelTrabajos.revalidate(); //actualiza el panel después de agregar cosas
+        panelTrabajos.repaint();
 
-public void mostrarPagos(DefaultTableModel modelPagos, JPanel panelPagos) {
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "Error al obtener los trabajos: " + e.getMessage());
+    }
+}
+
+
+
+
+
+
+public void mostrarPagos(DefaultTableModel modelPagos, JPanel panelPagos, int registroEstudiante) {
     CConexion conexion = new CConexion();
     double totalPagado = 0.0;
 
@@ -94,10 +103,15 @@ public void mostrarPagos(DefaultTableModel modelPagos, JPanel panelPagos) {
         String consultaPagos = "SELECT t.nombre AS nombre_trabajo, de.fecha AS fecha, t.precio_unidad AS monto " +
                                "FROM detalle_estudiante de " +
                                "JOIN trabajo t ON de.id_trabajo = t.id_trabajo " +
+                               "WHERE de.registro = ? " + 
                                "GROUP BY t.nombre, de.fecha, t.precio_unidad " +
                                "ORDER BY de.fecha";
+                               
         PreparedStatement psPagos = conn.prepareStatement(consultaPagos);
+        psPagos.setInt(1, registroEstudiante);
         ResultSet rsPagos = psPagos.executeQuery();
+        
+        modelPagos.setRowCount(0);
         
         while (rsPagos.next()) {
             String nombreTrabajo = rsPagos.getString("nombre_trabajo");
@@ -107,6 +121,7 @@ public void mostrarPagos(DefaultTableModel modelPagos, JPanel panelPagos) {
             totalPagado += monto;
             modelPagos.addRow(new Object[]{nombreTrabajo, fecha, monto});
         }
+
         
         String[] columnasResumen = {"Descripción", "Monto"};
         Object[][] datosResumen = {
@@ -114,6 +129,7 @@ public void mostrarPagos(DefaultTableModel modelPagos, JPanel panelPagos) {
         };
         DefaultTableModel modelResumen = new DefaultTableModel(datosResumen, columnasResumen);
         JTable tablaResumen = new JTable(modelResumen);
+
         
         JTable tablaPagos = new JTable(modelPagos);
         tablaPagos.setRowHeight(30);
@@ -127,6 +143,7 @@ public void mostrarPagos(DefaultTableModel modelPagos, JPanel panelPagos) {
         tablaPagos.setSelectionBackground(new Color(240, 248, 255));
         tablaPagos.setSelectionForeground(Color.BLACK);
 
+        
         DefaultTableCellRenderer precioRenderer = new DefaultTableCellRenderer() {
             @Override
             protected void setValue(Object value) {
@@ -140,6 +157,7 @@ public void mostrarPagos(DefaultTableModel modelPagos, JPanel panelPagos) {
         precioRenderer.setHorizontalAlignment(SwingConstants.RIGHT);
         tablaPagos.getColumnModel().getColumn(2).setCellRenderer(precioRenderer);
 
+        
         tablaResumen.setRowHeight(30);
         tablaResumen.setFont(new Font("SansSerif", Font.PLAIN, 14));
         tablaResumen.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 16));
@@ -155,10 +173,12 @@ public void mostrarPagos(DefaultTableModel modelPagos, JPanel panelPagos) {
         rendererResumen.setHorizontalAlignment(SwingConstants.CENTER);
         tablaResumen.getColumnModel().getColumn(1).setCellRenderer(rendererResumen);
 
+        
         panelPagos.setLayout(new BorderLayout());
         JScrollPane scrollPagos = new JScrollPane(tablaPagos);
         panelPagos.add(scrollPagos, BorderLayout.CENTER);
 
+        
         JPanel panelResumen = new JPanel(new BorderLayout());
         panelResumen.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
         panelResumen.add(tablaResumen.getTableHeader(), BorderLayout.NORTH);
@@ -171,12 +191,22 @@ public void mostrarPagos(DefaultTableModel modelPagos, JPanel panelPagos) {
 }
 
 
-public void mostrarTrabajosYPagos(String siglaMateria, JPanel paneldetalle) {
+
+
+public void mostrarTrabajosYPagos(String siglaMateria, JPanel paneldetalle, JTextField txtRegistro) {
+    String registroEstudiante = txtRegistro.getText().trim(); 
+    if (registroEstudiante.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "El registro del estudiante no puede estar vacío.");
+        return;
+    }
+
     paneldetalle.removeAll();
     JTabbedPane tabbedPane = new JTabbedPane();
 
     JPanel panelTrabajos = new JPanel();
-    mostrarTrabajos(siglaMateria, panelTrabajos);
+    
+    int registroEstudianteInt = Integer.parseInt(registroEstudiante);
+    mostrarTrabajos(siglaMateria,registroEstudianteInt, panelTrabajos);
     tabbedPane.addTab("Trabajos", new JScrollPane(panelTrabajos));
 
     JPanel panelPagos = new JPanel(new BorderLayout());
@@ -185,7 +215,7 @@ public void mostrarTrabajosYPagos(String siglaMateria, JPanel paneldetalle) {
     modelPagos.addColumn("Fecha");
     modelPagos.addColumn("Monto (Bs.)");
 
-    mostrarPagos(modelPagos, panelPagos);
+    mostrarPagos(modelPagos, panelPagos, registroEstudianteInt);
 
     tabbedPane.addTab("Pagos", panelPagos);
 
@@ -195,6 +225,7 @@ public void mostrarTrabajosYPagos(String siglaMateria, JPanel paneldetalle) {
     paneldetalle.revalidate();
     paneldetalle.repaint();
 }
+
 
 
 

@@ -152,10 +152,9 @@ public class FDetTrabajo extends javax.swing.JFrame {
     }//GEN-LAST:event_txtestudianteActionPerformed
 
     private void binformeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_binformeActionPerformed
-         String siglaMateria = txtsiglamateria.getText(); // Suponiendo que tienes un JTextField llamado txtSiglaMateria
+         String siglaMateria = txtsiglamateria.getText(); 
 
-    // Llamar al método mostrarTrabajosYPagos desde la instancia
-    pruebaDetalle.mostrarTrabajosYPagos(siglaMateria, paneldetalle);
+        pruebaDetalle.mostrarTrabajosYPagos(siglaMateria, paneldetalle, txtregistro);
     }//GEN-LAST:event_binformeActionPerformed
 
     private void txtregistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtregistroActionPerformed

@@ -30,7 +30,7 @@ public class FTotalRecaudado extends javax.swing.JFrame {
 
         
         GTotalRecaudado objetotrabajo = new GTotalRecaudado();
-         objetotrabajo.mostrarTotalRecaudado(TABLATOTAL);
+         objetotrabajo.mostrarTotalRecaudado(TABLATOTAL,TotalRecaudadoF);
 
 
         
@@ -56,7 +56,7 @@ public class FTotalRecaudado extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         TABLATOTAL = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        TotalRecaudadoF = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -120,13 +120,13 @@ public class FTotalRecaudado extends javax.swing.JFrame {
         jLabel4.setText("TOTAL RECAUDADO");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 450, -1, -1));
 
-        jTextField4.setText("00,00");
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        TotalRecaudadoF.setText("00,00");
+        TotalRecaudadoF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                TotalRecaudadoFActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 440, 150, -1));
+        jPanel1.add(TotalRecaudadoF, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 440, 150, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -152,9 +152,9 @@ public class FTotalRecaudado extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_FECHAActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void TotalRecaudadoFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TotalRecaudadoFActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_TotalRecaudadoFActionPerformed
 
     private void HORAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HORAActionPerformed
         // TODO add your handling code here:
@@ -190,6 +190,7 @@ public class FTotalRecaudado extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(FTotalRecaudado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -204,6 +205,7 @@ public class FTotalRecaudado extends javax.swing.JFrame {
     private javax.swing.JTextField FECHA;
     private javax.swing.JTextField HORA;
     private javax.swing.JTable TABLATOTAL;
+    private javax.swing.JTextField TotalRecaudadoF;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -211,6 +213,5 @@ public class FTotalRecaudado extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
 }
